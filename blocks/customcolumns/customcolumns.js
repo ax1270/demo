@@ -2,6 +2,9 @@ export default function decorate(block) {
   const cols = [...block.firstElementChild.children];
   block.classList.add(`customcolumns-${cols.length}-cols`);
 
+  // テストコード
+  const count = 1;
+
   // setup image customcolumns
   [...block.children].forEach((row) => {
     [...row.children].forEach((col) => {
@@ -14,8 +17,12 @@ export default function decorate(block) {
         }
       }
 
-      // TestCode
-      col.classList.add('testtest');
+      // テストコード
+      if (count == 1) {
+        // 1列目だけCSS入れる
+        col.classList.add('testtest');
+      }
+      count++;
     });
   });
 }
