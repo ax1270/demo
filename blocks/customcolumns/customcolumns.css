@@ -1,36 +1,36 @@
-.columns > div {
+.customcolumns > div {
   display: flex;
   flex-direction: column;
 }
 
-.columns img {
+.customcolumns img {
   width: 100%;
 }
 
-.columns > div > div {
+.customcolumns > div > div {
   order: 1;
 }
 
-.columns > div > .columns-img-col {
+.customcolumns > div > .customcolumns-img-col {
   order: 0;
 }
 
-.columns > div > .columns-img-col img {
+.customcolumns > div > .customcolumns-img-col img {
   display: block;
 }
 
-.columns-2-cols {
+.customcolumns-3-cols {
   background-color: aquamarine;
 }
 
 @media (width >= 900px) {
-  .columns > div {
+  .customcolumns > div {
     align-items: center;
     flex-direction: unset;
     gap: 24px;
   }
 
-  .columns > div > div {
+  .customcolumns > div > div {
     flex: 1;
     order: unset;
   }
