@@ -13,6 +13,9 @@ export default function decorate(block) {
           picWrapper.classList.add('customcolumns-img-col');
         }
       }
+
+      // TestCode
+      col.classList.add('testtest');
     });
   });
 }
