@@ -140,12 +140,6 @@
     right: 24px;
   }
 
-  .banner .banner-slide .banner-slide-content {
-    --slide-content-width: calc((100% - 184px) / 2);
-
-    margin: 92px;
-  }
-
   .banner .banner-slide .banner-slide-content[data-align='justify'] {
     --slide-content-width: auto;
   }
