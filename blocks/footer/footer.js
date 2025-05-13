@@ -1,5 +1,6 @@
 import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
+import { buildBreadcrumbs } from '../buildBreadcrumbs/buildBreadcrumbs.js';
 
 /**
  * loads and decorates the footer
@@ -17,4 +18,12 @@ export default async function decorate(block) {
   while (fragment.firstElementChild) footer.append(fragment.firstElementChild);
 
   block.append(footer);
+
+    // breadcrumbs
+    // if (getMetadata('breadcrumbs').toLowerCase() === 'true' &&
+    //     getMetadata('PC').toLowerCase() === 'false') {
+    //   navWrapper.append(await buildBreadcrumbs());
+    // }
+
+    navWrapper.append(await buildBreadcrumbs());
 }

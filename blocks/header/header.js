@@ -232,7 +232,8 @@ export default async function decorate(block) {
 
 
   // breadcrumbs
-  if (getMetadata('breadcrumbs').toLowerCase() === 'true') {
+  if (getMetadata('breadcrumbs').toLowerCase() === 'true' &&
+      getMetadata('PC').toLowerCase() === 'true') {
     navWrapper.append(await buildBreadcrumbs());
   }
 
