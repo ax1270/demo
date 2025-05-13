@@ -1,7 +1,7 @@
 import { testFunction } from './test.js';
-// import { decorate } from '../carousel/carousel.js';
+import { customDecorate } from './test2.js';
 
 export default function decorate(block) {
   testFunction(block);
-  // decorate(block);
+  customDecorate(block);
 }
