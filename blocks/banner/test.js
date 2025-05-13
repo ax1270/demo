@@ -1,5 +1,5 @@
 function testFunction(block) {
-    block.setAttribute('id', `bbbb`);
+    block.setAttribute('id', `cccc`);
     return block;
 }
 
