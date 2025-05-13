@@ -1,6 +1,6 @@
 import { testFunction } from './test.js';
 
-export default function decorate(block) {
+export default async function decorate(block) {
   block.setAttribute('id', `aaaa`);
   testFunction(block);
 }
