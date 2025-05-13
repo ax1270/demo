@@ -1,5 +1,5 @@
-import { aaa } from './test.js';
+import { testFunction } from './test.js';
 
 export default function decorate(block) {
-  aaa(block);
+  testFunction(block);
 }
