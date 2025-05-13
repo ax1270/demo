@@ -1,3 +1,3 @@
-function testFunction(block) {
+export default function testFunction(block) {
     block.setAttribute('id', `bbbb`);
 }
