@@ -1,13 +1,4 @@
-// function testFunction(block) {
-//     block.setAttribute('id', `bbbb`);
-//     return block;
-// }
-
-// export {
-//   testFunction,
-// };
-
-export default function testFunction(block) {
-    block.setAttribute('id', `bbbb`);
+export default function test(block) {
+    block.setAttribute('id', `cccc`);
     return block;
 }
