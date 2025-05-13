@@ -20,10 +20,7 @@ export default async function decorate(block) {
   block.append(footer);
 
     // breadcrumbs
-    // if (getMetadata('breadcrumbs').toLowerCase() === 'true' &&
-    //     getMetadata('PC').toLowerCase() === 'false') {
-    //   navWrapper.append(await buildBreadcrumbs());
-    // }
-
-    // navWrapper.append(await buildBreadcrumbs());
+    if (getMetadata('breadcrumbs').toLowerCase() === 'true') {
+      navWrapper.append(await buildBreadcrumbs());
+    }
 }
