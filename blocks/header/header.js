@@ -230,12 +230,12 @@ export default async function decorate(block) {
   navWrapper.append(nav);
   block.append(navWrapper);
 
-  
+
   // breadcrumbs
-  // if (getMetadata('breadcrumbs').toLowerCase() === 'true') {
-  //   navWrapper.append(await buildBreadcrumbs());
-  // }
+  if (getMetadata('breadcrumbs').toLowerCase() === 'true') {
+    navWrapper.append(await buildBreadcrumbs());
+  }
 
   // 必ずパンくずリストだす
-  navWrapper.append(await buildBreadcrumbs());
+  // navWrapper.append(await buildBreadcrumbs());
 }
