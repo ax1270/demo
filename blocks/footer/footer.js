@@ -25,5 +25,5 @@ export default async function decorate(block) {
     //   navWrapper.append(await buildBreadcrumbs());
     // }
 
-    navWrapper.append(await buildBreadcrumbs());
+    // navWrapper.append(await buildBreadcrumbs());
 }
