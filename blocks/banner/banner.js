@@ -1,5 +1,5 @@
-import { fetchCarousel } from '../../blocks/carousel/carousel.js';
+import { decorate } from '../../blocks/carousel/carousel.js';
 
 export default function decorate(block) {
-  fetchCarousel.decorate(block);
+  decorate(block);
 }
