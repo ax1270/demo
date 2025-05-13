@@ -1,5 +1,5 @@
-import { decorate } from '../../blocks/carousel/carousel.js';
+import { testFunction } from './test.js';
 
 export default function decorate(block) {
-  decorate(block);
+  testFunction(block);
 }
