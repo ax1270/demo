@@ -166,7 +166,7 @@ a:hover {
 }
 
 /* buttons */
-/* a.button:any-link,
+a.button:any-link,
 button {
   box-sizing: border-box;
   display: inline-block;
@@ -187,33 +187,6 @@ button {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-} */
-
-a.button:any-link, button {
-  font-family: var(--body-font-family);
-  display: inline-flex;
-  box-sizing: border-box;
-  text-decoration: none;
-  border: 2px solid transparent;
-  padding: 5px 30px;
-  text-align: center;
-  font-style: normal;
-  font-weight: 600;
-  cursor: pointer;
-  color: var(--background-color);
-  background-color: var(--soflan-dark-blue);
-  margin: 16px 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-a.button:any-link {
-  display: inline-flex;
-  border-radius: 6px;
-  min-height: 68px;
-  align-items: center;
-  justify-content: center;
 }
 
 a.button:hover,
@@ -221,7 +194,6 @@ a.button:focus,
 button:hover,
 button:focus {
   background-color: var(--link-hover-color);
-  opacity: 0.7;
   cursor: pointer;
 }
 
