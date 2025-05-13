@@ -1,3 +1,3 @@
 function testFunction(block) {
-    block.setAttribute('id', `test-${carouselId}`);
+    block.setAttribute('id2', `test`);
 }
