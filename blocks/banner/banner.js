@@ -7,6 +7,6 @@ export default function decorate(block) {
 }
 
 function bbb(block) {
-  alert(block);
   block.setAttribute('id', `bbbb`);
+  return block;
 }
