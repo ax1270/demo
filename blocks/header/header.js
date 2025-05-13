@@ -237,7 +237,4 @@ export default async function decorate(block) {
   if (getMetadata('breadcrumbs').toLowerCase() === 'true') {
     navWrapper.append(await buildBreadcrumbs());
   }
-
-  // 必ずパンくずリストだす
-  // navWrapper.append(await buildBreadcrumbs());
 }
