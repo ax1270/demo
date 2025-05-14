@@ -94,7 +94,7 @@ let carouselId = 0;
 export default async function decorate(block) {
 
   // オーバーライド
-  if (getMetadata('customBannerMode').toLowerCase() === 'true') {
+  if (getMetadata('custombannermode').toLowerCase() === 'true') {
     banner(block);
     return;
   }
