@@ -1,11 +1,12 @@
 import { fetchPlaceholders } from '../../scripts/placeholders.js';
+import banner from '../banner/banner.js';
 
 function updateActiveSlide(slide) {
-  const block = slide.closest('.banner');
+  const block = slide.closest('.customcarousel');
   const slideIndex = parseInt(slide.dataset.slideIndex, 10);
   block.dataset.activeSlide = slideIndex;
 
-  const slides = block.querySelectorAll('.banner-slide');
+  const slides = block.querySelectorAll('.customcarousel-slide');
 
   slides.forEach((aSlide, idx) => {
     aSlide.setAttribute('aria-hidden', idx !== slideIndex);
@@ -18,7 +19,7 @@ function updateActiveSlide(slide) {
     });
   });
 
-  const indicators = block.querySelectorAll('.banner-slide-indicator');
+  const indicators = block.querySelectorAll('.customcarousel-slide-indicator');
   indicators.forEach((indicator, idx) => {
     if (idx !== slideIndex) {
       indicator.querySelector('button').removeAttribute('disabled');
@@ -29,13 +30,13 @@ function updateActiveSlide(slide) {
 }
 
 function showSlide(block, slideIndex = 0) {
-  const slides = block.querySelectorAll('.banner-slide');
+  const slides = block.querySelectorAll('.customcarousel-slide');
   let realSlideIndex = slideIndex < 0 ? slides.length - 1 : slideIndex;
   if (slideIndex >= slides.length) realSlideIndex = 0;
   const activeSlide = slides[realSlideIndex];
 
   activeSlide.querySelectorAll('a').forEach((link) => link.removeAttribute('tabindex'));
-  block.querySelector('.banner-slides').scrollTo({
+  block.querySelector('.customcarousel-slides').scrollTo({
     top: 0,
     left: activeSlide.offsetLeft,
     behavior: 'smooth',
@@ -43,7 +44,7 @@ function showSlide(block, slideIndex = 0) {
 }
 
 function bindEvents(block) {
-  const slideIndicators = block.querySelector('.banner-slide-indicators');
+  const slideIndicators = block.querySelector('.customcarousel-slide-indicators');
   if (!slideIndicators) return;
 
   slideIndicators.querySelectorAll('button').forEach((button) => {
@@ -65,19 +66,19 @@ function bindEvents(block) {
       if (entry.isIntersecting) updateActiveSlide(entry.target);
     });
   }, { threshold: 0.5 });
-  block.querySelectorAll('.banner-slide').forEach((slide) => {
+  block.querySelectorAll('.customcarousel-slide').forEach((slide) => {
     slideObserver.observe(slide);
   });
 }
 
-function createSlide(row, slideIndex, bannerId) {
+function createSlide(row, slideIndex, customcarouselId) {
   const slide = document.createElement('li');
   slide.dataset.slideIndex = slideIndex;
-  slide.setAttribute('id', `banner-${bannerId}-slide-${slideIndex}`);
-  slide.classList.add('banner-slide');
+  slide.setAttribute('id', `customcarousel-${customcarouselId}-slide-${slideIndex}`);
+  slide.classList.add('customcarousel-slide');
 
   row.querySelectorAll(':scope > div').forEach((column, colIdx) => {
-    column.classList.add(`banner-slide-${colIdx === 0 ? 'image' : 'content'}`);
+    column.classList.add(`customcarousel-slide-${colIdx === 0 ? 'image' : 'content'}`);
     slide.append(column);
   });
 
@@ -89,36 +90,41 @@ function createSlide(row, slideIndex, bannerId) {
   return slide;
 }
 
-let bannerId = 0;
-function customCarouselDecorate(block) {
-  bannerId += 1;
-  block.setAttribute('id', `banner-${bannerId}`);
+let customcarouselId = 0;
+export default async function decorate(block) {
+
+  // バナー設定読み込み
+  banner(block);
+
+
+  customcarouselId += 1;
+  block.setAttribute('id', `customcarousel-${customcarouselId}`);
   const rows = block.querySelectorAll(':scope > div');
   const isSingleSlide = rows.length < 2;
 
-  const placeholders = fetchPlaceholders();
+  const placeholders = await fetchPlaceholders();
 
   block.setAttribute('role', 'region');
-  block.setAttribute('aria-roledescription', placeholders.banner || 'banner');
+  block.setAttribute('aria-roledescription', placeholders.customcarousel || 'customcarousel');
 
   const container = document.createElement('div');
-  container.classList.add('banner-slides-container');
+  container.classList.add('customcarousel-slides-container');
 
   const slidesWrapper = document.createElement('ul');
-  slidesWrapper.classList.add('banner-slides');
+  slidesWrapper.classList.add('customcarousel-slides');
   block.prepend(slidesWrapper);
 
   let slideIndicators;
   if (!isSingleSlide) {
     const slideIndicatorsNav = document.createElement('nav');
-    slideIndicatorsNav.setAttribute('aria-label', placeholders.bannerSlideControls || 'banner Slide Controls');
+    slideIndicatorsNav.setAttribute('aria-label', placeholders.customcarouselSlideControls || 'customcarousel Slide Controls');
     slideIndicators = document.createElement('ol');
-    slideIndicators.classList.add('banner-slide-indicators');
+    slideIndicators.classList.add('customcarousel-slide-indicators');
     slideIndicatorsNav.append(slideIndicators);
     block.append(slideIndicatorsNav);
 
     const slideNavButtons = document.createElement('div');
-    slideNavButtons.classList.add('banner-navigation-buttons');
+    slideNavButtons.classList.add('customcarousel-navigation-buttons');
     slideNavButtons.innerHTML = `
       <button type="button" class= "slide-prev" aria-label="${placeholders.previousSlide || 'Previous Slide'}"></button>
       <button type="button" class="slide-next" aria-label="${placeholders.nextSlide || 'Next Slide'}"></button>
@@ -128,12 +134,12 @@ function customCarouselDecorate(block) {
   }
 
   rows.forEach((row, idx) => {
-    const slide = createSlide(row, idx, bannerId);
+    const slide = createSlide(row, idx, customcarouselId);
     slidesWrapper.append(slide);
 
     if (slideIndicators) {
       const indicator = document.createElement('li');
-      indicator.classList.add('banner-slide-indicator');
+      indicator.classList.add('customcarousel-slide-indicator');
       indicator.dataset.targetSlide = idx;
       indicator.innerHTML = `<button type="button" aria-label="${placeholders.showSlide || 'Show Slide'} ${idx + 1} ${placeholders.of || 'of'} ${rows.length}"></button>`;
       slideIndicators.append(indicator);
@@ -148,7 +154,3 @@ function customCarouselDecorate(block) {
     bindEvents(block);
   }
 }
-
-export {
-  customCarouselDecorate,
-};
