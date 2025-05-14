@@ -66,6 +66,6 @@ function getDirectTextContent(menuItem) {
 }
 
 
-export {
-    buildBreadcrumbs,
-};
+export default function decorate(block) {
+  buildBreadcrumbs(block);
+}
