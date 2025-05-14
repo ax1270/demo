@@ -1,6 +1,6 @@
 import { fetchPlaceholders } from '../../scripts/placeholders.js';
 
-export default function decorate() {
+export default function decorate(block) {
   const breadcrumbs = document.createElement('nav');
   breadcrumbs.className = 'breadcrumbs';
 
