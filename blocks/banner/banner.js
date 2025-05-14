@@ -90,13 +90,13 @@ function createSlide(row, slideIndex, bannerId) {
 }
 
 let bannerId = 0;
-export default function decorate(block) {
+export default async function decorate(block) {
   bannerId += 1;
   block.setAttribute('id', `banner-${bannerId}`);
   const rows = block.querySelectorAll(':scope > div');
   const isSingleSlide = rows.length < 2;
 
-  const placeholders = fetchPlaceholders();
+  const placeholders = await fetchPlaceholders();
 
   block.setAttribute('role', 'region');
   block.setAttribute('aria-roledescription', placeholders.banner || 'banner');
@@ -119,6 +119,11 @@ export default function decorate(block) {
 
     const slideNavButtons = document.createElement('div');
     slideNavButtons.classList.add('banner-navigation-buttons');
+    slideNavButtons.innerHTML = `
+      <button type="button" class= "slide-prev" aria-label="${placeholders.previousSlide || 'Previous Slide'}"></button>
+      <button type="button" class="slide-next" aria-label="${placeholders.nextSlide || 'Next Slide'}"></button>
+    `;
+
     container.append(slideNavButtons);
   }
 
