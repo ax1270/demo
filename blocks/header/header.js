@@ -1,7 +1,7 @@
 import { getMetadata } from '../../scripts/aem.js';
 import { fetchPlaceholders } from '../../scripts/placeholders.js';
 import { loadFragment } from '../fragment/fragment.js';
-import { buildBreadcrumbs } from '../buildBreadcrumbs/buildBreadcrumbs.js';
+import { buildBreadcrumbs } from '../breadcrumbs/breadcrumbs.js';
 
 
 // media query match that indicates mobile/tablet width

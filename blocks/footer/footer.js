@@ -1,6 +1,6 @@
 import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
-import { buildBreadcrumbs } from '../buildBreadcrumbs/buildBreadcrumbs.js';
+import { buildBreadcrumbs } from '../breadcrumbs/breadcrumbs.js';
 
 /**
  * loads and decorates the footer
