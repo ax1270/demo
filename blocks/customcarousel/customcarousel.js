@@ -91,7 +91,7 @@ import banner from '../banner/banner.js';
 //   return slide;
 // }
 
-let customcarouselId = 0;
+// let customcarouselId = 0;
 export default async function decorate(block) {
 
   // バナーブロック呼び出し
