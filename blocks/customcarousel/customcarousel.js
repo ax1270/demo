@@ -150,7 +150,7 @@ export default async function decorate(block) {
   // });
 
   // container.append(slidesWrapper);
-  // block.prepend(container);
+  block.prepend(container);
 
   // if (!isSingleSlide) {
   //   bindEvents(block);
