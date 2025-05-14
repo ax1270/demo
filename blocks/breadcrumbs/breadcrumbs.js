@@ -1,6 +1,6 @@
 import { fetchPlaceholders } from '../../scripts/placeholders.js';
 
-function buildBreadcrumbs() {
+export default function buildBreadcrumbs() {
   const breadcrumbs = document.createElement('nav');
   breadcrumbs.className = 'breadcrumbs';
 
@@ -63,11 +63,6 @@ function getDirectTextContent(menuItem) {
     .filter((n) => n.nodeType === Node.TEXT_NODE)
     .map((n) => n.textContent)
     .join(' ');
-}
-
-
-export default function test() {
-  buildBreadcrumbs();
 }
 
 // export {
