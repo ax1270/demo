@@ -90,7 +90,7 @@ function createSlide(row, slideIndex, bannerId) {
 }
 
 let bannerId = 0;
-function custombannerDecorate(block) {
+export default function decorate(block) {
   bannerId += 1;
   block.setAttribute('id', `banner-${bannerId}`);
   const rows = block.querySelectorAll(':scope > div');
@@ -143,7 +143,3 @@ function custombannerDecorate(block) {
     bindEvents(block);
   }
 }
-
-export {
-  custombannerDecorate,
-};
