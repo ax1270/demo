@@ -1,6 +1,6 @@
 import { fetchPlaceholders } from '../../scripts/placeholders.js';
 
-async function buildBreadcrumbs() {
+function buildBreadcrumbs() {
   const breadcrumbs = document.createElement('nav');
   breadcrumbs.className = 'breadcrumbs';
 
@@ -25,7 +25,7 @@ async function buildBreadcrumbs() {
   return breadcrumbs;
 }
 
-async function buildBreadcrumbsFromNavTree(nav, currentUrl) {
+function buildBreadcrumbsFromNavTree(nav, currentUrl) {
   const crumbs = [];
 
   const homeUrl = document.querySelector('.nav-brand a[href]').href;
