@@ -98,30 +98,32 @@ export default async function decorate(block) {
 
 
   customcarouselId += 1;
-  block.setAttribute('id', `customcarousel-${customcarouselId}`);
-  const rows = block.querySelectorAll(':scope > div');
+  // block.setAttribute('id', `customcarousel-${customcarouselId}`);
+  // const rows = block.querySelectorAll(':scope > div');
   const isSingleSlide = rows.length < 2;
 
-  const placeholders = await fetchPlaceholders();
+  // const placeholders = await fetchPlaceholders();
 
-  block.setAttribute('role', 'region');
-  block.setAttribute('aria-roledescription', placeholders.customcarousel || 'customcarousel');
+  // block.setAttribute('role', 'region');
+  // block.setAttribute('aria-roledescription', placeholders.customcarousel || 'customcarousel');
 
-  const container = document.createElement('div');
-  container.classList.add('customcarousel-slides-container');
+  // const container = document.createElement('div');
+  // container.classList.add('customcarousel-slides-container');
 
-  const slidesWrapper = document.createElement('ul');
-  slidesWrapper.classList.add('customcarousel-slides');
-  block.prepend(slidesWrapper);
+  // const slidesWrapper = document.createElement('ul');
+  // slidesWrapper.classList.add('customcarousel-slides');
+  // block.prepend(slidesWrapper);
 
+  const container = querySelector('banner-slides-container');
+  
   let slideIndicators;
   if (!isSingleSlide) {
-    const slideIndicatorsNav = document.createElement('nav');
-    slideIndicatorsNav.setAttribute('aria-label', placeholders.customcarouselSlideControls || 'customcarousel Slide Controls');
-    slideIndicators = document.createElement('ol');
-    slideIndicators.classList.add('customcarousel-slide-indicators');
-    slideIndicatorsNav.append(slideIndicators);
-    block.append(slideIndicatorsNav);
+    // const slideIndicatorsNav = document.createElement('nav');
+    // slideIndicatorsNav.setAttribute('aria-label', placeholders.customcarouselSlideControls || 'customcarousel Slide Controls');
+    // slideIndicators = document.createElement('ol');
+    // slideIndicators.classList.add('customcarousel-slide-indicators');
+    // slideIndicatorsNav.append(slideIndicators);
+    // block.append(slideIndicatorsNav);
 
     const slideNavButtons = document.createElement('div');
     slideNavButtons.classList.add('customcarousel-navigation-buttons');
@@ -133,24 +135,24 @@ export default async function decorate(block) {
     container.append(slideNavButtons);
   }
 
-  rows.forEach((row, idx) => {
-    const slide = createSlide(row, idx, customcarouselId);
-    slidesWrapper.append(slide);
+  // rows.forEach((row, idx) => {
+  //   const slide = createSlide(row, idx, customcarouselId);
+  //   slidesWrapper.append(slide);
 
-    if (slideIndicators) {
-      const indicator = document.createElement('li');
-      indicator.classList.add('customcarousel-slide-indicator');
-      indicator.dataset.targetSlide = idx;
-      indicator.innerHTML = `<button type="button" aria-label="${placeholders.showSlide || 'Show Slide'} ${idx + 1} ${placeholders.of || 'of'} ${rows.length}"></button>`;
-      slideIndicators.append(indicator);
-    }
-    row.remove();
-  });
+  //   if (slideIndicators) {
+  //     const indicator = document.createElement('li');
+  //     indicator.classList.add('customcarousel-slide-indicator');
+  //     indicator.dataset.targetSlide = idx;
+  //     indicator.innerHTML = `<button type="button" aria-label="${placeholders.showSlide || 'Show Slide'} ${idx + 1} ${placeholders.of || 'of'} ${rows.length}"></button>`;
+  //     slideIndicators.append(indicator);
+  //   }
+  //   row.remove();
+  // });
 
-  container.append(slidesWrapper);
-  block.prepend(container);
+  // container.append(slidesWrapper);
+  // block.prepend(container);
 
-  if (!isSingleSlide) {
-    bindEvents(block);
-  }
+  // if (!isSingleSlide) {
+  //   bindEvents(block);
+  // }
 }
