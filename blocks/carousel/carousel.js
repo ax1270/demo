@@ -92,6 +92,14 @@ function createSlide(row, slideIndex, carouselId) {
 
 let carouselId = 0;
 export default async function decorate(block) {
+
+  // オーバーライド
+  if (getMetadata('customBannerMode').toLowerCase() === 'true') {
+    banner(block);
+    return;
+  }
+
+
   carouselId += 1;
   block.setAttribute('id', `carousel-${carouselId}`);
   const rows = block.querySelectorAll(':scope > div');
@@ -147,10 +155,5 @@ export default async function decorate(block) {
 
   if (!isSingleSlide) {
     bindEvents(block);
-  }
-  
-  // オーバーライド
-  if (getMetadata('customBannerMode').toLowerCase() === 'true') {
-    banner(block);
   }
 }
