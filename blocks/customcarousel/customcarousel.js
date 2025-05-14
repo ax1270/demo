@@ -1,5 +1,4 @@
 import { fetchPlaceholders } from '../../scripts/placeholders.js';
-import banner from '../banner/banner.js';
 
 function updateActiveSlide(slide) {
   const block = slide.closest('.customcarousel');
@@ -92,7 +91,7 @@ function createSlide(row, slideIndex, customcarouselId) {
 
 let customcarouselId = 0;
 export default async function decorate(block) {
-  customcarouselId += 1;
+customcarouselId += 1;
   block.setAttribute('id', `customcarousel-${customcarouselId}`);
   const rows = block.querySelectorAll(':scope > div');
   const isSingleSlide = rows.length < 2;
@@ -148,8 +147,4 @@ export default async function decorate(block) {
   if (!isSingleSlide) {
     bindEvents(block);
   }
-
-
-  // バナー設定読み込み
-  // banner(block);
 }
