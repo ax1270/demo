@@ -53,8 +53,18 @@ function bindEvents(block) {
     });
   });
 
-  const bannerSlides = block.querySelector('.banner-slides');
-  updateActiveSlide(bannerSlides);
+  // const slideObserver = new IntersectionObserver((entries) => {
+  // entries.forEach((entry) => {
+  //   if (entry.isIntersecting) updateActiveSlide(entry.target);
+  //   });
+  // }, { threshold: 0.5 });
+  // block.querySelectorAll('.banner-slide').forEach((slide) => {
+  //   slideObserver.observe(slide);
+  // });
+
+  const bannerSlide = block.querySelector('.banner-slide');
+  updateActiveSlide(bannerSlide);
+  
 }
 
 function createSlide(row, slideIndex, bannerId) {
