@@ -52,12 +52,8 @@ function bindEvents(block) {
       showSlide(block, parseInt(slideIndicator.dataset.targetSlide, 10));
     });
   });
-
-  const slideIndicator = block.querySelector('.banner-slide-indicator');
-  updateActiveSlide(slideIndicator);
-  // block.querySelectorAll('.banner-slide').forEach((slide) => {
-  //   slideObserver.observe(slide);
-  // });
+  
+  updateActiveSlide(slideIndicators);
 }
 
 function createSlide(row, slideIndex, bannerId) {
