@@ -21,6 +21,6 @@ export default async function decorate(block) {
 
     // breadcrumbs
     if (getMetadata('breadcrumbs').toLowerCase() === 'true') {
-      footer.append(await buildBreadcrumbs(block));
+      footer.append(buildBreadcrumbs(block));
     }
 }
