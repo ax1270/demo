@@ -1,6 +1,6 @@
 import { fetchPlaceholders } from '../../scripts/placeholders.js';
 
-function buildBreadcrumbs() {
+async function buildBreadcrumbs() {
   const breadcrumbs = document.createElement('nav');
   breadcrumbs.className = 'breadcrumbs';
 
@@ -25,7 +25,7 @@ function buildBreadcrumbs() {
   return breadcrumbs;
 }
 
-function buildBreadcrumbsFromNavTree(nav, currentUrl) {
+async function buildBreadcrumbsFromNavTree(nav, currentUrl) {
   const crumbs = [];
 
   const homeUrl = document.querySelector('.nav-brand a[href]').href;
@@ -66,7 +66,7 @@ function getDirectTextContent(menuItem) {
 }
 
 
-export default function test(block) {
+export default async function test(block) {
   buildBreadcrumbs(block);
 }
 
