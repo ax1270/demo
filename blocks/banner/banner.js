@@ -50,7 +50,9 @@ function bindEvents(block) {
     button.addEventListener('click', (e) => {
       const slideIndicator = e.currentTarget.parentElement;
       showSlide(block, parseInt(slideIndicator.dataset.targetSlide, 10));
-      updateActiveSlide(slideIndicator);
+
+      const bannerSlide = e.closest('.banner-slide');
+      updateActiveSlide(bannerSlide);
     });
   });
 
@@ -65,7 +67,6 @@ function bindEvents(block) {
 
   const bannerSlide = block.querySelector('.banner-slide');
   updateActiveSlide(bannerSlide);
-  
 }
 
 function createSlide(row, slideIndex, bannerId) {
