@@ -66,10 +66,10 @@ function getDirectTextContent(menuItem) {
 }
 
 
-// export default async function decorate(block) {
-//   buildBreadcrumbs(block);
-// }
+export default function test(block) {
+  buildBreadcrumbs(block);
+}
 
-export {
-  buildBreadcrumbs,
-};
+// export {
+//   buildBreadcrumbs,
+// };
