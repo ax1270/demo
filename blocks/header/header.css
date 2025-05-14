@@ -269,7 +269,7 @@ header nav .nav-tools {
 
 
 /* breadcrumbs */
-.breadcrumbs {
+header .breadcrumbs {
   display: none;
   margin: auto;
   max-width: 1248px;
@@ -279,7 +279,7 @@ header nav .nav-tools {
   overflow: hidden;
 }
 
-.breadcrumbs ol {
+header .breadcrumbs ol {
   display: flex;
   flex-flow: wrap;
   list-style: none;
@@ -290,23 +290,23 @@ header nav .nav-tools {
 }
 
 /* stylelint-disable-next-line no-descending-specificity */
-.breadcrumbs ol li {
+header .breadcrumbs ol li {
   padding: 0;
   color: var(--dark-color);
 }
 
-.breadcrumbs ol li:not(:last-child)::after {
+header .breadcrumbs ol li:not(:last-child)::after {
   content: '/';
   padding-left: 1ch;
 }
 
 /* stylelint-disable-next-line no-descending-specificity */
-.breadcrumbs ol li[aria-current] {
+header .breadcrumbs ol li[aria-current] {
   color: var(--text-color);
 }
 
 @media (width >= 900px) {
-  .breadcrumbs {
+  header .breadcrumbs {
     display: block;
     max-width: 1264px;
     padding: 0 32px;
