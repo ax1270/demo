@@ -1,6 +1,6 @@
 import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
-import buildBreadcrumbs from '../breadcrumbs/breadcrumbs.js';
+import breadcrumbs from '../breadcrumbs/breadcrumbs.js';
 
 /**
  * loads and decorates the footer
@@ -21,6 +21,6 @@ export default async function decorate(block) {
 
     // breadcrumbs
     if (getMetadata('breadcrumbs').toLowerCase() === 'true') {
-      footer.append(buildBreadcrumbs(block));
+      footer.append(breadcrumbs(block));
     }
 }

@@ -1,4 +1,5 @@
 import { fetchPlaceholders } from '../../scripts/placeholders.js';
+import banner from '../banner/banner.js';
 
 function updateActiveSlide(slide) {
   const block = slide.closest('.carousel');
@@ -146,5 +147,10 @@ export default async function decorate(block) {
 
   if (!isSingleSlide) {
     bindEvents(block);
+  }
+  
+  // オーバーライド
+  if (getMetadata('customBannerMode').toLowerCase() === 'true') {
+    banner(block);
   }
 }
