@@ -148,8 +148,8 @@ export default async function decorate(block) {
   if (!isSingleSlide) {
     bindEvents(block);
   }
-  
+
 
   // バナー設定読み込み
-  banner(block);
+  // banner(block);
 }
