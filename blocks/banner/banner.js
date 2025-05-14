@@ -52,7 +52,7 @@ function bindEvents(block) {
       showSlide(block, parseInt(slideIndicator.dataset.targetSlide, 10));
     });
   });
-  
+
   const slideObserver = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) updateActiveSlide(entry.target);
@@ -83,13 +83,13 @@ function createSlide(row, slideIndex, bannerId) {
 }
 
 let bannerId = 0;
-export default async function decorate(block) {
+export default function decorate(block) {
   bannerId += 1;
   block.setAttribute('id', `banner-${bannerId}`);
   const rows = block.querySelectorAll(':scope > div');
   const isSingleSlide = rows.length < 2;
 
-  const placeholders = await fetchPlaceholders();
+  const placeholders = fetchPlaceholders();
 
   block.setAttribute('role', 'region');
   block.setAttribute('aria-roledescription', placeholders.banner || 'banner');
