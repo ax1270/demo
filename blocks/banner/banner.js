@@ -53,7 +53,7 @@ function bindEvents(block) {
     });
   });
   
-  updateActiveSlide(slideIndicators);
+  updateActiveSlide(slideIndicator);
   block.querySelectorAll('.banner-slide').forEach((slide) => {
     slideObserver.observe(slide);
   });
