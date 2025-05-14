@@ -53,8 +53,8 @@ function bindEvents(block) {
     });
   });
 
-  const slideContainer = block.querySelector('.banner-slides-container');
-  updateActiveSlide(slideContainer);
+  const banner = block.querySelector('.banner');
+  updateActiveSlide(banner);
 }
 
 function createSlide(row, slideIndex, bannerId) {
