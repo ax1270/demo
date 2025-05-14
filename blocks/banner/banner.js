@@ -55,9 +55,9 @@ function bindEvents(block) {
 
   const slideIndicator = block.querySelector('.banner-slide-indicator');
   updateActiveSlide(slideIndicator);
-  block.querySelectorAll('.banner-slide').forEach((slide) => {
-    slideObserver.observe(slide);
-  });
+  // block.querySelectorAll('.banner-slide').forEach((slide) => {
+  //   slideObserver.observe(slide);
+  // });
 }
 
 function createSlide(row, slideIndex, bannerId) {
