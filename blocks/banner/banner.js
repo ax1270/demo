@@ -53,8 +53,10 @@ function bindEvents(block) {
       updateActiveSlide(slideIndicator);
     });
   });
+
   block.querySelectorAll('.banner-slide').forEach((slide) => {
     slideObserver.observe(slide);
+    updateActiveSlide(slide);
   });
 }
 
