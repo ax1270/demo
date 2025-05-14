@@ -52,12 +52,11 @@ function bindEvents(block) {
       showSlide(block, parseInt(slideIndicator.dataset.targetSlide, 10));
     });
   });
-
+  
   const slideObserver = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      updateActiveSlide(entry.target);
-    }});
+    if (entry.isIntersecting) updateActiveSlide(entry.target);
+    });
   }, { threshold: 0.5 });
   block.querySelectorAll('.banner-slide').forEach((slide) => {
     slideObserver.observe(slide);
