@@ -52,8 +52,8 @@ function bindEvents(block) {
       showSlide(block, parseInt(slideIndicator.dataset.targetSlide, 10));
     });
   });
-
-  updateActiveSlide(block);
+  
+  updateActiveSlide(slideIndicators);
   block.querySelectorAll('.banner-slide').forEach((slide) => {
     slideObserver.observe(slide);
   });
