@@ -50,23 +50,18 @@ function bindEvents(block) {
     button.addEventListener('click', (e) => {
       const slideIndicator = e.currentTarget.parentElement;
       showSlide(block, parseInt(slideIndicator.dataset.targetSlide, 10));
-
-      const bannerSlide = e.closest('.banner-slide');
-      updateActiveSlide(bannerSlide);
     });
   });
 
-  // const slideObserver = new IntersectionObserver((entries) => {
-  // entries.forEach((entry) => {
-  //   if (entry.isIntersecting) updateActiveSlide(entry.target);
-  //   });
-  // }, { threshold: 0.5 });
-  // block.querySelectorAll('.banner-slide').forEach((slide) => {
-  //   slideObserver.observe(slide);
-  // });
-
-  const bannerSlide = block.querySelector('.banner-slide');
-  updateActiveSlide(bannerSlide);
+  const slideObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      updateActiveSlide(entry.target);
+    }});
+  }, { threshold: 0.5 });
+  block.querySelectorAll('.banner-slide').forEach((slide) => {
+    slideObserver.observe(slide);
+  });
 }
 
 function createSlide(row, slideIndex, bannerId) {
