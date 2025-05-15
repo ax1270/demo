@@ -94,7 +94,7 @@ import banner from '../banner/banner.js';
 // let customcarouselId = 0;
 export default async function decorate(block) {
 
-  // バナーブロック呼び出し
+  // バナーブロックを使用する
   banner(block);
 
 // customcarouselId += 1;
