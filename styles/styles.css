@@ -263,3 +263,22 @@ main .section.light2 {
 main .section.light3 {
   background-color: blue;
 }
+
+
+/* quote */
+main blockquote {
+  font-style: italic;
+  margin: 3rem;
+  text-indent: -1rem;
+  hanging-punctuation: first;
+}
+
+main blockquote p::before {
+  content: "“";
+  line-height: 0;
+}
+
+main blockquote p::after {
+  content: "”";
+  line-height: 0;
+}
