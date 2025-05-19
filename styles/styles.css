@@ -259,3 +259,7 @@ main .section.highlight {
 main .section.light2 {
   background-color: red;
 }
+
+main .section.light3 {
+  background-color: blue;
+}
