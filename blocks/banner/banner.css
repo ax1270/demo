@@ -136,8 +136,8 @@
   left: calc(50% - 2px);
 }
 
-.test-class .button-container {
-  background-color: red;
+.test-class .button-container a {
+  background-color: brown;
 }
 
 @media (width >= 600px) {
