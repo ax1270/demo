@@ -138,6 +138,7 @@
 
 .test-class .button-container a {
   background-color: brown;
+  border-radius: 0 !important;
 }
 
 @media (width >= 600px) {
