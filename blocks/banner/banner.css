@@ -136,6 +136,10 @@
   left: calc(50% - 2px);
 }
 
+.test-class .button-container {
+  background-color: red;
+}
+
 @media (width >= 600px) {
   .banner .banner-navigation-buttons {
     left: 24px;
