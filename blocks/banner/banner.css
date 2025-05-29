@@ -142,7 +142,7 @@
 }
 
 .text-secondary .banner-slide-content {
-  color: white;
+  --text-color: #f8f8f8;
 }
 
 @media (width >= 600px) {
