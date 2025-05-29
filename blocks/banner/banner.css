@@ -141,6 +141,10 @@
   border-radius: 0 !important;
 }
 
+.text-secondary .banner-slide-content {
+  color: white;
+}
+
 @media (width >= 600px) {
   .banner .banner-navigation-buttons {
     left: 24px;
