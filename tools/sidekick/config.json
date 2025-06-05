@@ -7,7 +7,7 @@
       "environments": [
         "edit"
       ],
-      "url": "https://sidekick-library--aem-block-collection--adobe.aem.page/tools/sidekick/library.html",
+      "url": "https://experience.adobe.com/solutions/CQ-helix-assets-addon/static-assets/resources/asset-selector.html",
       "isPalette": true,
       "includePaths": [
         "**.docx**"
