@@ -7,7 +7,7 @@
       "environments": [
         "edit"
       ],
-      "url": "https://experience.adobe.com/solutions/CQ-assets-selectors/static-assets/resources/franklin/asset-selector.html",
+      "url": "https://sidekick-library--aem-block-collection--adobe.aem.page/tools/sidekick/library.html",
       "isPalette": true,
       "includePaths": [
         "**.docx**"
