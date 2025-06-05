@@ -7,13 +7,20 @@
       "environments": [
         "edit"
       ],
-      "url": "https://experience.adobe.com/solutions/CQ-helix-assets-addon/static-assets/resources/asset-selector.html",
+      "url": "https://experience.adobe.com/solutions/CQ-assets-selectors/static-assets/resources/franklin/asset-selector.html",
       "isPalette": true,
+      "rail": true,
       "includePaths": [
         "**.docx**"
       ],
-      "passConfig": true,
-      "paletteRect": "top: 50px; bottom: 10px; right: 10px; left: auto; width:400px; height: calc(100vh - 60px)"
+      "paletteRect": "top: 50px; bottom: 10px; right: 10px; left: auto; width:600px; height: calc(100vh - 60px)"
+    },
+    {
+      "id": "library",
+      "title": "Library",
+      "environments": ["edit"],
+      "url": "/tools/sidekick/library.html",
+      "includePaths": ["**.docx**"]
     }
   ]
 }
