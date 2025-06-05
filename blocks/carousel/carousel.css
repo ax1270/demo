@@ -128,7 +128,6 @@
   top: 50%;
   left: calc(50% + 2px);
   transform: translate(-50%, -50%) rotate(-135deg);
-  transition-timing-function: ease-in-out;
 }
 
 .carousel .carousel-navigation-buttons button.slide-next::after {
