@@ -128,12 +128,12 @@
   top: 50%;
   left: calc(50% + 2px);
   transform: translate(-50%, -50%) rotate(-135deg);
+  transition-timing-function: ease-in-out;
 }
 
 .carousel .carousel-navigation-buttons button.slide-next::after {
   transform: translate(-50%, -50%) rotate(45deg);
   left: calc(50% - 2px);
-  transition-timing-function: ease-in-out;
 }
 
 @media (width >= 600px) {
