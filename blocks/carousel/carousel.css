@@ -30,6 +30,7 @@
   position: relative;
   width: 100%;
   min-height: min(50vw, calc(100dvh - var(--header-height)));
+  height: 500px;
 }
 
 .carousel .carousel-slide:has(.carousel-slide-content[data-align='center']) {
