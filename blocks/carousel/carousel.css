@@ -20,7 +20,7 @@
   display: none;
 }
 
-/* .carousel .carousel-slide {
+.carousel .carousel-slide {
   flex: 0 0 100%;
   scroll-snap-align: start;
   display: flex;
@@ -30,7 +30,7 @@
   position: relative;
   width: 100%;
   min-height: min(50vw, calc(100dvh - var(--header-height)));
-} */
+}
 
 .carousel .carousel-slide:has(.carousel-slide-content[data-align='center']) {
   align-items: center;
