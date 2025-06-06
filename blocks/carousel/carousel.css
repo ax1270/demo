@@ -40,6 +40,10 @@
   align-items: flex-end;
 }
 
+.carousel .carousel-slide .carousel-slide-image {
+  margin: 0 auto;
+}
+
 .carousel .carousel-slide .carousel-slide-image picture {
   position: relative;
   inset: 0;
@@ -144,7 +148,8 @@
   .carousel .carousel-slide .carousel-slide-content {
     --slide-content-width: calc((100% - 184px) / 2);
 
-    margin: 92px;
+    /* margin: 92px; */
+    margin: 0 auto;
   }
 
   .carousel .carousel-slide .carousel-slide-content[data-align='justify'] {
