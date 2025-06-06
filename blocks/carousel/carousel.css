@@ -10,7 +10,7 @@
 }
 
 .carousel .carousel-slides {
-  display: flex;
+  /* display: flex; */
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
   overflow: scroll clip;
