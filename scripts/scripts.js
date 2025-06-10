@@ -94,7 +94,7 @@ function getUrlExtension(url) {
  */
 function isExternalImage(element, externalImageMarker) {
   // if the element is not an anchor, it's not an external image
-  if (element.tagName !== 'A') return false;
+  if (element.tagName !== 'a') return false;
 
   // if the element is an anchor with the external image marker as text content,
   // it's an external image
