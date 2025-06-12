@@ -7,7 +7,9 @@ export default function decorate(block) {
 
   const container = document.createElement('div');
   container.classList.add('testClass');
-  container.append(productId);
+  container.append(`aaaaaaaaa`);
 
-  block.prepend(container);
+  if (getMetadata('ProductId') === 1111) {
+    block.prepend(container);
+  }
 }
