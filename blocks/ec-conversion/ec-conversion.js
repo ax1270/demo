@@ -2,5 +2,6 @@ import { productInfo } from 'product-info.json';
 
 export default function decorate(block) {
   block.classList.add(`ec-conversion`);
-  block.append("<div>" + productInfo + "</div>");
+  const productId = getMetadata('productId');
+  block.append("<div>" + productId + "</div>");
 }
