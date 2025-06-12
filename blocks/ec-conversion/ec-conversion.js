@@ -1,8 +1,11 @@
 export default function decorate(block) {
-  block.setAttribute('id', `test`);
+  const productId = getMetadata('ProductId');
+  
+  block.setAttribute('id', `testId`);
 
   const container = document.createElement('div');
-  container.classList.add('test');
+  container.classList.add('testClass');
+  container.append(productId);
 
   block.prepend(container);
 }
