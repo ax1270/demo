@@ -9,7 +9,7 @@ export default function decorate(block) {
   container.classList.add('testClass');
   container.append(`aaaaaaaaa`);
 
-  if (getMetadata('productId') === 1111) {
+  if (getMetadata('product') === 1111) {
     block.prepend(container);
   }
 }
