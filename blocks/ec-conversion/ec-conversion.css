@@ -4,9 +4,10 @@
 }
 
 .headline-area-class {
-    border: 1px aqua solid;
+    border: 1px burlywood solid;
 }
 
 .textline-area-class {
+    font-size: 12pt;
     border: 1px burlywood solid;
 }
