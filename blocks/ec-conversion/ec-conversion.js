@@ -71,7 +71,7 @@ function createButton(buttonName, url) {
   const button = document.createElement('a');
   button.setAttribute("href", url);
   button.classList.add('button');
-  button.append(buttonName + `ボタン`);
+  button.append(buttonName);
 
   p.append(button);
 
