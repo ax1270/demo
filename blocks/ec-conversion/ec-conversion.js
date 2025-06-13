@@ -37,7 +37,7 @@ export default async function decorate(block) {
         var button = createButton('Amazon', element.amazon);
       }
 
-      firstChild.prepend(button);
+      firstChild.after(button);
     }
   });
 }
