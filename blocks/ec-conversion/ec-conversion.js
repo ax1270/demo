@@ -34,13 +34,13 @@ export default async function decorate(block) {
 
       // 楽天ボタンリンクあり
       if (element.rakuten !== "") {
-        const button = createButton('楽天', element.rakuten);
+        const button = createButton('Rakuten', element.rakuten);
         div.append(button);
       }
 
       // Lohacoボタンリンクあり
       if (element.lohaco !== "") {
-        const button = createButton('Lohaco', element.lohaco);
+        const button = createButton('LOHACO', element.lohaco);
         div.append(button);
       }
 
