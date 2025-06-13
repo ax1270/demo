@@ -20,8 +20,8 @@ export default async function decorate(block) {
   const productId = getMetadata('productid');
 
   // 製品情報リスト取得
-  const productInfoJson = '/product-info.json';
-  const data = await fetchData({ productInfoJson, placeholders }.source);
+  const source = '/product-info.json';
+  const data = await fetchData({ source, placeholders }.source);
 
   // 製品情報リストでループ
   data.forEach(element => {
