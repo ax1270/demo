@@ -4,21 +4,49 @@ import { fetchPlaceholders } from '../../scripts/placeholders.js';
 export default async function decorate(block) {
   const placeholders = await fetchPlaceholders();
 
-  // 製品情報ID
+  // ID付与してみる
+  block.setAttribute('id', `testId`);
+
+  // 製品情報ID取得
   const productId = getMetadata('productid');
 
-  // 製品情報リスト
+  // 製品情報リスト取得
   const source = '/product-info.json';
   const data = await fetchData({ source, placeholders }.source);
 
-  block.setAttribute('id', `testId`);
+  // 取得データでループ
+  data.forEach(element => {
+    // 製品IDが一致する場合のみボタンを追加
+    if (element.productId === productId) {
 
-  if (getMetadata('productid') === "1111") {
-    const container = document.createElement('div');
-    container.classList.add('testClass');
-    container.append(`cccc`);
-    block.prepend(container);
-  }
+      // 楽天ボタンリンクあり
+      if (element.rakuten !== "") {
+        const button = document.createElement('a');
+        button.setAttribute("href", element.rakuten);
+        button.classList.add('testClass');
+        button.append(`楽天ボタン`);
+        block.prepend(button);
+      }
+
+      // Lohacoボタンリンクあり
+      if (element.lohaco !== "") {
+        const button = document.createElement('a');
+        button.setAttribute("href", element.lohaco);
+        button.classList.add('testClass');
+        button.append(`Lohacoボタン`);
+        block.prepend(button);
+      }
+
+      // amazonボタンリンクあり
+      if (element.amazon !== "") {
+        const button = document.createElement('a');
+        button.setAttribute("href", element.amazon);
+        button.classList.add('testClass');
+        button.append(`Amazonボタン`);
+        block.prepend(button);
+      }
+    }
+  });
 }
 
 
