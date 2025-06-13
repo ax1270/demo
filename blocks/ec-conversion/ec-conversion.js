@@ -24,20 +24,21 @@ export default async function decorate(block) {
 
       // 楽天ボタンリンクあり
       if (element.rakuten !== "") {
-        var button = createButton('楽天', element.rakuten);
+        const button = createButton('楽天', element.rakuten);
+        firstChild.after(button);
       }
 
       // Lohacoボタンリンクあり
       if (element.lohaco !== "") {
-        var button = createButton('Lohaco', element.lohaco);
+        const button = createButton('Lohaco', element.lohaco);
+        firstChild.after(button);
       }
 
       // amazonボタンリンクあり
       if (element.amazon !== "") {
-        var button = createButton('Amazon', element.amazon);
+        const button = createButton('Amazon', element.amazon);
+        firstChild.after(button);
       }
-
-      firstChild.after(button);
     }
   });
 }
