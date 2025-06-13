@@ -29,23 +29,28 @@ export default async function decorate(block) {
     // 製品IDが一致する場合のみボタンを追加
     if (element.productId === productId) {
 
+      const div = document.createElement('div');
+      div.classList.add('div-container');
+
       // 楽天ボタンリンクあり
       if (element.rakuten !== "") {
         const button = createButton('楽天', element.rakuten);
-        headlineArea.after(button);
+        div.append(button);
       }
 
       // Lohacoボタンリンクあり
       if (element.lohaco !== "") {
         const button = createButton('Lohaco', element.lohaco);
-        headlineArea.after(button);
+        div.append(button);
       }
 
       // amazonボタンリンクあり
       if (element.amazon !== "") {
         const button = createButton('Amazon', element.amazon);
-        headlineArea.after(button);
+        div.append(button);
       }
+
+      headlineArea.after(div);
     }
   });
 }
