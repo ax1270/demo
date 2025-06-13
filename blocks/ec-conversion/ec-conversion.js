@@ -2,10 +2,11 @@ import { getMetadata } from '../../scripts/aem.js';
 
 export default function decorate(block) {
   // 製品情報ID
-  const productId = getMetadata('Productid');
+  const productId = getMetadata('productid');
 
   // 製品情報リスト
   const productList = '/product-info.json';
+  const response = fetch(productList);
 
   block.setAttribute('id', `testId`);
 
