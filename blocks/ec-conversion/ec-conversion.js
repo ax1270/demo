@@ -2,9 +2,16 @@ import { getMetadata } from '../../scripts/aem.js';
 import { fetchPlaceholders } from '../../scripts/placeholders.js';
 
 export default async function decorate(block) {
-
-  const firstChild = block.firstElementChild;
   const placeholders = await fetchPlaceholders();
+
+  // 見出しエリア
+  const headlineArea = block.firstElementChild;
+  headlineArea.classList.add('headline-area-class');
+
+  // テキストエリア
+  const textlineArea = block.lastElementChild;
+  textlineArea.classList.add('textline-area-class');
+
 
   // ID付与してみる
   block.setAttribute('id', `testId`);
@@ -13,10 +20,10 @@ export default async function decorate(block) {
   const productId = getMetadata('productid');
 
   // 製品情報リスト取得
-  const source = '/product-info.json';
-  const data = await fetchData({ source, placeholders }.source);
+  const productInfoJson = '/product-info.json';
+  const data = await fetchData({ productInfoJson, placeholders }.source);
 
-  // 取得データでループ
+  // 製品情報リストでループ
   data.forEach(element => {
 
     // 製品IDが一致する場合のみボタンを追加
