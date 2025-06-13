@@ -1,4 +1,5 @@
 import { getMetadata } from '../../scripts/aem.js';
+import { fetchPlaceholders } from '../../scripts/placeholders.js';
 
 export default async function decorate(block) {
   const placeholders = await fetchPlaceholders();
