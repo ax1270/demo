@@ -5,11 +5,10 @@ export default function decorate(block) {
 
   block.setAttribute('id', `testId`);
 
-  const container = document.createElement('div');
-  container.classList.add('testClass');
-  container.append(`aaaaaaaaa`);
-
-  if (getMetadata('product') === 1111) {
+  if (getMetadata('productId') === "1111") {
+    const container = document.createElement('div');
+    container.classList.add('testClass');
+    container.append(`bbbbb`);
     block.prepend(container);
   }
 }
