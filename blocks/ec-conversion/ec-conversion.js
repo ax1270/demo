@@ -32,19 +32,19 @@ export default async function decorate(block) {
       // 楽天ボタンリンクあり
       if (element.rakuten !== "") {
         const button = createButton('楽天', element.rakuten);
-        firstChild.after(button);
+        headlineArea.after(button);
       }
 
       // Lohacoボタンリンクあり
       if (element.lohaco !== "") {
         const button = createButton('Lohaco', element.lohaco);
-        firstChild.after(button);
+        headlineArea.after(button);
       }
 
       // amazonボタンリンクあり
       if (element.amazon !== "") {
         const button = createButton('Amazon', element.amazon);
-        firstChild.after(button);
+        headlineArea.after(button);
       }
     }
   });
