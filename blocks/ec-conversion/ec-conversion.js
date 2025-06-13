@@ -2,6 +2,8 @@ import { getMetadata } from '../../scripts/aem.js';
 import { fetchPlaceholders } from '../../scripts/placeholders.js';
 
 export default async function decorate(block) {
+
+  const firstChild = block.firstElementChild;
   const placeholders = await fetchPlaceholders();
 
   // ID付与してみる
@@ -16,35 +18,26 @@ export default async function decorate(block) {
 
   // 取得データでループ
   data.forEach(element => {
+
     // 製品IDが一致する場合のみボタンを追加
     if (element.productId === productId) {
 
       // 楽天ボタンリンクあり
       if (element.rakuten !== "") {
-        const button = document.createElement('a');
-        button.setAttribute("href", element.rakuten);
-        button.classList.add('testClass');
-        button.append(`楽天ボタン`);
-        block.prepend(button);
+        var button = createButton('楽天', element.rakuten);
       }
 
       // Lohacoボタンリンクあり
       if (element.lohaco !== "") {
-        const button = document.createElement('a');
-        button.setAttribute("href", element.lohaco);
-        button.classList.add('testClass');
-        button.append(`Lohacoボタン`);
-        block.prepend(button);
+        var button = createButton('Lohaco', element.lohaco);
       }
 
       // amazonボタンリンクあり
       if (element.amazon !== "") {
-        const button = document.createElement('a');
-        button.setAttribute("href", element.amazon);
-        button.classList.add('testClass');
-        button.append(`Amazonボタン`);
-        block.prepend(button);
+        var button = createButton('Amazon', element.amazon);
       }
+
+      firstChild.prepend(button);
     }
   });
 }
@@ -66,4 +59,20 @@ export async function fetchData(source) {
   }
 
   return json.data;
+}
+
+
+function createButton(buttonName, url) {
+  // 親
+  const p = document.createElement('p');
+
+  // 子
+  const button = document.createElement('a');
+  button.setAttribute("href", url);
+  button.classList.add('button');
+  button.append(buttonName + `ボタン`);
+
+  p.append(button);
+
+  return p;
 }
