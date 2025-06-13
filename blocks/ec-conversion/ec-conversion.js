@@ -66,6 +66,7 @@ export async function fetchData(source) {
 function createButton(buttonName, url) {
   // 親
   const p = document.createElement('p');
+  p.classList.add('ec-button-class');
 
   // 子
   const button = document.createElement('a');
