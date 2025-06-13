@@ -4,9 +4,9 @@
 }
 
 .headline-area-class {
-    background-color: aqua;
+    border: 1px aqua solid;
 }
 
 .textline-area-class {
-    background-color: burlywood;
+    border: 1px burlywood solid;
 }
