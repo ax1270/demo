@@ -83,6 +83,9 @@ function createButton(buttonName, url) {
   // 子
   const button = document.createElement('a');
   button.setAttribute("href", url);
+
+  // 新規タブで開く設定
+  button.setAttribute("target", "_blank");
   button.classList.add('button');
   button.append(buttonName);
 
