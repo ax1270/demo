@@ -5,7 +5,7 @@ export default function decorate(block) {
 
   block.setAttribute('id', `testId`);
 
-  if (getMetadata('productId') === "1111") {
+  if (getMetadata('productid') === "1111") {
     const container = document.createElement('div');
     container.classList.add('testClass');
     container.append(`bbbbb`);
