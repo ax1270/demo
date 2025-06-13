@@ -1,12 +1,14 @@
 import { getMetadata } from '../../scripts/aem.js';
 
-export default function decorate(block) {
+export default async function decorate(block) {
+  const placeholders = await fetchPlaceholders();
+
   // 製品情報ID
   const productId = getMetadata('productid');
 
   // 製品情報リスト
-  const productList = '/product-info.json';
-  const response = fetch(productList);
+  const source = '/product-info.json';
+  const data = await fetchData({ source, placeholders }.source);
 
   block.setAttribute('id', `testId`);
 
@@ -16,4 +18,23 @@ export default function decorate(block) {
     container.append(`cccc`);
     block.prepend(container);
   }
+}
+
+
+export async function fetchData(source) {
+  const response = await fetch(source);
+  if (!response.ok) {
+    // eslint-disable-next-line no-console
+    console.error('error loading API response', response);
+    return null;
+  }
+
+  const json = await response.json();
+  if (!json) {
+    // eslint-disable-next-line no-console
+    console.error('empty API response', source);
+    return null;
+  }
+
+  return json.data;
 }
