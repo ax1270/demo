@@ -39,7 +39,7 @@ export default async function decorate(block) {
   data.forEach(element => {
 
     // 製品IDが一致する場合のみボタンエリアを作成
-    if (element.productId === productId) {
+    if (element.janCode === productId) {
 
       const buttonArea = document.createElement('div');
       buttonArea.classList.add('div-container');
