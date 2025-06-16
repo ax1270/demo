@@ -1,4 +1,4 @@
-import { getMetadata, wrapTextNodes } from '../../scripts/aem.js';
+import { getMetadata } from '../../scripts/aem.js';
 import { fetchPlaceholders } from '../../scripts/placeholders.js';
 
 export default async function decorate(block) {
@@ -9,13 +9,22 @@ export default async function decorate(block) {
   // 見出しエリア
   const headlineArea = document.createElement('div');
   headlineArea.classList.add('headline-area-class');
-  headlineArea.append(ecConversionOnlileStoreButtonName);
+
+  const h5 = document.createElement('h5');
+  h5.append(ecConversionOnlileStoreButtonName);
+
+  headlineArea.append(h5);
 
   // テキストエリア
   const textlineArea = document.createElement('div');
   textlineArea.classList.add('textline-area-class');
-  textlineArea.append(ecConversionText);
 
+  const p = document.createElement('p');
+  p.append(ecConversionText);
+
+  textlineArea.append(p);
+
+  
   // DOM構造生成
   block.append(headlineArea);
 
@@ -60,10 +69,6 @@ export default async function decorate(block) {
 
   // DOM構造生成
   block.append(textlineArea);
-
-
-  // 見出しエリア
-  wrapTextNodes(block);
 }
 
 
