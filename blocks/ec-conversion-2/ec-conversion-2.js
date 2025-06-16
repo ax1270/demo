@@ -17,7 +17,7 @@ export default async function decorate(block) {
   textlineArea.append(ecConversionText);
 
   // DOM構造生成
-  block.after(headlineArea);
+  block.append(headlineArea);
 
   // 製品情報リスト取得
   const source = '/product-info.json';
@@ -54,12 +54,12 @@ export default async function decorate(block) {
       }
 
       // DOM構造生成
-      block.after(buttonArea);
+      block.append(buttonArea);
     }
   });
 
   // DOM構造生成
-  block.after(textlineArea);
+  block.append(textlineArea);
 }
 
 
