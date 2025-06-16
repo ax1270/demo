@@ -7,13 +7,13 @@ export default async function decorate(block) {
   const { ecConversionText } = placeholders;
 
   // 見出しエリア
-  const headlineArea = document.createElement('h5');
-  // headlineArea.classList.add('headline-area-class');
+  const headlineArea = document.createElement('div');
+  headlineArea.classList.add('headline-area-class');
   headlineArea.append(ecConversionOnlileStoreButtonName);
 
   // テキストエリア
-  const textlineArea = document.createElement('p');
-  // textlineArea.classList.add('textline-area-class');
+  const textlineArea = document.createElement('div');
+  textlineArea.classList.add('textline-area-class');
   textlineArea.append(ecConversionText);
 
   // DOM構造生成
