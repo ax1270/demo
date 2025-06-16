@@ -3,15 +3,15 @@ import { fetchPlaceholders } from '../../scripts/placeholders.js';
 
 export default async function decorate(block) {
   const placeholders = await fetchPlaceholders('jp');
-  const { ecConversionOnlileStoreButtonName } = placeholders;
-  const { ecConversionText } = placeholders;
+  const { ecConversionHeadline } = placeholders;
+  const { ecConversionTextline } = placeholders;
 
   // 見出しエリア
   const headlineArea = document.createElement('div');
   headlineArea.classList.add('headline-area-class');
 
   const h5 = document.createElement('h5');
-  h5.append(ecConversionOnlileStoreButtonName);
+  h5.append(ecConversionHeadline);
 
   headlineArea.append(h5);
 
@@ -20,11 +20,11 @@ export default async function decorate(block) {
   textlineArea.classList.add('textline-area-class');
 
   const p = document.createElement('p');
-  p.append(ecConversionText);
+  p.append(ecConversionTextline);
 
   textlineArea.append(p);
 
-  
+
   // DOM構造生成
   block.append(headlineArea);
 
