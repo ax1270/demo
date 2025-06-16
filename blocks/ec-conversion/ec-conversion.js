@@ -3,8 +3,8 @@ import { fetchPlaceholders } from '../../scripts/placeholders.js';
 
 export default async function decorate(block) {
   const placeholders = await fetchPlaceholders('jp');
-  // const { ecConversionOnlileStoreButtonName } = placeholders;
-  // const { ecConversionText } = placeholders;
+  const { ecConversionOnlileStoreButtonName } = placeholders;
+  const { ecConversionText } = placeholders;
 
   // 見出しエリア
   const headlineArea = block.firstElementChild;
