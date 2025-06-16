@@ -2,26 +2,26 @@ import { getMetadata } from '../../scripts/aem.js';
 import { fetchPlaceholders } from '../../scripts/placeholders.js';
 
 export default async function decorate(block) {
-  const placeholders = await fetchPlaceholders();
+  const placeholders = await fetchPlaceholders('jp');
+  const { ecConversionOnlileStoreButtonName } = placeholders;
+  const { ecConversionText } = placeholders;
 
   // 見出しエリア
-  const headlineArea = block.firstElementChild;
+  const headlineArea = document.createElement('div');
   headlineArea.classList.add('headline-area-class');
+  headlineArea.append(ecConversionOnlileStoreButtonName);
 
   // テキストエリア
-  const textlineArea = block.lastElementChild;
+  const textlineArea = document.createElement('div');
   textlineArea.classList.add('textline-area-class');
-
-
-  // ID付与してみる
-  block.setAttribute('id', `testId`);
-
-  // 製品情報ID取得
-  const productId = getMetadata('productid');
+  textlineArea.append(ecConversionText);
 
   // 製品情報リスト取得
   const source = '/product-info.json';
   const data = await fetchData({ source, placeholders }.source);
+
+  // 製品情報ID取得
+  const productId = getMetadata('productid');
 
   // 製品情報リストでループ
   data.forEach(element => {

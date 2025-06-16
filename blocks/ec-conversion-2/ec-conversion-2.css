@@ -1,0 +1,18 @@
+.ec-button-class {
+    display: inline-block;
+    padding-right: 15px;
+}
+
+.headline-area-class {
+    border: 1px burlywood solid;
+    text-align: center;
+}
+
+.textline-area-class {
+    font-size: 12pt;
+    border: 1px burlywood solid;
+}
+
+.div-container {
+    text-align: center;
+}
