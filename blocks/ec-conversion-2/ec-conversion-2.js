@@ -16,6 +16,9 @@ export default async function decorate(block) {
   textlineArea.classList.add('textline-area-class');
   textlineArea.append(ecConversionText);
 
+  // DOM構造生成
+  block.after(headlineArea);
+
   // 製品情報リスト取得
   const source = '/product-info.json';
   const data = await fetchData({ source, placeholders }.source);
@@ -26,33 +29,37 @@ export default async function decorate(block) {
   // 製品情報リストでループ
   data.forEach(element => {
 
-    // 製品IDが一致する場合のみボタンを追加
+    // 製品IDが一致する場合のみボタンエリアを作成
     if (element.productId === productId) {
 
-      const div = document.createElement('div');
-      div.classList.add('div-container');
+      const buttonArea = document.createElement('div');
+      buttonArea.classList.add('div-container');
 
       // 楽天ボタンリンクあり
       if (element.rakuten !== "") {
         const button = createButton('Rakuten', element.rakuten);
-        div.append(button);
+        buttonArea.append(button);
       }
 
       // Lohacoボタンリンクあり
       if (element.lohaco !== "") {
         const button = createButton('LOHACO', element.lohaco);
-        div.append(button);
+        buttonArea.append(button);
       }
 
       // amazonボタンリンクあり
       if (element.amazon !== "") {
         const button = createButton('Amazon', element.amazon);
-        div.append(button);
+        buttonArea.append(button);
       }
 
-      headlineArea.after(div);
+      // DOM構造生成
+      block.after(buttonArea);
     }
   });
+
+  // DOM構造生成
+  block.after(textlineArea);
 }
 
 
