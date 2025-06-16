@@ -29,7 +29,7 @@ export default async function decorate(block) {
   block.append(headlineArea);
 
   // 製品情報リスト取得
-  const source = '/product-info.json';
+  const source = '/product-data.json';
   const data = await fetchData({ source, placeholders }.source);
 
   // 製品情報ID取得
@@ -45,20 +45,20 @@ export default async function decorate(block) {
       buttonArea.classList.add('div-container');
 
       // 楽天ボタンリンクあり
-      if (element.rakuten !== "") {
-        const button = createButton('Rakuten', element.rakuten);
+      if (element.rakutenLink !== "") {
+        const button = createButton('Rakuten', element.rakutenLink);
         buttonArea.append(button);
       }
 
       // Lohacoボタンリンクあり
-      if (element.lohaco !== "") {
-        const button = createButton('LOHACO', element.lohaco);
+      if (element.lohacoLink !== "") {
+        const button = createButton('LOHACO', element.lohacoLink);
         buttonArea.append(button);
       }
 
       // amazonボタンリンクあり
-      if (element.amazon !== "") {
-        const button = createButton('Amazon', element.amazon);
+      if (element.amazonlink !== "") {
+        const button = createButton('Amazon', element.amazonlink);
         buttonArea.append(button);
       }
 
