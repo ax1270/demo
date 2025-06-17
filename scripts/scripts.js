@@ -221,7 +221,7 @@ function decorateExternalImages(ele, deliveryMarker) {
 
 function decoratePurchasePromotion(element) {
   
-  const body = main.getElementsByTagName('body');
+  const body = element.getElementsByTagName('body');
 
   if (getMetadata('purchasepromotion') === 'Enable') {
     const buttonArea = document.createElement('div');
@@ -255,7 +255,7 @@ function decoratePurchasePromotion(element) {
 export function decorateMain(main) {
 
   // Purchase Promotion
-  decoratePurchasePromotion(main);
+  // decoratePurchasePromotion(main);
 
   // decorate external images with explicit external image marker
   decorateExternalImages(main, '//External Image//');
