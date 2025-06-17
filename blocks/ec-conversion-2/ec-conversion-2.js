@@ -45,20 +45,20 @@ export default async function decorate(block) {
       buttonArea.classList.add('div-container');
 
       // 楽天ボタンリンクあり
-      if (data.rakutenLink !== "") {
-        const button = createButton('Rakuten', data.rakutenLink);
+      if (data.RakutenLink !== "") {
+        const button = createButton('Rakuten', data.RakutenLink);
         buttonArea.append(button);
       }
 
       // Lohacoボタンリンクあり
-      if (data.lohacoLink !== "") {
-        const button = createButton('LOHACO', data.lohacoLink);
+      if (data.LohacoLink !== "") {
+        const button = createButton('LOHACO', data.LohacoLink);
         buttonArea.append(button);
       }
 
       // amazonボタンリンクあり
-      if (data.amazonlink !== "") {
-        const button = createButton('Amazon', data.amazonlink);
+      if (data.Amazonlink !== "") {
+        const button = createButton('Amazon', data.Amazonlink);
         buttonArea.append(button);
       }
 
