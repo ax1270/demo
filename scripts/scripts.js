@@ -254,7 +254,9 @@ function decoratePurchasePromotion(element) {
 export function decorateMain(main) {
 
   // Purchase Promotion
-  decoratePurchasePromotion(main);
+  if (main.innerHTML.querySelectorAll('ec-conversion-2') != undefined) {
+    decoratePurchasePromotion(main);
+  }
 
   // decorate external images with explicit external image marker
   decorateExternalImages(main, '//External Image//');
