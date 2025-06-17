@@ -239,6 +239,9 @@ function decoratePurchasePromotion(element) {
 
     p.append(button);
     buttonArea.append(p);
+
+    // ボタン追加
+    element.append(buttonArea);
   }
 }
 
