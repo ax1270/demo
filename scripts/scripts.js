@@ -255,7 +255,7 @@ function decoratePurchasePromotion(element) {
 export function decorateMain(main) {
 
   // Purchase Promotion
-  // decoratePurchasePromotion(main);
+  decoratePurchasePromotion(main);
 
   // decorate external images with explicit external image marker
   decorateExternalImages(main, '//External Image//');
