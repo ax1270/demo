@@ -221,7 +221,7 @@ function decorateExternalImages(ele, deliveryMarker) {
 
 function decoratePurchasePromotion(element) {
   // breadcrumbs
-  if (getMetadata('PurchasePromotion') === 'Enable') {
+  if (getMetadata('purchasepromotion') === 'Enable') {
     const buttonArea = document.createElement('div');
 
       // 親
