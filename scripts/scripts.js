@@ -254,10 +254,7 @@ function decoratePurchasePromotion(element) {
 export function decorateMain(main) {
 
   // Purchase Promotion
-  const ele = main.innerHTML.querySelectorAll('ec-conversion-2');
-  if (ele) {
-    decoratePurchasePromotion(main);
-  }
+  decoratePurchasePromotion(main);
 
   // decorate external images with explicit external image marker
   decorateExternalImages(main, '//External Image//');
