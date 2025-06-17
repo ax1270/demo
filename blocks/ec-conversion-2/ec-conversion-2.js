@@ -30,8 +30,8 @@ export default async function decorate(block) {
 
   // 製品情報リスト取得
   const source = '/product-data.json';
-  const data = await fetchData({ source, placeholders }.source);
-  var obj = JSON.parse(data);
+  const productData = await fetchData({ source, placeholders }.source);
+  var obj = JSON.parse(productData.data);
 
   // 製品情報ID取得
   const productId = getMetadata('productid');
