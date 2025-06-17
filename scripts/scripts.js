@@ -220,9 +220,7 @@ function decorateExternalImages(ele, deliveryMarker) {
 
 
 function decoratePurchasePromotion(element) {
-
-  element
-
+  
   if (getMetadata('purchasepromotion') === 'Enable') {
     const buttonArea = document.createElement('div');
     buttonArea.classList.add('test-class');
