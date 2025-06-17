@@ -31,13 +31,13 @@ export default async function decorate(block) {
   // 製品情報リスト取得
   const source = '/product-data.json';
   const productData = await fetchData({ source, placeholders }.source);
-  var obj = JSON.parse(productData.data);
+  // var obj = JSON.parse(productData.data);
 
   // 製品情報ID取得
   const productId = getMetadata('productid');
 
   // 製品情報リストでループ
-  obj.forEach(element => {
+  productData.data.forEach(element => {
 
     // 製品IDが一致する場合のみボタンエリアを作成
     if (element.janCode === productId) {
