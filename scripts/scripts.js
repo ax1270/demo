@@ -226,7 +226,7 @@ function decoratePurchasePromotion(element) {
     buttonArea.classList.add('test-class');
 
     // 親
-    const p = document.createElement('p');
+    const p = document.createElement('p')
 
     // 子
     const button = document.createElement('a');
