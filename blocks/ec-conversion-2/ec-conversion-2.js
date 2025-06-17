@@ -31,34 +31,35 @@ export default async function decorate(block) {
   // 製品情報リスト取得
   const source = '/product-data.json';
   const data = await fetchData({ source, placeholders }.source);
+  var obj = JSON.parse(data);
 
   // 製品情報ID取得
   const productId = getMetadata('productid');
 
   // 製品情報リストでループ
-  Array.prototype.forEach(data => {
+  obj.forEach(element => {
 
     // 製品IDが一致する場合のみボタンエリアを作成
-    if (data.janCode === productId) {
+    if (element.janCode === productId) {
 
       const buttonArea = document.createElement('div');
       buttonArea.classList.add('div-container');
 
       // 楽天ボタンリンクあり
-      if (data.RakutenLink !== "") {
-        const button = createButton('Rakuten', data.RakutenLink);
+      if (element.RakutenLink !== "") {
+        const button = createButton('Rakuten', element.RakutenLink);
         buttonArea.append(button);
       }
 
       // Lohacoボタンリンクあり
-      if (data.LohacoLink !== "") {
-        const button = createButton('LOHACO', data.LohacoLink);
+      if (element.LohacoLink !== "") {
+        const button = createButton('LOHACO', element.LohacoLink);
         buttonArea.append(button);
       }
 
       // amazonボタンリンクあり
-      if (data.Amazonlink !== "") {
-        const button = createButton('Amazon', data.Amazonlink);
+      if (element.AmazonLink !== "") {
+        const button = createButton('Amazon', element.AmazonLink);
         buttonArea.append(button);
       }
 
