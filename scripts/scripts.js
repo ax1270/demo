@@ -230,7 +230,7 @@ function decoratePurchasePromotion(element) {
 
     // 子
     const button = document.createElement('a');
-    button.setAttribute("href", '');
+    button.setAttribute("href", 'https://sidekick-library--aem-block-collection--adobe.aem.page/block-collection/modals/ec/sample-ec-conversion-2');
 
     // 新規タブで開く設定
     button.setAttribute("target", "_blank");
