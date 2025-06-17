@@ -232,7 +232,7 @@ function decoratePurchasePromotion(element) {
 
     // 子
     const button = document.createElement('a');
-    button.setAttribute("href", url);
+    button.setAttribute("href", '');
 
     // 新規タブで開く設定
     button.setAttribute("target", "_blank");
