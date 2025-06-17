@@ -11,6 +11,7 @@ import {
   loadSection,
   loadSections,
   loadCSS,
+  getMetadata,
 } from './aem.js';
 
 /**
@@ -218,6 +219,33 @@ function decorateExternalImages(ele, deliveryMarker) {
 }
 
 
+function decoratePurchasePromotion(element) {
+  // breadcrumbs
+  if (getMetadata('purchase Promotion') === 'Enable') {
+    const buttonArea = document.createElement('div');
+
+      // 親
+    const p = document.createElement('p');
+    p.classList.add('ec-button-class');
+
+    // 子
+    const button = document.createElement('a');
+    button.setAttribute("href", url);
+
+    // 新規タブで開く設定
+    button.setAttribute("target", "_blank");
+    button.classList.add('button');
+    button.append(buttonName);
+
+    p.append(button);
+
+    buttonArea.append(p);
+
+    element.append(buttonArea);
+  }
+}
+
+
 /**
  * Decorates the main element.
  * @param {Element} main The main element
@@ -225,7 +253,10 @@ function decorateExternalImages(ele, deliveryMarker) {
 // eslint-disable-next-line import/prefer-default-export
 export function decorateMain(main) {
 
-    // decorate external images with explicit external image marker
+  // Purchase Promotion
+  decoratePurchasePromotion(main);
+
+  // decorate external images with explicit external image marker
   decorateExternalImages(main, '//External Image//');
 
   // decorate external images with implicit external image marker
