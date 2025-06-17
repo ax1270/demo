@@ -225,7 +225,7 @@ function decoratePurchasePromotion(element) {
 
   if (getMetadata('purchasepromotion') === 'Enable') {
     const buttonArea = document.createElement('div');
-    buttonArea.classList.add('test-class');
+    // buttonArea.classList.add('test-class');
 
     // 親
     const p = document.createElement('p');
