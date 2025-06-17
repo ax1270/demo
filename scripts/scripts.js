@@ -220,8 +220,6 @@ function decorateExternalImages(ele, deliveryMarker) {
 
 
 function decoratePurchasePromotion(element) {
-  
-  const body = element.getElementsByTagName('body');
 
   if (getMetadata('purchasepromotion') === 'Enable') {
     const buttonArea = document.createElement('div');
@@ -241,8 +239,6 @@ function decoratePurchasePromotion(element) {
 
     p.append(button);
     buttonArea.append(p);
-
-    body.append(buttonArea);
   }
 }
 
