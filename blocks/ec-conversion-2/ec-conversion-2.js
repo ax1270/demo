@@ -40,26 +40,26 @@ export default async function decorate(block) {
   productData.data.forEach(element => {
 
     // 製品IDが一致する場合のみボタンエリアを作成
-    if (element.JanCode === productId) {
+    if (element["JAN Code"] === productId) {
 
       const buttonArea = document.createElement('div');
       buttonArea.classList.add('div-container');
 
       // 楽天ボタンリンクあり
-      if (element.RakutenLink !== "") {
-        const button = createButton('Rakuten', element.RakutenLink);
+      if (element["Rakuten Link"] !== "") {
+        const button = createButton('Rakuten', element["Rakuten Link"]);
         buttonArea.append(button);
       }
 
       // Lohacoボタンリンクあり
-      if (element.LohacoLink !== "") {
-        const button = createButton('LOHACO', element.LohacoLink);
+      if (element["Lohaco Link"] !== "") {
+        const button = createButton('LOHACO', element["Lohaco Link"]);
         buttonArea.append(button);
       }
 
       // amazonボタンリンクあり
-      if (element.AmazonLink !== "") {
-        const button = createButton('Amazon', element.AmazonLink);
+      if (element["Amazon Link"] !== "") {
+        const button = createButton('Amazon', element["Amazon Link"]);
         buttonArea.append(button);
       }
 
