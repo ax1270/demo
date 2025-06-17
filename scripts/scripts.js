@@ -221,12 +221,14 @@ function decorateExternalImages(ele, deliveryMarker) {
 
 function decoratePurchasePromotion(element) {
 
+  element
+
   if (getMetadata('purchasepromotion') === 'Enable') {
     const buttonArea = document.createElement('div');
+    buttonArea.classList.add('test-class');
 
-      // 親
+    // 親
     const p = document.createElement('p');
-    p.classList.add('ec-button-class');
 
     // 子
     const button = document.createElement('a');
