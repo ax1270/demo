@@ -237,7 +237,7 @@ function decoratePurchasePromotion(element) {
     // 新規タブで開く設定
     button.setAttribute("target", "_blank");
     button.classList.add('button');
-    button.append("てすと");
+    button.append("オンラインストア");
 
     p.append(button);
     buttonArea.append(p);
