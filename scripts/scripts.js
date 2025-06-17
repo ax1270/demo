@@ -254,7 +254,8 @@ function decoratePurchasePromotion(element) {
 export function decorateMain(main) {
 
   // Purchase Promotion
-  if (main.innerHTML.querySelectorAll('ec-conversion-2') != undefined) {
+  const ele = main.innerHTML.querySelectorAll('ec-conversion-2');
+  if (ele) {
     decoratePurchasePromotion(main);
   }
 
