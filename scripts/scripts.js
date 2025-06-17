@@ -220,7 +220,9 @@ function decorateExternalImages(ele, deliveryMarker) {
 
 
 function decoratePurchasePromotion(element) {
-  // breadcrumbs
+  
+  const body = main.getElementsByTagName('body');
+
   if (getMetadata('purchasepromotion') === 'Enable') {
     const buttonArea = document.createElement('div');
 
@@ -238,10 +240,9 @@ function decoratePurchasePromotion(element) {
     button.append(buttonName);
 
     p.append(button);
-
     buttonArea.append(p);
 
-    element.append(buttonArea);
+    body.append(buttonArea);
   }
 }
 
@@ -254,7 +255,7 @@ function decoratePurchasePromotion(element) {
 export function decorateMain(main) {
 
   // Purchase Promotion
-  // decoratePurchasePromotion(main);
+  decoratePurchasePromotion(main);
 
   // decorate external images with explicit external image marker
   decorateExternalImages(main, '//External Image//');
