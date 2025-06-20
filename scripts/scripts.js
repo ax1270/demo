@@ -222,9 +222,10 @@ function decorateExternalImages(ele, deliveryMarker) {
 function decoratePurchasePromotion(element) {
   
   // 判定用
-  const flg = element.querySelectorAll('test-class');
+  const flg = element.querySelectorAll('.test-class');
   
-  if (getMetadata('purchasepromotion') === 'Enable' && flg.length == 0) {
+  if (getMetadata('purchasepromotion') === 'Enable'
+        && flg.length == 0) {
     const buttonArea = document.createElement('div');
     buttonArea.classList.add('test-class');
 
