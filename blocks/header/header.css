@@ -1,314 +1,2401 @@
-/* header and nav layout */
-header .nav-wrapper {
-  background-color: var(--background-color);
-  width: 100%;
-  z-index: 2;
-  position: fixed;
+@charset "UTF-8";
+
+/* ========================================
+   Base Styles (.smb)
+   ======================================== */
+
+.smb {
+    font-family: Meiryo, "Hiragino Kaku Gothic ProN", "Hiragino Sans", system-ui, sans-serif;
+    color: #333;
+    font-size: 16px;
+    line-height: 1.75;
+    margin: 0 auto
 }
 
-header nav {
-  box-sizing: border-box;
-  display: grid;
-  grid-template:
-    'hamburger brand tools' var(--nav-height)
-    'sections sections sections' 1fr / auto 1fr auto;
-  align-items: center;
-  gap: 0 24px;
-  margin: auto;
-  max-width: 1248px;
-  height: var(--nav-height);
-  padding: 0 24px;
-  font-family: var(--body-font-family);
+@media (max-width: 768px) {
+    .smb {
+        font-size: 14px;
+        line-height: 1.57143
+    }
 }
 
-header nav[aria-expanded='true'] {
-  grid-template:
-    'hamburger brand' var(--nav-height)
-    'sections sections' 1fr
-    'tools tools' var(--nav-height) / auto 1fr;
-  overflow-y: auto;
-  min-height: 100dvh;
+.smb li {
+    list-style: none
 }
 
-@media (width >= 900px) {
-  header nav {
+.smb img {
+    display: block;
+    max-width: 100%;
+    width: auto;
+    height: auto
+}
+
+.smb .header a,
+.smb .footer a {
+    display: block;
+    text-decoration: none;
+    color: #333
+}
+
+.smb button {
+    text-align: left
+}
+
+.smb button:focus {
+    outline: 0
+}
+
+.smb input:focus {
+    outline: 0
+}
+
+.smb p {
+    margin: 0
+}
+
+.smb>main {
+    padding-top: 75px
+}
+
+@media (max-width: 768px) {
+    .smb img {
+        width: 100%;
+        max-width: 118px
+    }
+
+    .smb>main {
+        padding-top: 58px
+    }
+}
+
+/* ========================================
+   Header Container
+   ======================================== */
+
+.smb .header {
+    position: fixed;
+    width: 100%;
+    border-bottom: solid 1px #bfbfc0;
+    z-index: 1002;
+    background-color: #fff;
+    padding-top: 5px
+}
+
+@media (max-width: 768px) {
+    .smb .header {
+        height: 55px;
+        min-width: initial;
+        padding-top: 3px;
+        border-bottom: 0;
+        background-color: initial
+    }
+
+    .smb .header.is-active {
+        height: 100vh
+    }
+}
+
+.smb .header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    border-top: solid 5px #357eec;
+    z-index: 100
+}
+
+@media (max-width: 768px) {
+    .smb .header::before {
+        border-top: solid 3px #357eec
+    }
+}
+
+/* ========================================
+   Header Inner (Logo and Title)
+   ======================================== */
+
+.header__inner {
+    padding: 0 35px;
+    max-width: 1350px;
+    height: 69px;
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
-    gap: 0 32px;
-    max-width: 1264px;
-    padding: 0 32px;
-  }
-
-  header nav[aria-expanded='true'] {
-    min-height: 0;
-    overflow: visible;
-  }
+    align-items: center;
+    box-sizing: border-box
 }
 
-header nav p {
-  margin: 0;
-  line-height: 1;
+@media (max-width: 768px) {
+    .header__inner {
+        display: none
+    }
 }
 
-header nav a:any-link {
-  color: currentcolor;
-}
-
-/* hamburger */
-header nav .nav-hamburger {
-  grid-area: hamburger;
-  height: 22px;
-  display: flex;
-  align-items: center;
-}
-
-header nav .nav-hamburger button {
-  height: 22px;
-  margin: 0;
-  border: 0;
-  border-radius: 0;
-  padding: 0;
-  background-color: var(--background-color);
-  color: inherit;
-  overflow: initial;
-  text-overflow: initial;
-  white-space: initial;
-}
-
-header nav .nav-hamburger-icon,
-header nav .nav-hamburger-icon::before,
-header nav .nav-hamburger-icon::after {
-  box-sizing: border-box;
-  display: block;
-  position: relative;
-  width: 20px;
-}
-
-header nav .nav-hamburger-icon::before,
-header nav .nav-hamburger-icon::after {
-  content: '';
-  position: absolute;
-  background: currentcolor;
-}
-
-header nav[aria-expanded='false'] .nav-hamburger-icon,
-header nav[aria-expanded='false'] .nav-hamburger-icon::before,
-header nav[aria-expanded='false'] .nav-hamburger-icon::after {
-  height: 2px;
-  border-radius: 2px;
-  background: currentcolor;
-}
-
-header nav[aria-expanded='false'] .nav-hamburger-icon::before {
-  top: -6px;
-}
-
-header nav[aria-expanded='false'] .nav-hamburger-icon::after {
-  top: 6px;
-}
-
-header nav[aria-expanded='true'] .nav-hamburger-icon {
-  height: 22px;
-}
-
-header nav[aria-expanded='true'] .nav-hamburger-icon::before,
-header nav[aria-expanded='true'] .nav-hamburger-icon::after {
-  top: 3px;
-  left: 1px;
-  transform: rotate(45deg);
-  transform-origin: 2px 1px;
-  width: 24px;
-  height: 2px;
-  border-radius: 2px;
-}
-
-header nav[aria-expanded='true'] .nav-hamburger-icon::after {
-  top: unset;
-  bottom: 3px;
-  transform: rotate(-45deg);
-}
-
-@media (width >= 900px) {
-  header nav .nav-hamburger {
-    display: none;
-    visibility: hidden;
-  }
-}
-
-/* brand */
-header .nav-brand {
-  grid-area: brand;
-  flex-basis: 128px;
-  font-size: var(--heading-font-size-s);
-  font-weight: 700;
-  line-height: 1;
-}
-
-header nav .nav-brand img {
-  width: 128px;
-  height: auto;
-}
-
-/* sections */
-header nav .nav-sections {
-  grid-area: sections;
-  flex: 1 1 auto;
-  display: none;
-  visibility: hidden;
-}
-
-header nav[aria-expanded='true'] .nav-sections {
-  display: block;
-  visibility: visible;
-  align-self: start;
-}
-
-header nav .nav-sections ul {
-  list-style: none;
-  padding-left: 0;
-  font-size: var(--body-font-size-s);
-}
-
-header nav .nav-sections ul > li {
-  font-weight: 500;
-}
-
-header nav .nav-sections ul > li > ul {
-  margin-top: 0;
-}
-
-header nav .nav-sections ul > li > ul > li {
-  font-weight: 400;
-}
-
-@media (width >= 900px) {
-  header nav .nav-sections {
-    display: block;
-    visibility: visible;
-    white-space: nowrap;
-  }
-
-  header nav[aria-expanded='true'] .nav-sections {
-    align-self: unset;
-  }
-
-  header nav .nav-sections .nav-drop {
-    position: relative;
-    padding-right: 16px;
-    cursor: pointer;
-  }
-
-  header nav .nav-sections .nav-drop::after {
-    content: '';
-    display: inline-block;
-    position: absolute;
-    top: 0.5em;
-    right: 2px;
-    transform: rotate(135deg);
-    width: 6px;
-    height: 6px;
-    border: 2px solid currentcolor;
-    border-radius: 0 1px 0 0;
-    border-width: 2px 2px 0 0;
-  }
-
-  header nav .nav-sections .nav-drop[aria-expanded='true']::after {
-    top: unset;
-    bottom: 0.5em;
-    transform: rotate(315deg);
-  }
-
-  header nav .nav-sections ul {
+.header__ttl {
     display: flex;
-    gap: 24px;
-    margin: 0;
-  }
+    justify-content: space-between;
+    align-items: center
+}
 
-  header nav .nav-sections .default-content-wrapper > ul > li {
-    flex: 0 1 auto;
-    position: relative;
-  }
+.header__ttl__logo {
+    width: 140px;
+    margin-right: 18px
+}
 
-  header nav .nav-sections .default-content-wrapper > ul > li > ul {
-    display: none;
-    position: relative;
-  }
-
-  header nav .nav-sections .default-content-wrapper > ul > li[aria-expanded='true'] > ul {
+.header__ttl__logo img {
     display: block;
-    position: absolute;
-    left: -24px;
-    width: 200px;
-    top: 150%;
-    padding: 16px;
-    background-color: var(--light-color);
-    white-space: initial;
-  }
+    max-width: 100%;
+    height: auto
+}
 
-  header nav .nav-sections .default-content-wrapper > ul > li > ul::before {
+.header__ttl__item {
+    width: auto;
+    padding-left: 26px;
+    position: relative;
+    display: flex;
+    align-items: center
+}
+
+.header__ttl__item::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 0;
+    height: 26px;
+    border-left: solid 1px #bfbfc0
+}
+
+.header__ttl__item>a {
+    font-size: 18px;
+    line-height: 1;
+    letter-spacing: .05em;
+    transition: opacity .2s ease-in-out;
+    text-decoration: none;
+    color: #333
+}
+
+.header__ttl__item>a:hover {
+    opacity: .5
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .header__inner {
+        padding: 0 20px
+    }
+
+    .header__ttl__logo {
+        max-width: 140px;
+        margin-right: 16px
+    }
+
+    .header__ttl__item {
+        width: 120px;
+        padding-left: 25px
+    }
+}
+
+/* ========================================
+   PC Header Navigation
+   ======================================== */
+
+.sb-appshell-v1-header-nav {
+    height: 28px;
+    box-sizing: border-box;
+    padding: 0 5px 0 20px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 100%
+}
+
+.sb-appshell-v1-header-nav_globalnav {
+    font-size: 14px;
+    line-height: 1;
+    box-sizing: border-box
+}
+
+.sb-appshell-v1-header-nav_globalnav ul>li {
+    list-style-type: none
+}
+
+.sb-appshell-v1-header-nav_globalnav-list {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+    align-items: stretch;
+    list-style-type: none
+}
+
+.sb-appshell-v1-header-nav_globalnav-item {
+    padding: 0;
+    margin: 0
+}
+
+.sb-appshell-v1-header-nav_globalnav-link {
+    display: block;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 1;
+    color: #424242;
+    padding: 0 15px;
+    height: 28px;
+    box-sizing: border-box;
+    text-decoration: none;
+    cursor: default
+}
+
+.sb-appshell-v1-header-nav_globalnav-link:link,
+.sb-appshell-v1-header-nav_globalnav-link:visited,
+.sb-appshell-v1-header-nav_globalnav-link:active,
+.sb-appshell-v1-header-nav_globalnav-link:hover,
+.sb-appshell-v1-header-nav_globalnav-link:focus {
+    color: #424242;
+    text-decoration: none
+}
+
+.sb-appshell-v1-header-nav_globalnav-link[href] {
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity .4s;
+    will-change: opacity
+}
+
+.sb-appshell-v1-header-nav_globalnav-link[href]:hover {
+    opacity: .6
+}
+
+.sb-appshell-v1-header-nav_globalnav-link-inner {
+    position: relative;
+    display: inline-block;
+    box-sizing: border-box;
+    height: 28px;
+    padding: 0
+}
+
+.sb-appshell-v1-header-nav_globalnav-link-inner::after {
+    display: none;
     content: '';
     position: absolute;
-    top: -8px;
-    left: 16px;
-    width: 0;
-    height: 0;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-bottom: 8px solid var(--light-color);
-  }
-
-  header nav .nav-sections .default-content-wrapper > ul > li > ul > li {
-    padding: 8px 0;
-  }
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #328cf9
 }
 
-/* tools */
-header nav .nav-tools {
-  grid-area: tools;
+.sb-appshell-v1-header-nav_globalnav-link--current .sb-appshell-v1-header-nav_globalnav-link-inner::after {
+    display: block
 }
 
+/* ========================================
+   Header Utility Menu
+   ======================================== */
 
-/* breadcrumbs */
-header .breadcrumbs {
-  display: none;
-  margin: auto;
-  max-width: 1248px;
-  height: var(--breadcrumbs-height);
-  padding: 0 24px;
-  font-size: var(--body-font-size-xs);
-  overflow: hidden;
+.sb-appshell-v1-header_utility {
+    position: absolute;
+    right: 20px;
+    top: 9.5px
 }
 
-header .breadcrumbs ol {
-  display: flex;
-  flex-flow: wrap;
-  list-style: none;
-  padding: 0;
-  margin-top: 0;
-  margin-bottom: 0;
-  gap: 1ch;
+.sb-appshell-v1-header_utility-list {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+    align-content: stretch
 }
 
-/* stylelint-disable-next-line no-descending-specificity */
-header .breadcrumbs ol li {
-  padding: 0;
-  color: var(--dark-color);
+.sb-appshell-v1-header_utility-item {
+    margin-left: 20px;
+    display: flex;
+    align-items: stretch
 }
 
-header .breadcrumbs ol li:not(:last-child)::after {
-  content: '/';
-  padding-left: 1ch;
+.sb-appshell-v1-header_utility-item:first-child {
+    margin-left: 0
 }
 
-/* stylelint-disable-next-line no-descending-specificity */
-header .breadcrumbs ol li[aria-current] {
-  color: var(--text-color);
+.sb-appshell-v1-header_utility-link {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    color: #424242;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 1;
+    position: relative;
+    margin: 0;
+    min-height: 24px;
+    text-decoration: none;
+    transition: opacity .4s;
+    will-change: opacity
 }
 
-@media (width >= 900px) {
-  header .breadcrumbs {
+.sb-appshell-v1-header_utility-link:hover {
+    opacity: .6
+}
+
+.sb-appshell-v1-header_utility-link:link,
+.sb-appshell-v1-header_utility-link:visited,
+.sb-appshell-v1-header_utility-link:active,
+.sb-appshell-v1-header_utility-link:focus,
+.sb-appshell-v1-header_utility-link:hover {
+    color: #424242;
+    text-decoration: none
+}
+
+.sb-appshell-v1-header_utility-button {
+    padding-left: 10px
+}
+
+.sb-appshell-v1-header_utility-button-english {
+    padding: 8px 20px 7px;
+    border: 1px solid #c1c1c2;
+    border-radius: 15px;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 13px;
+    line-height: 1;
+    display: inline-block;
+    text-decoration: none;
+    transition: opacity .4s;
+    will-change: opacity
+}
+
+.sb-appshell-v1-header_utility-button-english:hover {
+    opacity: .6
+}
+
+.sb-appshell-v1-header_utility-button-english:link,
+.sb-appshell-v1-header_utility-button-english:visited,
+.sb-appshell-v1-header_utility-button-english:active,
+.sb-appshell-v1-header_utility-button-english:focus,
+.sb-appshell-v1-header_utility-button-english:hover {
+    color: #424242;
+    text-decoration: none
+}
+
+.sb-appshell-v1-header_utility-button-english--invisible {
+    visibility: hidden
+}
+
+.sb-appshell-v1-header_utility-button-inner {
+    display: inline-block;
+    position: relative;
+    padding-left: 26px
+}
+
+.sb-appshell-v1-header_utility-button-inner::before {
     display: block;
-    max-width: 1264px;
-    padding: 0 32px;
-  }
+    content: '';
+    position: absolute;
+    left: 0;
+    top: -4px;
+    background-image: url("https://cdn.softbank.jp/site/set/common/sunshine/shared/img/icon-english.png");
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    width: 18px;
+    height: 18px;
+    background-size: 18px 18px;
+    text-indent: -9999px;
+    overflow: hidden
 }
+
+/* ========================================
+   Megadropdown
+   ======================================== */
+
+.sb-appshell-v1-header-nav_megadropdown {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    min-width: 990px;
+    width: 100%;
+    z-index: 1003
+}
+
+.sb-appshell-v1-header-nav_megadropdown--show {
+    display: block
+}
+
+.sb-appshell-v1-header-nav_megadropdown-view {
+    position: relative;
+    z-index: 1003;
+    width: 100%
+}
+
+.sb-appshell-v1-header-nav_megadropdown-view-inner {
+    position: relative;
+    background: #eaecef;
+    border-bottom: 5px solid #307bf0;
+    overflow: hidden
+}
+
+.sb-appshell-v1-header-nav_megadropdown-view .ps__rail-y {
+    z-index: 1010
+}
+
+.sb-appshell-v1-header-nav_megadropdown-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    opacity: .3;
+    background-color: #000;
+    z-index: 1002
+}
+
+/* Megadropdown Header */
+
+.sb-appshell-v1-header-nav_megadropdown-header {
+    width: 100%
+}
+
+.sb-appshell-v1-header-nav_megadropdown-header::before {
+    display: block;
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 62px;
+    background-color: #4b4d4f;
+    z-index: 1003
+}
+
+.sb-appshell-v1-header-nav_megadropdown-header-inner {
+    position: relative;
+    z-index: 1006;
+    display: flex;
+    justify-content: space-between;
+    width: 960px;
+    margin: 0 auto;
+    padding: 15px 0
+}
+
+.sb-appshell-v1-header-nav_megadropdown-header-search {
+    height: 32px
+}
+
+.sb-appshell-v1-header-nav_megadropdown-header-search-form {
+    width: auto;
+    height: auto;
+    border: 0;
+    background-color: transparent;
+    box-shadow: none
+}
+
+.sb-appshell-v1-header-nav_megadropdown-header-search-form-data {
+    position: relative;
+    width: auto;
+    height: 32px;
+    background-color: transparent;
+    border-radius: 0
+}
+
+.sb-appshell-v1-header-nav_megadropdown-header-search-form-text {
+    float: none;
+    box-sizing: border-box;
+    padding: 0;
+    width: 0;
+    height: 32px;
+    border: 0;
+    font-family: inherit;
+    font-size: 14px;
+    color: #000;
+    background-color: #fff;
+    border-radius: 16px;
+    outline: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-indent: 10px;
+    transition: width .1s ease-out;
+    display: inline-block;
+    margin: 0
+}
+
+.sb-appshell-v1-header-nav_megadropdown-header-search-form-submit {
+    box-sizing: border-box;
+    border: 0;
+    font-size: 11px;
+    background-color: #555;
+    background-image: url("https://cdn.softbank.jp/site/set/common/sunshine/shared/img/icon-search-white.svg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 17px;
+    width: 32px;
+    height: 32px;
+    border-radius: 16px;
+    outline: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    text-indent: -9999px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity .4s;
+    will-change: opacity;
+    overflow: hidden
+}
+
+.sb-appshell-v1-header-nav_megadropdown-header-search-form-submit:hover {
+    opacity: .6
+}
+
+.sb-appshell-v1-header-nav_megadropdown-header-search--open .sb-appshell-v1-header-nav_megadropdown-header-search-form {
+    width: 210px
+}
+
+.sb-appshell-v1-header-nav_megadropdown-header-search--open .sb-appshell-v1-header-nav_megadropdown-header-search-form-text {
+    width: 210px;
+    padding: 5px 40px 5px 5px
+}
+
+.sb-appshell-v1-header-nav_megadropdown-header-search--open .sb-appshell-v1-header-nav_megadropdown-header-search-form-submit {
+    border-radius: 16px;
+    background-color: #000;
+    left: inherit;
+    right: 0
+}
+
+.sb-appshell-v1-header-nav_megadropdown-header-close-button {
+    position: relative;
+    display: block;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: #fff;
+    font-size: 16px;
+    line-height: 1;
+    padding-left: 20px;
+    z-index: 1006;
+    text-decoration: none;
+    transition: opacity .4s;
+    will-change: opacity
+}
+
+.sb-appshell-v1-header-nav_megadropdown-header-close-button:hover {
+    opacity: .6
+}
+
+.sb-appshell-v1-header-nav_megadropdown-header-close-button::before,
+.sb-appshell-v1-header-nav_megadropdown-header-close-button::after {
+    display: block;
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 16px;
+    width: 17px;
+    height: 1px;
+    background-color: #fff
+}
+
+.sb-appshell-v1-header-nav_megadropdown-header-close-button::before {
+    transform: rotate(45deg)
+}
+
+.sb-appshell-v1-header-nav_megadropdown-header-close-button::after {
+    transform: rotate(-45deg)
+}
+
+.sb-appshell-v1-header-nav_megadropdown-header-close-button:link,
+.sb-appshell-v1-header-nav_megadropdown-header-close-button:visited,
+.sb-appshell-v1-header-nav_megadropdown-header-close-button:active,
+.sb-appshell-v1-header-nav_megadropdown-header-close-button:focus,
+.sb-appshell-v1-header-nav_megadropdown-header-close-button:hover {
+    color: #fff;
+    text-decoration: none
+}
+
+/* Megadropdown Contents */
+
+.sb-appshell-v1-header-nav_megadropdown-contents {
+    overflow: hidden;
+    position: relative
+}
+
+.sb-appshell-v1-header-nav_megadropdown-category-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    z-index: 1004;
+    transition: all .4s ease-in-out;
+    transform: translateX(100%)
+}
+
+.sb-appshell-v1-header-nav_megadropdown-category-item--current {
+    position: relative;
+    z-index: 1005;
+    transition: all .4s ease-in-out;
+    transform: translateX(0);
+    opacity: 1
+}
+
+.sb-appshell-v1-header-nav_megadropdown-category-item--preview {
+    transition: all .2s ease-in-out;
+    transform: translateX(-100%);
+    opacity: 0
+}
+
+/* Megadropdown Lv3 Header */
+
+.sb-appshell-v1-header-nav_megadropdown-lv3-header {
+    text-align: left;
+    min-height: 18px;
+    min-width: 990px;
+    max-width: 990px;
+    padding: 30px 20px 0 10px;
+    box-sizing: border-box;
+    margin: 0 auto
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv3-header-link-text {
+    display: inline-block;
+    color: #333;
+    font-size: 20px;
+    font-weight: normal;
+    line-height: 1;
+    padding: 10px 30px 10px 10px;
+    position: relative;
+    text-decoration: none;
+    transition: opacity .4s;
+    will-change: opacity
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv3-header-link-text::before {
+    display: block;
+    content: '';
+    position: absolute;
+    right: 2px;
+    top: 15px;
+    width: 9px;
+    height: 9px;
+    border-top: 2px solid #333;
+    border-right: 2px solid #333;
+    transform: rotate(45deg);
+    transition: transform .1s ease-out .2s
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv3-header-link-text:hover {
+    opacity: .6
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv3-header-link a:link,
+.sb-appshell-v1-header-nav_megadropdown-lv3-header-link a:visited,
+.sb-appshell-v1-header-nav_megadropdown-lv3-header-link a:active,
+.sb-appshell-v1-header-nav_megadropdown-lv3-header-link a:focus,
+.sb-appshell-v1-header-nav_megadropdown-lv3-header-link a:hover {
+    color: #333;
+    text-decoration: none
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv3-header-link-text-nolink {
+    display: inline-block;
+    color: #333;
+    font-size: 20px;
+    font-weight: normal;
+    line-height: 1;
+    padding: 10px
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv3-section {
+    background: #eaecef;
+    padding: 1px 0 50px
+}
+
+/* Megadropdown Lv4 */
+
+.sb-appshell-v1-header-nav_megadropdown-lv4 {
+    min-width: 990px;
+    max-width: 990px;
+    padding: 0 20px;
+    box-sizing: border-box;
+    margin: 0 auto
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv4-title {
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 1;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #3d4041;
+    margin-top: 40px
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv3-section + .sb-appshell-v1-header-nav_megadropdown-lv3-section .sb-appshell-v1-header-nav_megadropdown-lv4-title {
+    margin-top: 10px
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv4>.sb-appshell-v1-header-nav_megadropdown-lv4-list {
+    overflow: hidden;
+    margin: 0 -36px;
+    padding-left: 36px
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv4>.sb-appshell-v1-header-nav_megadropdown-lv4-list>.sb-appshell-v1-header-nav_megadropdown-lv4-item {
+    width: 25%;
+    padding-top: 36px;
+    padding-left: 36px
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv4>.sb-appshell-v1-header-nav_megadropdown-lv4-list>.sb-appshell-v1-header-nav_megadropdown-lv4-item:nth-child(4n+1) {
+    margin-left: -36px
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv4>.sb-appshell-v1-header-nav_megadropdown-lv4-list>.sb-appshell-v1-header-nav_megadropdown-lv4-item:nth-child(1),
+.sb-appshell-v1-header-nav_megadropdown-lv4>.sb-appshell-v1-header-nav_megadropdown-lv4-list>.sb-appshell-v1-header-nav_megadropdown-lv4-item:nth-child(2),
+.sb-appshell-v1-header-nav_megadropdown-lv4>.sb-appshell-v1-header-nav_megadropdown-lv4-list>.sb-appshell-v1-header-nav_megadropdown-lv4-item:nth-child(3),
+.sb-appshell-v1-header-nav_megadropdown-lv4>.sb-appshell-v1-header-nav_megadropdown-lv4-list>.sb-appshell-v1-header-nav_megadropdown-lv4-item:nth-child(4) {
+    padding-top: 0
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv4-list {
+    display: flex;
+    flex-wrap: wrap;
+    overflow: visible !important
+}
+
+@media only screen and (max-width: 990px) {
+    .sb-appshell-v1-header-nav_megadropdown-lv4-list {
+        overflow: hidden !important
+    }
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv4-item {
+    box-sizing: border-box;
+    display: flex;
+    align-items: stretch;
+    flex-wrap: wrap;
+    flex-direction: column;
+    line-height: inherit;
+    margin: 0
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv4>.sb-appshell-v1-header-nav_megadropdown-lv4-list>.sb-appshell-v1-header-nav_megadropdown-lv4-item {
+    padding-top: 0
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv4-link-container {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    box-sizing: border-box;
+    width: 100%;
+    flex-flow: column nowrap
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv4-link-container::after {
+    display: block;
+    content: '';
+    width: 100%;
+    margin: 0;
+    background-color: #6c6a6a;
+    height: 1px
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv4-link {
+    display: flex !important;
+    align-items: center;
+    min-height: 60px;
+    font-size: 16px;
+    line-height: 1.5;
+    box-sizing: border-box;
+    padding: 5px 20px 5px 0;
+    width: 100%;
+    outline: 0;
+    text-align: left;
+    color: #333;
+    font-weight: normal;
+    cursor: pointer;
+    position: relative;
+    text-decoration: none;
+    transition: opacity .4s, color .2s linear;
+    will-change: opacity
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv4-link::before {
+    display: block;
+    content: '';
+    position: absolute;
+    right: 2px;
+    top: 50%;
+    width: 9px;
+    height: 9px;
+    border-top: 2px solid #333;
+    border-right: 2px solid #333;
+    transform: translateY(-50%) rotate(45deg);
+    transition: transform .1s ease-out .2s
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv4-link:hover {
+    opacity: .6
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv4-link--accordion {
+    position: relative
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv4-link--accordion::before {
+    display: block;
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 0;
+    height: 0;
+    width: 14px;
+    border: 0;
+    border-bottom: 2px solid #333;
+    transform: none;
+    transition: border-color .2s linear
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv4-link--accordion::after {
+    display: block;
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 0;
+    height: 0;
+    width: 14px;
+    border: 0;
+    border-bottom: 2px solid #333;
+    transform-origin: center;
+    transform: rotate(90deg);
+    transition: transform .3s ease-out 0, border-color .2s linear
+}
+
+a[target='_blank'].sb-appshell-v1-header-nav_megadropdown-lv4-link {
+    position: relative
+}
+
+a[target='_blank'].sb-appshell-v1-header-nav_megadropdown-lv4-link::before {
+    display: block;
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    border: 0;
+    transform: translateY(-50%) rotate(0);
+    transition: none 0 ease-out 0;
+    background-image: url("https://cdn.softbank.jp/site/set/common/sunshine/shared/img/icon-blank-black.svg");
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 12px;
+    height: 12px;
+    text-indent: -9999px;
+    overflow: hidden
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv4 a:link,
+.sb-appshell-v1-header-nav_megadropdown-lv4 a:visited,
+.sb-appshell-v1-header-nav_megadropdown-lv4 a:active,
+.sb-appshell-v1-header-nav_megadropdown-lv4 a:focus,
+.sb-appshell-v1-header-nav_megadropdown-lv4 a:hover {
+    color: #333;
+    text-decoration: none
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv4 a:focus {
+    outline: 0
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv4 .sb-appshell-v1-header-nav_megadropdown-lv4-link-container::after {
+    transition: height .05s linear 0, margin .1s linear 0, width .1s linear 0, background-color .1s linear 0
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv4-item.sb-appshell-v1-header-nav_megadropdown-lv4--open .sb-appshell-v1-header-nav_megadropdown-lv4-link-container::after {
+    width: 250px;
+    height: 11px;
+    margin: 0 -20px;
+    transition: height .2s ease-out 0, margin 0 linear 0, width 0 linear 0;
+    background-color: #fff
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv4-item.sb-appshell-v1-header-nav_megadropdown-lv4--open .sb-appshell-v1-header-nav_megadropdown-lv4-link {
+    color: #328cf9
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv4-item.sb-appshell-v1-header-nav_megadropdown-lv4--open .sb-appshell-v1-header-nav_megadropdown-lv4-link::after {
+    transition: transform .3s ease-out 0, color .3s ease-out 0;
+    transform: rotate(360deg)
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv4-item.sb-appshell-v1-header-nav_megadropdown-lv4--open .sb-appshell-v1-header-nav_megadropdown-lv4-link::before,
+.sb-appshell-v1-header-nav_megadropdown-lv4-item.sb-appshell-v1-header-nav_megadropdown-lv4--open .sb-appshell-v1-header-nav_megadropdown-lv4-link::after {
+    border-color: #328cf9
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv4-item.sb-appshell-v1-header-nav_megadropdown-lv4--open .sb-appshell-v1-header-nav_megadropdown-lv4-link:link,
+.sb-appshell-v1-header-nav_megadropdown-lv4-item.sb-appshell-v1-header-nav_megadropdown-lv4--open .sb-appshell-v1-header-nav_megadropdown-lv4-link:visited,
+.sb-appshell-v1-header-nav_megadropdown-lv4-item.sb-appshell-v1-header-nav_megadropdown-lv4--open .sb-appshell-v1-header-nav_megadropdown-lv4-link:active,
+.sb-appshell-v1-header-nav_megadropdown-lv4-item.sb-appshell-v1-header-nav_megadropdown-lv4--open .sb-appshell-v1-header-nav_megadropdown-lv4-link:focus,
+.sb-appshell-v1-header-nav_megadropdown-lv4-item.sb-appshell-v1-header-nav_megadropdown-lv4--open .sb-appshell-v1-header-nav_megadropdown-lv4-link:hover {
+    color: #328cf9
+}
+
+/* Megadropdown Lv5 */
+
+.sb-appshell-v1-header-nav_megadropdown-lv5 {
+    height: 0;
+    overflow: hidden;
+    background-color: #fff
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv5.disp-none {
+    display: none
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv5-inner {
+    position: relative;
+    min-width: 990px;
+    max-width: 990px;
+    margin: 0 auto;
+    padding: 10px 20px;
+    overflow: hidden;
+    box-sizing: border-box
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv5-top {
+    float: left;
+    width: 210px
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv5-links {
+    float: right;
+    width: 100%;
+    margin: 0 auto
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv5-links>.sb-appshell-v1-header-nav_megadropdown-lv5-links-list {
+    overflow: hidden;
+    margin: 0 -36px;
+    padding-left: 36px
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv5-links>.sb-appshell-v1-header-nav_megadropdown-lv5-links-list>.sb-appshell-v1-header-nav_megadropdown-lv5-links-item {
+    width: 25%;
+    padding-top: 36px;
+    padding-left: 36px
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv5-links>.sb-appshell-v1-header-nav_megadropdown-lv5-links-list>.sb-appshell-v1-header-nav_megadropdown-lv5-links-item:nth-child(4n+1) {
+    margin-left: -36px
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv5-links>.sb-appshell-v1-header-nav_megadropdown-lv5-links-list>.sb-appshell-v1-header-nav_megadropdown-lv5-links-item:nth-child(1),
+.sb-appshell-v1-header-nav_megadropdown-lv5-links>.sb-appshell-v1-header-nav_megadropdown-lv5-links-list>.sb-appshell-v1-header-nav_megadropdown-lv5-links-item:nth-child(2),
+.sb-appshell-v1-header-nav_megadropdown-lv5-links>.sb-appshell-v1-header-nav_megadropdown-lv5-links-list>.sb-appshell-v1-header-nav_megadropdown-lv5-links-item:nth-child(3),
+.sb-appshell-v1-header-nav_megadropdown-lv5-links>.sb-appshell-v1-header-nav_megadropdown-lv5-links-list>.sb-appshell-v1-header-nav_megadropdown-lv5-links-item:nth-child(4) {
+    padding-top: 0
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv5-links-list {
+    display: flex;
+    flex-wrap: wrap;
+    overflow: visible !important
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv5-links-item {
+    box-sizing: border-box;
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+    line-height: inherit;
+    margin: 0
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv5-links>.sb-appshell-v1-header-nav_megadropdown-lv5-links-list>.sb-appshell-v1-header-nav_megadropdown-lv5-links-item {
+    padding-top: 0
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv5-top + .sb-appshell-v1-header-nav_megadropdown-lv5-links {
+    width: 704px;
+    margin: 0 auto
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv5-top + .sb-appshell-v1-header-nav_megadropdown-lv5-links>.sb-appshell-v1-header-nav_megadropdown-lv5-links-list {
+    overflow: hidden;
+    margin: 0 -36px;
+    padding-left: 36px
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv5-top + .sb-appshell-v1-header-nav_megadropdown-lv5-links>.sb-appshell-v1-header-nav_megadropdown-lv5-links-list>.sb-appshell-v1-header-nav_megadropdown-lv5-links-item {
+    width: 33.33333%;
+    padding-top: 0;
+    padding-left: 36px
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv5-top + .sb-appshell-v1-header-nav_megadropdown-lv5-links>.sb-appshell-v1-header-nav_megadropdown-lv5-links-list>.sb-appshell-v1-header-nav_megadropdown-lv5-links-item:nth-child(4n+1) {
+    margin-left: 0
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv5-top + .sb-appshell-v1-header-nav_megadropdown-lv5-links>.sb-appshell-v1-header-nav_megadropdown-lv5-links-list>.sb-appshell-v1-header-nav_megadropdown-lv5-links-item:nth-child(3n+1) {
+    margin-left: -36px
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv5-top + .sb-appshell-v1-header-nav_megadropdown-lv5-links>.sb-appshell-v1-header-nav_megadropdown-lv5-links-list>.sb-appshell-v1-header-nav_megadropdown-lv5-links-item:nth-child(1),
+.sb-appshell-v1-header-nav_megadropdown-lv5-top + .sb-appshell-v1-header-nav_megadropdown-lv5-links>.sb-appshell-v1-header-nav_megadropdown-lv5-links-list>.sb-appshell-v1-header-nav_megadropdown-lv5-links-item:nth-child(2),
+.sb-appshell-v1-header-nav_megadropdown-lv5-top + .sb-appshell-v1-header-nav_megadropdown-lv5-links>.sb-appshell-v1-header-nav_megadropdown-lv5-links-list>.sb-appshell-v1-header-nav_megadropdown-lv5-links-item:nth-child(3) {
+    padding-top: 0
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv5-link {
+    display: flex !important;
+    align-items: center;
+    min-height: 50px;
+    font-size: 16px;
+    line-height: 1.5;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 5px 20px 5px 0;
+    text-align: left;
+    text-decoration: none;
+    transition: opacity .4s;
+    will-change: opacity
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv5-link:hover {
+    opacity: .6
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv5-link:link,
+.sb-appshell-v1-header-nav_megadropdown-lv5-link:visited,
+.sb-appshell-v1-header-nav_megadropdown-lv5-link:active,
+.sb-appshell-v1-header-nav_megadropdown-lv5-link:focus,
+.sb-appshell-v1-header-nav_megadropdown-lv5-link:hover {
+    color: #fff;
+    text-decoration: none;
+    font-weight: normal
+}
+
+a[target='_blank'].sb-appshell-v1-header-nav_megadropdown-lv5-link {
+    position: relative
+}
+
+a[target='_blank'].sb-appshell-v1-header-nav_megadropdown-lv5-link::before {
+    display: block;
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    border: 0;
+    transform: translateY(-50%) rotate(0);
+    transition: none 0 ease-out 0;
+    background-image: url("https://cdn.softbank.jp/site/set/common/sunshine/shared/img/icon-blank-black.svg");
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 12px;
+    height: 12px;
+    text-indent: -9999px;
+    overflow: hidden
+}
+
+/* Megadropdown Footer */
+
+.sb-appshell-v1-header-nav_megadropdown-footer {
+    padding: 40px 0 20px;
+    background-color: #4b4d4f;
+    box-sizing: border-box
+}
+
+.sb-appshell-v1-header-nav_megadropdown-footer-support-list {
+    text-align: center;
+    margin: 0 -25px
+}
+
+.sb-appshell-v1-header-nav_megadropdown-footer-support-link {
+    display: inline-block;
+    margin: 0 25px;
+    font-size: 14px;
+    line-height: 1.57143;
+    position: relative;
+    padding-left: 40px;
+    text-decoration: none;
+    transition: opacity .4s;
+    will-change: opacity
+}
+
+.sb-appshell-v1-header-nav_megadropdown-footer-support-link:hover {
+    opacity: .6
+}
+
+.sb-appshell-v1-header-nav_megadropdown-footer-support-link:link,
+.sb-appshell-v1-header-nav_megadropdown-footer-support-link:visited,
+.sb-appshell-v1-header-nav_megadropdown-footer-support-link:active,
+.sb-appshell-v1-header-nav_megadropdown-footer-support-link:focus,
+.sb-appshell-v1-header-nav_megadropdown-footer-support-link:hover {
+    color: #fff;
+    text-decoration: none
+}
+
+.sb-appshell-v1-header-nav_megadropdown-footer-support-link::before {
+    display: block;
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    background-image: url("https://cdn.softbank.jp/site/set/common/sunshine/shared/img/icon-contact.svg");
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: 30px 30px;
+    width: 30px;
+    height: 30px;
+    text-indent: -9999px;
+    overflow: hidden
+}
+
+.sb-appshell-v1-header-nav_megadropdown-footer-support-link-faq::before {
+    background-image: url("https://cdn.softbank.jp/site/set/common/sunshine/shared/img/icon-faq.svg")
+}
+
+.sb-appshell-v1-header-nav_megadropdown-footer-support-link-documents {
+    padding-left: 27px;
+    color: #fff;
+    display: inline-block
+}
+
+.sb-appshell-v1-header-nav_megadropdown-footer-support-link-documents::before {
+    width: 20px;
+    height: 22px;
+    background-image: url("https://www.softbank.jp/site/set/common/sunshine/shared/img/icon-documents.svg");
+    background-size: 100% auto
+}
+
+.sb-appshell-v1-header-nav_megadropdown-footer-support-button {
+    display: inline-block;
+    margin: 0 25px;
+    box-sizing: border-box;
+    padding: 13px 10px;
+    min-width: 200px;
+    min-height: 32px;
+    color: #424242;
+    font-size: 14px;
+    line-height: 1;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: opacity .4s;
+    will-change: opacity
+}
+
+.sb-appshell-v1-header-nav_megadropdown-footer-support-button:hover {
+    opacity: .6
+}
+
+.sb-appshell-v1-header-nav_megadropdown-footer-support-button:link,
+.sb-appshell-v1-header-nav_megadropdown-footer-support-button:visited,
+.sb-appshell-v1-header-nav_megadropdown-footer-support-button:active,
+.sb-appshell-v1-header-nav_megadropdown-footer-support-button:focus,
+.sb-appshell-v1-header-nav_megadropdown-footer-support-button:hover {
+    color: #000;
+    text-decoration: none
+}
+
+.sb-appshell-v1-header-nav_megadropdown-footer-support-button-inner {
+    padding-left: 35px;
+    position: relative
+}
+
+.sb-appshell-v1-header-nav_megadropdown-footer-support-button-inner::before {
+    display: block;
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    background-image: url("https://cdn.softbank.jp/site/set/common/sunshine/shared/img/icon-chatsupport.svg");
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: 30px 30px;
+    width: 30px;
+    height: 30px;
+    text-indent: -9999px;
+    overflow: hidden
+}
+
+.sb-appshell-v1-header-nav_megadropdown-footer-english {
+    width: 950px;
+    margin: 5px auto 0;
+    text-align: right
+}
+
+.sb-appshell-v1-header-nav_megadropdown-footer-english-button {
+    display: inline-block;
+    min-width: 120px;
+    min-height: 30px;
+    border: 1px solid #c1c1c2;
+    border-radius: 16px;
+    color: #fff;
+    font-size: 13px;
+    line-height: 1;
+    box-sizing: border-box;
+    padding: 9px 10px 8px;
+    text-align: center;
+    font-weight: normal;
+    text-decoration: none;
+    transition: opacity .4s;
+    will-change: opacity
+}
+
+.sb-appshell-v1-header-nav_megadropdown-footer-english-button:hover {
+    opacity: .6
+}
+
+.sb-appshell-v1-header-nav_megadropdown-footer-english-button:link,
+.sb-appshell-v1-header-nav_megadropdown-footer-english-button:visited,
+.sb-appshell-v1-header-nav_megadropdown-footer-english-button:active,
+.sb-appshell-v1-header-nav_megadropdown-footer-english-button:focus,
+.sb-appshell-v1-header-nav_megadropdown-footer-english-button:hover {
+    color: #fff;
+    text-decoration: none
+}
+
+.sb-appshell-v1-header-nav_megadropdown-footer-english-button-inner {
+    padding-left: 26px;
+    position: relative
+}
+
+.sb-appshell-v1-header-nav_megadropdown-footer-english-button-inner::before {
+    display: block;
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    background-image: url("https://cdn.softbank.jp/site/set/common/sunshine/shared/img/icon-english.png");
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: 18px 18px;
+    width: 18px;
+    height: 18px;
+    text-indent: -9999px;
+    overflow: hidden
+}
+
+.sb-appshell-v1-header-nav_megadropdown-footer-english-button--invisible {
+    visibility: hidden
+}
+
+/* ========================================
+   SP Menu (Mobile)
+   ======================================== */
+
+@media only screen and (max-width: 768px) {
+    .sb-appshell-v1-menu_sitemap-category-title {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 18px;
+        line-height: 24px;
+        color: #0080f4;
+        font-weight: normal;
+        text-decoration: none
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv3-title {
+        display: block;
+        padding: 15px 30px 14px 10px;
+        color: #333;
+        font-size: 14px;
+        line-height: 21px;
+        font-weight: normal;
+        text-decoration: none
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv3-title:focus,
+    .sb-appshell-v1-menu_sitemap-lv3-title:hover,
+    .sb-appshell-v1-menu_sitemap-lv3-title:active,
+    .sb-appshell-v1-menu_sitemap-lv3-title:visited {
+        color: #333
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv3-title:last-child {
+        border-bottom: 1px solid #bfbfbf
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv3-title:not([aria-expanded]):not([target='_blank']) {
+        position: relative
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv3-title:not([aria-expanded]):not([target='_blank'])::before {
+        display: block;
+        content: '';
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        width: 8px;
+        height: 8px;
+        border-top: 1px solid #333;
+        border-right: 1px solid #333;
+        transform: translateY(-50%) rotate(45deg);
+        transition: transform .1s ease-out .2s
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv3-title[aria-expanded] {
+        position: relative
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv3-title[aria-expanded='false'] {
+        border-bottom: 1px solid #bfbfbf
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv4[aria-hidden='true'] {
+        margin-left: 15px;
+        margin-bottom: 15px
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv3-title[aria-expanded]::before {
+        display: block;
+        content: '';
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        height: 0;
+        width: 10px;
+        border: 0;
+        border-bottom: 1px solid #333;
+        transform: none
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv3-title[aria-expanded]::after {
+        display: block;
+        content: '';
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        height: 0;
+        width: 10px;
+        border: 0;
+        border-bottom: 1px solid #333;
+        transform-origin: center;
+        transform: rotate(90deg);
+        transition: transform .3s ease-out 0, color .3s ease-out 0
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv3-title[aria-expanded='true']::after {
+        transition: transform .3s ease-out 0, color .3s ease-out 0;
+        transform: rotate(360deg)
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv3-title[target='_blank'] {
+        position: relative
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv3-title[target='_blank']::before {
+        display: block;
+        content: '';
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        border: 0;
+        transform: translateY(-50%) rotate(0);
+        transition: none 0 ease-out 0;
+        background-image: url("https://cdn.softbank.jp/site/set/common/sunshine/shared/img/icon-blank-black.svg");
+        background-position: 0 0;
+        background-repeat: no-repeat;
+        background-size: 100%;
+        width: 10px;
+        height: 10px;
+        text-indent: -9999px;
+        overflow: hidden
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv3-list {
+        margin: 0
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv4 {
+        overflow: hidden;
+        height: 0;
+        border-bottom: 1px solid #bfbfbf;
+        margin-left: 0;
+        margin-bottom: 0;
+        transition: margin-left .1s ease-out .2s, margin-bottom .1s ease-out .1s
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv4[aria-hidden='false'] {
+        margin-left: 15px;
+        margin-bottom: 15px;
+        transition: margin-left .1s ease-out 0, margin-bottom .1s ease-out 0
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv4.disp-none {
+        display: none
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv4-title {
+        display: block;
+        padding: 13px 30px 13px 15px;
+        color: #333;
+        font-size: 13px;
+        line-height: 18.5px;
+        font-weight: normal;
+        text-decoration: none
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv4-title:focus,
+    .sb-appshell-v1-menu_sitemap-lv4-title:hover,
+    .sb-appshell-v1-menu_sitemap-lv4-title:active,
+    .sb-appshell-v1-menu_sitemap-lv4-title:visited {
+        color: #333
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv4-title:not([aria-expanded]):not([target='_blank']) {
+        position: relative
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv4-title:not([aria-expanded]):not([target='_blank'])::before {
+        display: block;
+        content: '';
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        width: 8px;
+        height: 8px;
+        border-top: 1px solid #333;
+        border-right: 1px solid #333;
+        transform: translateY(-50%) rotate(45deg);
+        transition: transform .1s ease-out .2s
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv4-title[aria-expanded] {
+        position: relative
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv4-title[aria-expanded]::before {
+        display: block;
+        content: '';
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        height: 0;
+        width: 10px;
+        border: 0;
+        border-bottom: 1px solid #333;
+        transform: none
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv4-title[aria-expanded]::after {
+        display: block;
+        content: '';
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        height: 0;
+        width: 10px;
+        border: 0;
+        border-bottom: 1px solid #333;
+        transform-origin: center;
+        transform: rotate(90deg);
+        transition: transform .3s ease-out 0, color .3s ease-out 0
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv4-title[aria-expanded='true']::after {
+        transition: transform .3s ease-out 0, color .3s ease-out 0;
+        transform: rotate(360deg)
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv4-title[target='_blank'] {
+        position: relative
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv4-title[target='_blank']::before {
+        display: block;
+        content: '';
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        border: 0;
+        transform: translateY(-50%) rotate(0);
+        transition: none 0 ease-out 0;
+        background-image: url("https://cdn.softbank.jp/site/set/common/sunshine/shared/img/icon-blank-black.svg");
+        background-position: 0 0;
+        background-repeat: no-repeat;
+        background-size: 100%;
+        width: 10px;
+        height: 10px;
+        text-indent: -9999px;
+        overflow: hidden
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv4-list {
+        border-left: 1px solid #bfbfbf;
+        margin: 0
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv4-item {
+        border-bottom: 1px solid #bfbfbf
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv4-item:last-child {
+        border-bottom: 0
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv5 {
+        overflow: hidden;
+        height: 0
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv5.disp-none {
+        display: none
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv5-title {
+        display: block;
+        padding: 8.5px 30px 8.5px 25.5px;
+        color: #333;
+        font-size: 12px;
+        line-height: 18px;
+        font-weight: normal;
+        text-decoration: none
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv5-title:focus,
+    .sb-appshell-v1-menu_sitemap-lv5-title:hover,
+    .sb-appshell-v1-menu_sitemap-lv5-title:active,
+    .sb-appshell-v1-menu_sitemap-lv5-title:visited {
+        color: #333
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv5-title[target='_blank'] {
+        position: relative
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv5-title[target='_blank']::before {
+        display: block;
+        content: '';
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        border: 0;
+        transform: translateY(-50%) rotate(0);
+        transition: none 0 ease-out 0;
+        background-image: url("https://cdn.softbank.jp/site/set/common/sunshine/shared/img/icon-blank-black.svg");
+        background-position: 0 0;
+        background-repeat: no-repeat;
+        background-size: 100%;
+        width: 10px;
+        height: 10px;
+        text-indent: -9999px;
+        overflow: hidden
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv5-list {
+        padding: 15px 0;
+        margin: 0
+    }
+}
+
+/* ========================================
+   Layout Adjustments (Solutions/Global Nav)
+   ======================================== */
+
+.solutions.globalnavi>.header.header02 {
+    display: block;
+    position: relative;
+    height: 80px
+}
+
+.smb.solutions.globalnavi {
+    position: relative
+}
+
+@media screen and (max-width: 768px) {
+    .smb.solutions.globalnavi .header {
+        position: relative;
+        padding-top: 0;
+        height: auto;
+        width: auto
+    }
+}
+
+.smb.solutions.globalnavi .header a.sb-appshell-v1-header_utility-link {
+    display: flex
+}
+
+.smb.solutions.globalnavi .header__inner {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 45px
+}
+
+.smb.solutions.globalnavi:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    border-top: solid 5px #357eec;
+    z-index: 100
+}
+
+@media screen and (max-width: 768px) {
+    .smb.solutions.globalnavi:before {
+        border-top: solid 3px #357eec
+    }
+}
+
+/* Override for full width megadropdown */
+.smb.solutions.globalnavi .sb-appshell-v1-header-nav_globalnav-link {
+    padding: 0 11px
+}
+
+.smb.solutions.globalnavi .sb-appshell-v1-header-nav_megadropdown {
+    width: 100vw;
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: auto
+}
+
+.smb.solutions.globalnavi .sb-appshell-v1-header-nav_megadropdown-footer-english-button {
+    display: inline-block !important;
+    color: #fff !important
+}
+
+.smb.solutions.globalnavi .sb-appshell-v1-header-nav_megadropdown-header-inner,
+.smb.solutions.globalnavi .sb-appshell-v1-header-nav_megadropdown-lv3-header {
+    width: 100%;
+    max-width: 1350px;
+    padding-left: 35px;
+    padding-right: 35px;
+    min-width: auto
+}
+
+.smb.solutions.globalnavi .sb-appshell-v1-header-nav_megadropdown-lv4 {
+    width: 100%;
+    max-width: 1350px;
+    padding: 0 45px;
+    min-width: auto
+}
+
+.smb.solutions.globalnavi .sb-appshell-v1-header-nav_megadropdown-lv3-header-link-text {
+    display: inline-block !important
+}
+
+.smb.solutions.globalnavi .sb-appshell-v1-header-nav_megadropdown-lv5-inner {
+    width: 100%;
+    max-width: 1350px;
+    padding-left: 35px;
+    padding-right: 35px;
+    min-width: auto
+}
+
+.smb.solutions.globalnavi .sb-appshell-v1-header-nav_megadropdown-lv5-top {
+    width: 25%
+}
+
+.smb.solutions.globalnavi .sb-appshell-v1-header-nav_megadropdown-lv5-top + .sb-appshell-v1-header-nav_megadropdown-lv5-links {
+    width: 75%
+}
+
+.smb.solutions.globalnavi .sb-appshell-v1-header-nav_megadropdown-footer-english {
+    width: 100%;
+    max-width: 1350px;
+    padding-left: 35px;
+    padding-right: 35px;
+    min-width: auto
+}
+
+.smb.solutions.globalnavi .sb-appshell-v1-header {
+    display: none
+}
+
+.smb.solutions.globalnavi .sb-appshell-v1-header-fixed-area {
+    display: none !important
+}
+
+/* Tablet adjustments */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .smb.solutions.globalnavi .sb-appshell-v1-header-nav_globalnav-link,
+    .smb.solutions.globalnavi .sb-appshell-v1-header-nav_megadropdown-lv4-link,
+    .smb.solutions.globalnavi .sb-appshell-v1-header-nav_megadropdown-lv5-link {
+        font-size: 13px
+    }
+}
+
+/* Mobile adjustments */
+@media screen and (max-width: 768px) {
+    .smb.solutions.globalnavi .sb-appshell-v1-header-fixed-area {
+        display: block !important
+    }
+
+    .clearfix {
+        zoom: 1
+    }
+
+    .clearfix:after {
+        display: block;
+        clear: both;
+        content: ''
+    }
+
+    .sb-scrolllock--enable {
+        position: fixed;
+        width: 100%;
+        overflow-y: scroll
+    }
+}
+
+/* ========================================
+   SP Header Fixed Area
+   ======================================== */
+
+.sb-appshell-v1-header-fixed-area .sb-appshell-v1-header-fixed-area_inner {
+    width: 100%;
+    z-index: 10003
+}
+
+.sb-appshell-v1-header-fixed-area.sb-appshell-v1-header-fixed-area--sticky {
+    position: sticky;
+    top: 0;
+    z-index: 10003;
+    width: 100%
+}
+
+.sb-appshell-v1-header-fixed-area.sb-appshell-v1-header-fixed-area--sticky .sb-appshell-v1-header-fixed-area_inner {
+    width: auto;
+    z-index: 0
+}
+
+.sb-appshell-v1-header-fixed-area.sb-appshell-v1-header-fixed-area--sticky.sb-appshell-v1-header-fixed-area--fixed .sb-appshell-v1-header-fixed-area_inner {
+    position: static;
+    top: auto
+}
+
+.sb-appshell-v1-header-fixed-area.sb-appshell-v1-header-fixed-area--fixed .sb-appshell-v1-header-fixed-area_inner {
+    position: fixed;
+    top: 0
+}
+
+.sb-appshell-v1-header-fixed-area {
+    display: none !important;
+}
+
+@media screen and (max-width: 768px) {
+    .smb.solutions.globalnavi .sb-appshell-v1-header {
+      display: block;
+    }
+
+    .sb-appshell-v1-header-fixed-area .sb-appshell-v1-header-fixed-area_inner {
+        width: 100%;
+        z-index: 10000
+    }
+
+    .sb-appshell-v1-header-fixed-area.sb-appshell-v1-header-fixed-area--sticky {
+        position: sticky;
+        top: 0;
+        z-index: 10000;
+        width: 100%
+    }
+
+    .sb-appshell-v1-header-fixed-area.sb-appshell-v1-header-fixed-area--sticky .sb-appshell-v1-header-fixed-area_inner {
+        width: auto
+    }
+
+    .sb-appshell-v1-header-fixed-area.sb-appshell-v1-header-fixed-area--sticky.sb-appshell-v1-header-fixed-area--fixed .sb-appshell-v1-header-fixed-area_inner {
+        width: 100%
+    }
+
+    .sb-appshell-v1-header-fixed-area.sb-appshell-v1-header-fixed-area--forcefixed {
+        position: relative;
+        z-index: 999;
+        height: 58px
+    }
+
+    .sb-appshell-v1-header-fixed-area.sb-appshell-v1-header-fixed-area--forcefixed .sb-appshell-v1-header-fixed-area_inner {
+        position: fixed;
+        top: 0;
+        z-index: auto;
+        width: 100%
+    }
+
+    .sb-appshell-v1-header-fixed-area.sb-appshell-v1-header-fixed-area--hidden {
+        display: none
+    }
+
+    .sb-appshell-v1-header-fixed-area.sb-appshell-v1-header-fixed-area--fixed {
+        position: static
+    }
+
+    .sb-appshell-v1-header-fixed-area.sb-appshell-v1-header-fixed-area--fixed .sb-appshell-v1-header-fixed-area_inner {
+        position: fixed;
+        top: 0
+    }
+
+    .sb-appshell-v1-header-fixed-area.sb-appshell-v1-header-fixed-area--fixed.sb-appshell-v1-header-fixed-area--forcefixed {
+        position: static
+    }
+
+    .sb-appshell-v1-header-fixed-area.sb-appshell-v1-header-fixed-area--fixed.sb-appshell-v1-header-fixed-area--forcefixed .sb-appshell-v1-header-fixed-area_inner {
+        position: fixed;
+        z-index: 999;
+        width: 100%
+    }
+
+    .sb-appshell-v1-header {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-size: 14px;
+        line-height: 1.55;
+        color: #333;
+        border: 0;
+        background: #fff;
+        border-top: 3px solid #357eec;
+        border-bottom: solid 1px #bfbfc0;
+        height: 59px
+    }
+
+    .sb-appshell-v1-header_inner {
+        position: absolute;
+        margin: 0;
+        width: auto;
+        top: 50%;
+        transform: translateY(-50%)
+    }
+
+    .sb-appshell-v1-header_inner__logo {
+        position: relative;
+        vertical-align: middle;
+        width: 130px;
+        line-height: 1;
+        text-indent: -9999px;
+        padding-left: 13px;
+        box-sizing: border-box
+    }
+
+    .sb-appshell-v1-header_inner__logo__image {
+        display: block;
+        width: 107px;
+        height: 29px;
+        line-height: 1;
+        text-indent: -9999px;
+        background: url(https://cdn.softbank.jp/site/set/common/sunshine/shared/img/logo-sb.svg) no-repeat center center;
+        background-size: 100%;
+        top: 12px
+    }
+
+    .sb-appshell-v1-header_inner__item {
+        position: relative;
+        display: flex;
+        align-items: center
+    }
+
+    .sb-appshell-v1-header_inner__item::before {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 0;
+        height: 20px;
+        top: 50%;
+        left: -2px;
+        transform: translateY(-50%);
+        border-left: solid 1px #bfbfc0
+    }
+
+    .sb-appshell-v1-header_inner__item a {
+        padding-left: 16px;
+        color: #333;
+        text-decoration: none
+    }
+
+    .sb-appshell-v1-header_inner__item a:link,
+    .sb-appshell-v1-header_inner__item a:visited,
+    .sb-appshell-v1-header_inner__item a:active,
+    .sb-appshell-v1-header_inner__item a:focus,
+    .sb-appshell-v1-header_inner__item a:hover {
+        color: #333;
+        outline: 0;
+        text-decoration: none
+    }
+
+    .sb-appshell-v1-header_menu-button {
+        position: relative;
+        display: block;
+        width: 60px;
+        height: 55px;
+        padding: 0;
+        border: 0;
+        outline: 0;
+        cursor: pointer;
+        background-color: #fff
+    }
+
+    .sb-appshell-v1-header_menu-button-border {
+        display: block;
+        width: 30px;
+        height: 2px;
+        background: #e0e2e5;
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: auto;
+        transition: background .4s ease-in
+    }
+
+    .sb-appshell-v1-header_menu-button-border-top {
+        transform-origin: center;
+        top: 13.5px
+    }
+
+    .sb-appshell-v1-header_menu-button-border-middle {
+        top: 20.5px
+    }
+
+    .sb-appshell-v1-header_menu-button-border-bottom {
+        top: 27.5px
+    }
+
+    .sb-appshell-v1-header_menu-button-text {
+        color: #e0e2e5;
+        font-size: 10px;
+        line-height: 1;
+        letter-spacing: 2.8px;
+        position: absolute;
+        left: 11px;
+        top: 34.5px;
+        width: auto;
+        text-align: center;
+        transform: scale(0.8);
+        transition: color .4s ease-in
+    }
+
+    .sb-appshell-v1-header_menu-button--active .sb-appshell-v1-header_menu-button-border {
+        background: #363738
+    }
+
+    .sb-appshell-v1-header_menu-button--active .sb-appshell-v1-header_menu-button-text {
+        color: #363738
+    }
+
+    /* SP Menu */
+    .sb-appshell-v1-menu {
+        position: fixed;
+        top: 58px;
+        z-index: 100001;
+        display: none;
+        width: 100%;
+        background: #fff;
+        margin: 0;
+        padding: 0;
+        font-size: 14px;
+        line-height: 1.55;
+        color: #fff;
+        box-sizing: border-box
+    }
+
+    .sb-appshell-v1-menu.sb-appshell-v1-menu--show {
+        display: block
+    }
+
+    .sb-appshell-v1-menu.sb-appshell-v1-menu--hide {
+        display: none
+    }
+
+    .sb-appshell-v1-menu_view {
+        box-sizing: border-box;
+        background: #4a4d4f;
+        border-top: 3px solid #357eec;
+        border-bottom: 3px solid #0080f4;
+        min-height: 100vh
+    }
+
+    .sb-appshell-v1-menu_header {
+        padding: 18px 14px 20px 14px
+    }
+
+    .sb-appshell-v1-menu_footer {
+        padding: 30px 14px 30px 14px
+    }
+
+    .sb-appshell-v1-menu_button-close {
+        position: absolute;
+        top: 11.5px;
+        right: 14px;
+        padding: 6px;
+        background: transparent;
+        border: 0
+    }
+
+    .sb-appshell-v1-menu_button-close-line {
+        fill: #fff
+    }
+
+    .sb-appshell-v1-menu_tab {
+        display: flex;
+        background-color: #ebf0f4
+    }
+
+    .sb-appshell-v1-menu_tab-list {
+        width: 80px
+    }
+
+    .sb-appshell-v1-menu_tab-panels {
+        flex: 1;
+        box-sizing: border-box;
+        width: calc(20%);
+        padding: 23px 20px 27.5px 20px;
+        background-color: #fff;
+        word-wrap: break-word;
+        overflow-wrap: break-word
+    }
+
+    .sb-appshell-v1-menu_sitemap-category-title {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 18px;
+        line-height: 24px;
+        color: #0080f4;
+        font-weight: normal;
+        text-decoration: none
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv3-title {
+        display: block;
+        padding: 15px 30px 14px 10px;
+        color: #333;
+        font-size: 14px;
+        line-height: 21px;
+        font-weight: normal;
+        text-decoration: none
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv3-title:focus,
+    .sb-appshell-v1-menu_sitemap-lv3-title:hover,
+    .sb-appshell-v1-menu_sitemap-lv3-title:active,
+    .sb-appshell-v1-menu_sitemap-lv3-title:visited {
+        color: #333
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv3-title:last-child {
+        border-bottom: 1px solid #bfbfbf
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv3-title:not([aria-expanded]):not([target='_blank']) {
+        position: relative
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv3-title:not([aria-expanded]):not([target='_blank'])::before {
+        display: block;
+        content: '';
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        width: 8px;
+        height: 8px;
+        border-top: 1px solid #333;
+        border-right: 1px solid #333;
+        transform: translateY(-50%) rotate(45deg);
+        transition: transform .1s ease-out .2s
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv3-title[aria-expanded] {
+        position: relative
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv3-title[aria-expanded='false'] {
+        border-bottom: 1px solid #bfbfbf
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv3-title[aria-expanded]::before {
+        display: block;
+        content: '';
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        height: 0;
+        width: 10px;
+        border: 0;
+        border-bottom: 1px solid #333;
+        transform: translateY(-50%);
+        transform: none
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv3-title[aria-expanded]::after {
+        display: block;
+        content: '';
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        height: 0;
+        width: 10px;
+        border: 0;
+        border-bottom: 1px solid #333;
+        transform-origin: center;
+        transition: transform .3s ease-out 0, color .3s ease-out 0;
+        transform: rotate(90deg)
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv3-title[aria-expanded='true']::after {
+        transition: transform .3s ease-out 0, color .3s ease-out 0;
+        transform: rotate(360deg)
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv3-title[target='_blank'] {
+        position: relative
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv3-title[target='_blank']::before {
+        display: block;
+        content: '';
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        border: 0;
+        transform: translateY(-50%) rotate(0);
+        transition: none 0 ease-out 0;
+        background-image: url("https://cdn.softbank.jp/site/set/common/sunshine/shared/img/icon-blank-black.svg");
+        background-position: 0 0;
+        background-repeat: no-repeat;
+        background-size: 10px 10px;
+        text-indent: -9999px;
+        overflow: hidden;
+        width: 10px;
+        height: 10px;
+        background-size: 100%
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv3-list {
+        margin: 0
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv3-item {
+        border-bottom: 1px solid #bfbfbf
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv4 {
+        overflow: hidden;
+        height: 0;
+        border-bottom: 1px solid #bfbfbf;
+        margin-left: 0;
+        margin-bottom: 0;
+        transition: margin-left .1s ease-out .2s, margin-bottom .1s ease-out .1s
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv4[aria-hidden='false'] {
+        margin-left: 15px;
+        margin-bottom: 15px;
+        transition: margin-left .1s ease-out 0, margin-bottom .1s ease-out 0
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv4.disp-none {
+        display: none
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv4-title {
+        display: block;
+        padding: 13px 30px 13px 15px;
+        color: #333;
+        font-size: 13px;
+        line-height: 18.5px;
+        font-weight: normal;
+        text-decoration: none
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv4-title:focus,
+    .sb-appshell-v1-menu_sitemap-lv4-title:hover,
+    .sb-appshell-v1-menu_sitemap-lv4-title:active,
+    .sb-appshell-v1-menu_sitemap-lv4-title:visited {
+        color: #333
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv4-title:not([aria-expanded]):not([target='_blank']) {
+        position: relative
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv4-title:not([aria-expanded]):not([target='_blank'])::before {
+        display: block;
+        content: '';
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        width: 8px;
+        height: 8px;
+        border-top: 1px solid #333;
+        border-right: 1px solid #333;
+        transform: translateY(-50%) rotate(45deg);
+        transition: transform .1s ease-out .2s
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv4-title[aria-expanded] {
+        position: relative
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv4-title[aria-expanded]::before {
+        display: block;
+        content: '';
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        height: 0;
+        width: 10px;
+        border: 0;
+        border-bottom: 1px solid #333;
+        transform: translateY(-50%);
+        transform: none
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv4-title[aria-expanded]::after {
+        display: block;
+        content: '';
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        height: 0;
+        width: 10px;
+        border: 0;
+        border-bottom: 1px solid #333;
+        transform-origin: center;
+        transition: transform .3s ease-out 0, color .3s ease-out 0;
+        transform: rotate(90deg)
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv4-title[aria-expanded='true']::after {
+        transition: transform .3s ease-out 0, color .3s ease-out 0;
+        transform: rotate(360deg)
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv4-title[target='_blank'] {
+        position: relative
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv4-title[target='_blank']::before {
+        display: block;
+        content: '';
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        border: 0;
+        transform: translateY(-50%) rotate(0);
+        transition: none 0 ease-out 0;
+        background-image: url("https://cdn.softbank.jp/site/set/common/sunshine/shared/img/icon-blank-black.svg");
+        background-position: 0 0;
+        background-repeat: no-repeat;
+        background-size: 10px 10px;
+        text-indent: -9999px;
+        overflow: hidden;
+        width: 10px;
+        height: 10px;
+        background-size: 100%
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv4-list {
+        border-left: 1px solid #bfbfbf;
+        margin: 0
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv4-item {
+        border-bottom: 1px solid #bfbfbf
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv4-item:last-child {
+        border-bottom: 0
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv5 {
+        overflow: hidden;
+        height: 0
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv5.disp-none {
+        display: none
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv5-title {
+        display: block;
+        padding: 8.5px 30px 8.5px 25.5px;
+        color: #333;
+        font-size: 12px;
+        line-height: 18px;
+        font-weight: normal;
+        text-decoration: none
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv5-title:focus,
+    .sb-appshell-v1-menu_sitemap-lv5-title:hover,
+    .sb-appshell-v1-menu_sitemap-lv5-title:active,
+    .sb-appshell-v1-menu_sitemap-lv5-title:visited {
+        color: #333
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv5-title[target='_blank'] {
+        position: relative
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv5-title[target='_blank']::before {
+        display: block;
+        content: '';
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        border: 0;
+        transform: translateY(-50%) rotate(0);
+        transition: none 0 ease-out 0;
+        background-image: url("https://cdn.softbank.jp/site/set/common/sunshine/shared/img/icon-blank-black.svg");
+        background-position: 0 0;
+        background-repeat: no-repeat;
+        background-size: 10px 10px;
+        text-indent: -9999px;
+        overflow: hidden;
+        width: 10px;
+        height: 10px;
+        background-size: 100%
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv5-list {
+        padding: 15px 0;
+        margin: 0
+    }
+}
+
+/* ========================================
+   Visibility Classes
+   ======================================== */
+
+@media (max-width: 768px) {
+    .visible-pc {
+        display: none !important
+    }
+}
+
+@media (min-width: 769px) {
+    .visible-sp {
+        display: none !important;
+    }
+}
+
+/* ========================================
+   Utility Classes
+   ======================================== */
+
+.disp-none {
+    display: none !important
+}
+
