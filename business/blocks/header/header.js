@@ -1,7 +1,8 @@
 import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 import { buildBreadcrumbs } from '../../scripts/scripts.js';
-import { buildGlobalNav } from '../../scripts/global-nav.js';
+// import { buildGlobalNav } from '../../scripts/global-nav.js';
+import { buildGlobalNav } from '../../scripts/global-nav-new.js';
 
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 769px)');
@@ -481,7 +482,12 @@ export default async function decorate(block) {
   const breadcrumbs = await buildBreadcrumbs();
   block.insertBefore(breadcrumbs, navWrapper);
 
+  // 既存ソースはコメントアウト
   // メガメニューを追加
+  // const globalNav = await buildGlobalNav(isDesktop.matches);
+  // block.insertBefore(globalNav, breadcrumbs);
+  
+  // グローバルナビを構築
   const globalNav = await buildGlobalNav(isDesktop.matches);
   block.insertBefore(globalNav, breadcrumbs);
 }

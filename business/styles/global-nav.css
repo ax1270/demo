@@ -529,7 +529,7 @@
         text-decoration: none;
     }
 
-    &::before {
+    /* &::before {
         display: block;
         content: '';
         margin-right: 5px;
@@ -541,7 +541,7 @@
         background-size: 35px 35px;
         text-indent: -9999px;
         overflow: hidden;
-    }
+    } */
 }
 
 .sb-appshell-v1-header_utility-link-mysoftbank::before {
@@ -2437,10 +2437,11 @@ a[target='_blank'].sb-appshell-v1-header-nav_megadropdown-lv5-link {
         }
     }
  
-    .sb-appshell-v1-menu_utility-search-icon {
+    .sb-appshell-v1-menu_utility-search-icon img {
         width: 32px;
         height: 32px;
         margin: -11px 4.5px -7px 0;
+        display: inline-block;
     }
 
     .sb-appshell-v1-menu_support {

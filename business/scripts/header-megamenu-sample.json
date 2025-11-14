@@ -1,0 +1,264 @@
+{
+  "data": [
+    {
+      "id": "nav-1",
+      "parentId": "",
+      "label": "法人トップ",
+      "link": "/biz/",
+      "target": ""
+    },
+    {
+      "id": "nav-2",
+      "parentId": "",
+      "label": "サービス",
+      "link": "/biz/service/",
+      "target": ""
+    },
+    {
+      "id": "nav-2-1",
+      "parentId": "nav-2",
+      "label": "モバイル",
+      "link": "",
+      "target": ""
+    },
+    {
+      "id": "nav-2-1-1",
+      "parentId": "nav-2-1",
+      "label": "モバイル トップ",
+      "link": "/biz/services/mobile/",
+      "target": ""
+    },
+    {
+      "id": "nav-2-1-2",
+      "parentId": "nav-2-1",
+      "label": "料金・割引",
+      "link": "/biz/services/mobile/priceplan/",
+      "target": ""
+    },
+    {
+      "id": "nav-2-1-3",
+      "parentId": "nav-2-1",
+      "label": "製品",
+      "link": "/biz/services/mobile/lineup/",
+      "target": ""
+    },
+    {
+      "id": "nav-2-1-4",
+      "parentId": "nav-2-1",
+      "label": "オプション",
+      "link": "/biz/services/mobile/priceplan/option/",
+      "target": ""
+    },
+    {
+      "id": "nav-2-1-5",
+      "parentId": "nav-2-1",
+      "label": "端末レンタル",
+      "link": "/biz/services/mobile/rental/",
+      "target": ""
+    },
+    {
+      "id": "nav-2-1-6",
+      "parentId": "nav-2-1",
+      "label": "FMCソリューション",
+      "link": "/biz/services/mobile/fmc/",
+      "target": ""
+    },
+    {
+      "id": "nav-2-1-7",
+      "parentId": "nav-2-1",
+      "label": "モバイルソリューション",
+      "link": "/biz/services/mobile/solution/",
+      "target": ""
+    },
+    {
+      "id": "nav-2-1-8",
+      "parentId": "nav-2-1",
+      "label": "お見積り・お申し込み",
+      "link": "https://tm.softbank.jp/sim/mobile/",
+      "target": ""
+    },
+    {
+      "id": "nav-2-1-9",
+      "parentId": "nav-2-1",
+      "label": "新規契約に関するお問い合わせ",
+      "link": "/biz/services/mobile/contact/",
+      "target": ""
+    },
+    {
+      "id": "nav-2-1-10",
+      "parentId": "nav-2-1",
+      "label": "お問い合わせ・サポート",
+      "link": "/biz/support/mobile/",
+      "target": "_blank"
+    },
+    {
+      "id": "nav-2-2",
+      "parentId": "nav-2",
+      "label": "音声・固定電話",
+      "link": "",
+      "target": ""
+    },
+    {
+      "id": "nav-2-2-1",
+      "parentId": "nav-2-2",
+      "label": "音声・固定電話 トップ",
+      "link": "/biz/voice/",
+      "target": ""
+    },
+    {
+      "id": "nav-2-2-2",
+      "parentId": "nav-2-2",
+      "label": "IP電話サービス",
+      "link": "/biz/voice/#otokuhikari",
+      "target": ""
+    },
+    {
+      "id": "nav-2-2-3",
+      "parentId": "nav-2-2",
+      "label": "固定電話サービス",
+      "link": "/biz/voice/#otokuline",
+      "target": ""
+    },
+    {
+      "id": "nav-2-2-4",
+      "parentId": "nav-2-2",
+      "label": "FMC・クラウド音声・その他サービス",
+      "link": "/biz/voice/#service",
+      "target": ""
+    },
+    {
+      "id": "nav-2-2-5",
+      "parentId": "nav-2-2",
+      "label": "通話料金着信者払いサービス",
+      "link": "/biz/voice/#freecall_sp",
+      "target": ""
+    },
+    {
+      "id": "nav-2-2-6",
+      "parentId": "nav-2-2",
+      "label": "お問い合わせ・サポート",
+      "link": "/biz/contact/voice/",
+      "target": "_blank"
+    },
+    {
+      "id": "nav-2-3",
+      "parentId": "nav-2",
+      "label": "ネットワーク",
+      "link": "",
+      "target": ""
+    },
+    {
+      "id": "nav-2-3-1",
+      "parentId": "nav-2-3",
+      "label": "ネットワーク トップ",
+      "link": "/biz/services/network/",
+      "target": ""
+    },
+    {
+      "id": "nav-2-3-2",
+      "parentId": "nav-2-3",
+      "label": "VPN・インターネット",
+      "link": "/biz/services/network/vpn-internet/",
+      "target": ""
+    },
+    {
+      "id": "nav-3",
+      "parentId": "",
+      "label": "ソリューション",
+      "link": "https://tm.softbank.jp/digital4/",
+      "target": "_blank"
+    },
+    {
+      "id": "nav-3-1",
+      "parentId": "nav-3",
+      "label": "生成AI",
+      "link": "/biz/solutions/generative-ai/",
+      "target": ""
+    },
+    {
+      "id": "nav-3-2",
+      "parentId": "nav-3",
+      "label": "通信インフラ環境",
+      "link": "",
+      "target": ""
+    },
+    {
+      "id": "nav-3-2-1",
+      "parentId": "nav-3-2",
+      "label": "通信インフラ環境 トップ",
+      "link": "/biz/solutions/infrastructure/",
+      "target": ""
+    },
+    {
+      "id": "nav-3-2-2",
+      "parentId": "nav-3-2",
+      "label": "受電集約ソリューション",
+      "link": "/biz/solutions/infrastructure/consolidate/",
+      "target": ""
+    },
+    {
+      "id": "nav-4",
+      "parentId": "",
+      "label": "導入事例",
+      "link": "/biz/customer-success-stories/",
+      "target": ""
+    },
+    {
+      "id": "nav-5",
+      "parentId": "",
+      "label": "セミナー",
+      "link": "/biz/events/seminars/",
+      "target": ""
+    },
+    {
+      "id": "nav-6",
+      "parentId": "",
+      "label": "中小規模のお客さま",
+      "link": "/biz/solutions/smb/",
+      "target": ""
+    },
+    {
+      "id": "nav-7",
+      "parentId": "",
+      "label": "ご契約中のお客さま",
+      "link": "/support/",
+      "target": ""
+    },
+    {
+      "id": "nav-7-1",
+      "parentId": "nav-7",
+      "label": "サポート",
+      "link": "/biz/support/",
+      "target": ""
+    },
+    {
+      "id": "nav-7-2",
+      "parentId": "nav-7",
+      "label": "活用ガイド",
+      "link": "/biz/support/customer-portal/",
+      "target": ""
+    },
+    {
+      "id": "nav-7-3",
+      "parentId": "nav-7",
+      "label": "障害・メンテナンス情報",
+      "link": "/biz/notice/",
+      "target": ""
+    },
+    {
+      "id": "nav-7-4",
+      "parentId": "nav-7",
+      "label": "法人コンシェル",
+      "link": "https://portal.business.mb.softbank.jp/portal/BPS0001/",
+      "target": ""
+    },
+    {
+      "id": "nav-8",
+      "parentId": "",
+      "label": "事業紹介",
+      "link": "/biz/special/",
+      "target": ""
+    }
+  ]
+}
+
