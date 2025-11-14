@@ -30,6 +30,8 @@ function isExternalLink(href) {
     'https://main--aem-eds--softbankbtob.aem.page/',
     'https://www.softbank.jp/biz/',
     'http://localhost:3000/',
+    'http://localhost:3000/',
+    'https://feature-header-test--demo--ax1270.aem.page/',
   ];
   
   return !internalPatterns.some(pattern => href.includes(pattern));
