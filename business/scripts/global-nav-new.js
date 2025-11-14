@@ -1593,12 +1593,6 @@ function createSPHeader(menuStructure, fragment) {
     }
   }
 
-  // 画像が取得できなかった場合のフォールバック
-  if (!spLogoLink.style.backgroundImage) {
-    spLogoLink.style.backgroundImage = 'url(https://cdn.softbank.jp/site/set/common/sunshine/shared/img/logo-sb.svg)';
-  }
-
-  spLogoLink.textContent = 'SoftBank';
   spLogo.appendChild(spLogoLink);
   spHeaderInner.appendChild(spLogo);
 
