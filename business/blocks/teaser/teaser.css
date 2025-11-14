@@ -1,0 +1,144 @@
+.teaser {
+    position: relative;
+    margin: 0 calc(50% - 50vw);
+    padding: 51px calc(50vw - 50%);
+    text-align: center;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.teaser-inner {
+    padding-inline: 40px;
+}
+.teaser .teaser-img picture {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+.teaser .teaser-img picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.teaser-title .pretitle,
+.teaser-title h1 {
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.teaser-title > *:first-child {
+    margin-top: 0;
+}
+.teaser-title .pretitle {
+    font-size: 20px;
+}
+.teaser-title .pretitle picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding-bottom: 16px;
+}
+.teaser-title h1 {
+    font-size: var(--heading-font-size-l);
+    margin-top: 8px;
+}
+.teaser-text {
+    margin-top: 16px;
+}
+.teaser-text p {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+.teaser-text .buttons-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 32px;
+}
+
+/* ボタンのデザイン PCのみ */
+@media (width >= 769px) {
+    .teaser-text .buttons-wrapper .button-container a.button {
+        padding: 16px 55px 16px 32px;
+    }
+    .teaser-text .buttons-wrapper .button-container a.button::after {
+        right: 32px;
+    }
+}
+
+.teaser-title .pre-img,
+.teaser-text .pre-img {
+    margin-block: 8px;
+}
+.teaser-title .pre-img picture,
+.teaser-text .pre-img picture {
+    line-height: 1;
+}
+/* 見出しの大きさ */
+.teaser.heading-l .teaser-title h1 {
+    font-size: var(--heading-font-size-l);
+}
+.teaser.heading-xl .teaser-title h1 {
+    font-size: var(--heading-font-size-xl);
+}
+.teaser.heading-xxl .teaser-title h1 {
+    font-size: var(--heading-font-size-xxl);
+}
+.teaser.heading-xxxl .teaser-title h1 {
+    font-size: var(--heading-font-size-xxxl);
+}
+
+/* 文字色 */
+.teaser.text-white {
+    color: var(--background-color);
+}
+
+/* 画像なしの場合 */
+.teaser.no-image{
+    background-color: var(--background-gray-02);
+}
+
+/* 高さを抑制 */
+.teaser.narrow{
+    padding-block: 40px;
+    min-height: 200px;
+}
+
+/* コンテンツ左寄せ */
+.teaser.content-left{
+    text-align: left;
+    justify-content: flex-start;
+
+    .teaser-text .buttons-wrapper{
+        justify-content: flex-start;
+    }
+}
+
+@media only screen and (width <= 768px){
+    .teaser {
+        margin-top: 24px;
+        padding-block: 40px;
+    }
+    .teaser.no-margin {
+        margin-top: 0;
+    }
+    .teaser-inner {
+        padding-inline: 0;
+    }
+    .teaser-title .pretitle {
+        font-size: 16px;
+    }
+    .teaser-title .pretitle picture {
+        padding-bottom: 8px;
+    }
+
+    /* 画像なしの場合 */
+    .teaser.narrow{
+        padding-block: 40px;
+    }
+}

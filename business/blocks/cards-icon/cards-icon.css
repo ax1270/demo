@@ -1,0 +1,466 @@
+.cards-icon {
+  margin-top: 48px;
+  
+  @media (width <= 768px) {
+    margin-top: 32px;
+  }
+}
+
+.cards-icon-item {
+  width: 100%;
+}
+
+
+.cards-icon-item-image {
+  margin-top: 24px;
+  padding-inline: 24px;
+  
+  picture {
+    display: block;
+    max-width: 80px;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  img {
+    width: 100%;
+    
+    height: auto;
+  }
+}
+
+.cards-icon > ul {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px 24px;
+}
+
+.cards-icon-listItem {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 3;
+  gap: 0;
+}
+.cards-icon-item {
+  border-radius: 8px;
+  overflow: hidden;
+  display: inherit;
+  grid-template-rows: inherit;
+  grid-row: inherit;
+  transition: box-shadow 300ms ease-out;
+  box-shadow: 0 2px 4px 2px rgba(0, 0, 0, 0.08);
+}
+
+.cards-icon-item-inner {
+  height: 100%;
+  display: inherit;
+  grid-template-rows: inherit;
+  grid-row: inherit;
+}
+
+.cards-icon .cards-icon-listItem > .cards-icon-item.-link {
+  &:hover{
+    text-decoration: none;
+    transition: box-shadow 300ms ease-out, color 300ms ease-out;
+    box-shadow: 0 6px 20px 0 rgb(0 0 0 / 30%);
+
+    h3{
+      color: var(--link-blue);
+    }
+  }
+}
+
+/* クラスのパターン */
+.cards-icon {
+  /* border */
+  &.no-border .cards-icon-item {
+    border-radius: 4px;
+    border: none;
+    box-shadow: none;
+    .cards-icon-item-image{
+      margin-top: 0;
+    }
+    .cards-icon-item-body1,
+    .cards-icon-item-body2{
+      padding-inline: 0;
+      padding-bottom: 0;
+    }
+    @media (width <= 768px) {
+      .cards-icon-item-body2{
+        padding: 0;
+      }
+      .cards-icon-item-image{
+        margin-top: 0;
+      }
+    }
+  }
+  &.border .cards-icon-item {
+    border: 1px solid var(--border-gray);
+    box-shadow: none;
+  }
+
+  /* 画像サイズ */
+  &.icon-s .cards-icon-item-image picture{
+    max-width: 48px;
+  }
+  &.icon-l .cards-icon-item-image picture{
+    max-width: 120px;
+  }
+
+  /* 四角 */
+  &.no-radius .cards-icon-item {
+    border-radius: 0;
+  }
+
+  /* カラム */
+  &.col1 > ul {
+    grid-template-columns: 1fr;
+  }
+  &.col2 > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  &.col3 > ul {
+    grid-template-columns: repeat(3, 1fr);
+    .buttons-wrapper {
+      flex-direction: column;
+    }
+  }
+  &.col4 > ul {
+    grid-template-columns: repeat(4, 1fr);
+    .buttons-wrapper {
+      flex-direction: column;
+    }
+  }
+  &.col5 > ul {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  &.col6 > ul {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  &.col5 > ul,
+  &.col6 > ul {
+    column-gap: 16px;
+    .cards-icon-item-body1 {
+      padding: 16px 16px 0;
+      &:last-child {
+        padding-bottom: 24px;
+      }
+    }
+    .cards-icon-item-body2 {
+      padding: 0 16px 24px;
+    }
+    .buttons-wrapper {
+      flex-direction: column;
+    }
+    p {
+      margin-top: 12px;
+      &:has(a){
+        margin-top: 24px;
+      }
+    }
+  }
+
+  @media only screen and (width <= 768px){
+    &.col1 > ul,
+    &.col2 > ul,
+    &.col3 > ul,
+    &.col4 > ul,
+    &.col5 > ul,
+    &.col6 > ul {
+      grid-template-columns: 1fr;
+    }
+  }
+
+
+  /* マージンなし */
+  &.no-margin ul {
+    gap: 0;
+  }
+
+
+  /* 背景色パターン */
+  &.bg-gray01 .cards-icon-item {
+    background-color: var(--background-gray-01);
+    .cards-icon-item-tags li {
+      background-color: var(--background-color);
+    }
+  }
+  &.bg-gray02 .cards-icon-item {
+    background-color: var(--background-gray-02);
+  }
+  &.bg-blue01 .cards-icon-item {
+    background-color: var(--background-blue-01);
+  }
+  &.bg-navy .cards-icon-item {
+    background-color: var(--background-navy);
+    /* font系の設定 */
+    p, h3, li, .a-container a {
+      color: var(--text-white);
+    }
+    .cards-icon-item-tags li {
+      color: var(--text-black);
+    }
+  }
+  &.bg-white .cards-icon-item {
+    background-color: var(--background-color);
+  }
+
+  /* 見出しが上 */
+  &.above-heading .cards-icon-item {
+    .cards-icon-item-image {
+      order: 2
+    }
+    .cards-icon-item-body1 {
+      order: 1;
+    }
+    .cards-icon-item-body2 {
+      order: 3;
+    }
+  }
+
+  /* Wordの寄せ */
+  .cards-icon-item-image[data-align="center"] picture{
+    margin-inline: auto;
+  }
+
+  .cards-icon-item-image[data-align="right"] picture{
+    margin-right: 0;
+    margin-left: auto;
+  }
+}
+
+.cards-icon {
+  .cards-icon-item-body1 {
+    padding: 24px 24px 0;
+    
+    > *:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      padding-bottom: 32px;
+    }
+
+  }
+  .cards-icon-item-body2 {
+    padding: 0 24px 32px;
+  }
+  .cards-icon-item-body1,
+  .cards-icon-item-body2 {
+  }
+  /* font系の設定 */
+  p, li {
+    color: var(--text-black);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  a:not(:has(div)) {
+    font-size: 16px;
+    text-decoration: underline;
+  }
+
+  p{
+    margin: 0;
+    margin-top: 16px;
+    &:has(a){
+      margin-top: 32px;
+    }
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    transition: color 300ms ease-out;
+    color: var(--text-black);
+    font-size: var(--heading-font-size-s);
+    font-weight: 700;
+    line-height: 1.25;
+    margin-top: 16px;
+    text-align: inherit;
+  }
+
+  &.col5,
+  &.col6{
+    h1, h2, h3, h4, h5, h6 {
+      font-size: var(--heading-font-size-xs);
+    }
+  }
+
+  /* 見出しの配置 */
+  &.title-align-left {
+    h1, h2, h3, h4, h5, h6 {
+      text-align: left;
+    }
+  }
+  &.title-align-center {
+    h1, h2, h3, h4, h5, h6 {
+      text-align: center;
+    }
+  }
+  &.title-align-right {
+    h1, h2, h3, h4, h5, h6 {
+      text-align: right;
+    }
+  }
+
+  /* 見出しのサイズ */
+  &.heading-l.col1{
+    h1, h2, h3, h4, h5, h6 {
+      font-size: var(--heading-font-size-l);
+    }
+  }
+
+  &.heading-l.col2,
+  &.heading-l.col3,
+  &.heading-l.col4{
+    h1, h2, h3, h4, h5, h6 {
+      font-size: var(--heading-font-size-m);
+    }
+  }
+  
+  &.heading-l.col5,
+  &.heading-l.col6{
+    h1, h2, h3, h4, h5, h6 {
+      font-size: var(--heading-font-size-s);
+    }
+  }
+
+  &.heading-s.col1{
+    h1, h2, h3, h4, h5, h6 {
+      font-size: var(--heading-font-size-ss);
+    }
+  }
+
+  &.heading-s.col2,
+  &.heading-s.col3,
+  &.heading-s.col4{
+    h1, h2, h3, h4, h5, h6 {
+      font-size: var(--heading-font-size-xs);
+    }
+  }
+  
+  &.heading-s.col5,
+  &.heading-s.col6{
+    h1, h2, h3, h4, h5, h6 {
+      font-size: var(--heading-font-size-xxxs);
+    }
+  }
+
+  /* ボタン */
+  .buttons-wrapper {
+    margin-top: 32px;
+    display: flex;
+    gap: 8px;
+    .button-container {
+      margin-top: 0;
+      width: 100%;
+      .button {
+        width: 100%;
+      }
+    }
+  }
+
+  .button:any-link {
+    width: 100%;
+  }
+
+  ul.cards-icon-item-lists,
+  ol.cards-icon-item-lists{
+    padding-left: 1.25em;
+    margin-top: 16px;
+  }
+  ul.cards-icon-item-lists{
+    list-style-type: disc;
+  }
+  ol.cards-icon-item-lists{
+    list-style-type: decimal;
+  }
+
+  /* 2階層のulデザイン */
+  ul.cards-icon-item-lists ul{
+    list-style-type: circle;
+    margin-top: 0;
+    padding-left: 20px;
+  }
+
+  /* 3階層のulデザイン */
+  ul.cards-icon-item-lists ul ul{
+    list-style-type: circle;
+    margin-top: 0;
+    padding-left: 20px;
+  }
+
+  /* 2階層のolデザイン */
+  ol.cards-icon-item-lists ol{
+    list-style-type: lower-alpha;
+    margin-top: 0;
+    padding-left: 20px;
+  }
+
+  /* 3階層のolデザイン */
+  ol.cards-icon-item-lists ol ol{
+    list-style-type: lower-roman;
+    margin-top: 0;
+    padding-left: 20px;
+  }
+
+  /* captionクラスの装飾なし */
+  ul.cards-icon-item-lists.caption{
+    list-style-type: none;
+    padding-left: 0;
+  }
+
+  /* captionクラス内のネストされたulも装飾なし */
+  ul.caption ul{
+    list-style-type: none;
+    padding-left: 0;
+  }
+
+  /* captionクラス内のcards-icon-item-listsのmargin-topを0に */
+  ul.caption ul.cards-icon-item-lists{
+    margin-top: 0;
+  }
+
+  .cards-icon-item-tags{
+    margin-top: 32px;
+    display: flex;
+    width: 100%;
+    align-items: flex-start;
+    gap: 8px;
+    flex-wrap: wrap;
+
+    li{
+      display: flex;
+      padding: 4px 12px;
+      align-items: center;
+      gap: 8px;
+      border-radius: 4px;
+      background: var(--background-blue-02);
+      color: var(--text-black);
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 16.5px;
+    }
+  }
+}
+
+.cards-icon .cards-icon-card-image-section {
+  line-height: 0;
+}
+
+.cards-icon1-listItem > a img {
+  width: 120px;
+  height: auto;
+}
+
+@media only screen and (width <= 768px){
+  .cards-icon > ul { 
+    grid-template-columns: 1fr;
+  }
+
+  .cards-icon .cards-icon-listItem{
+    width: 100%;
+  }
+
+}

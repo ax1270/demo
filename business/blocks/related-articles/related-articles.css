@@ -1,0 +1,40 @@
+.related-articles-container{
+    width: 100%;
+    margin-top: 24px; /* 80px - 56px */
+
+    @media (width <= 768px) {
+        padding: 24px;
+        background: var(--background-blue-02);
+        margin-top: 0;
+    }
+
+    .related-articles-wrapper{
+        h2{
+            text-align: center;
+        }
+
+        .cards-wrapper{
+            margin-top: 32px;
+
+            @media (width <= 768px) {
+                margin-top: 24px;
+            }
+
+            .cards{
+                & > ul{
+                    gap: 24px;
+
+                    & > li{
+                        max-width: 384px;
+                        width: calc((100% - (24px * 2)) / 3);
+
+                        @media (width <= 768px) {
+                            max-width: 100%;
+                            width: 100%;
+                        }
+                    }
+                }
+            } 
+        }
+    }
+}

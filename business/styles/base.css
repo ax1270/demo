@@ -1,0 +1,152 @@
+/* ========================================
+     Base Element Styles
+     ======================================== */
+
+body {
+    margin: 0;
+    background-color: var(--background-color);
+    color: var(--text-black);
+    font-family: var(--body-font-family);
+    font-size: var(--text-font-size-m);
+    font-weight: 400;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--heading-font-family);
+    font-weight: 700;
+    line-height: 1.25;
+    scroll-margin: 40px;
+}
+h1 {
+        font-size: var(--heading-font-size-xl);
+        margin-top: 64px;
+}
+h2 {
+        margin-top: 40px;
+        font-size: var(--heading-font-size-m);
+ }
+h3 {
+        font-size: var(--heading-font-size-s);
+        margin-top: 32px;
+}
+h4 {
+        font-size: var(--heading-font-size-xxs);
+        margin-top: 24px;
+}
+h5 {
+        font-size: var(--heading-font-size-xxxs);
+        margin-top: 24px;
+}
+h6 { font-size: var(--heading-font-size-xxxs); }
+
+h1 > strong,
+h2 > strong,
+h3 > strong,
+h4 > strong,
+h5 > strong{
+    color: var(--text-blue);
+}
+
+pre {
+    padding: 16px;
+    border-radius: 8px;
+    background-color: var(--background-blue-01);
+    overflow-x: auto;
+    white-space: pre;
+}
+
+input,
+textarea,
+select,
+button {
+    font: inherit;
+}
+
+/* links */
+a:any-link {
+    color: var(--link-blue);
+    text-decoration: none;
+    word-break: break-word;
+}
+a:not(.button)[target="_blank"] {
+    &::after{
+            content: '';
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            background: url("/business/icons/target-blank.svg") no-repeat center / contain;
+            vertical-align: middle;
+            margin: 0 0.5em;
+    }
+    &.pdf-link{
+        &::after {
+            content: '';
+            display: inline-block;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIj4gICA8cGF0aCBkPSJNMTUuMzk4NCAxMC40OTIxVjExLjU0MUgxMi44NzQ1VjEzLjE3MjhIMTQuNjM2N1YxNC4yMjE2SDEyLjg3NDVWMTYuMzc3OUgxMS44MjQyVjEwLjQ5MjFIMTUuMzk4NFpNNC4zOTMwNyAxMi41NDg4QzQuMzkzMDcgMTIuMzA0OCA0LjM0OTUyIDEyLjA2MTcgNC4yMTU4MiAxMS44ODY3QzQuMTAyMzcgMTEuNzM4NSAzLjg0ODczIDExLjU0MTEgMy4yMDM2MSAxMS41NDFIMi41ODM5OFYxMy41NTUxSDMuMjAzNjFDMy44NDg3MyAxMy41NTUgNC4xMDIzNyAxMy4zNTkxIDQuMjE1ODIgMTMuMjEwOUM0LjM0OTc5IDEzLjAzNTkgNC4zOTMwMSAxMi43OTI5IDQuMzkzMDcgMTIuNTQ4OFpNOS41Mzc2IDEzLjMxNDlDOS41Mzc2IDEyLjQyNjYgOS4zMzI1MSAxMi4wMTE5IDkuMTM5MTYgMTEuODE0OUM4Ljk0OTkxIDExLjYyMjEgOC42NzczNyAxMS41NDEgOC4zMTI5OSAxMS41NDFINy41Mzk1NVYxNS4wODczSDguMzEyOTlDOC42NzczNyAxNS4wODczIDguOTQ5OTEgMTUuMDA2MiA5LjEzOTE2IDE0LjgxMzRDOS4zMzI0NSAxNC42MTY1IDkuNTM3NDkgMTQuMjAyNiA5LjUzNzYgMTMuMzE0OVpNMTAuNTg3OSAxMy4zMTQ5QzEwLjU4NzggMTQuMzQwOSAxMC4zNTIyIDE1LjA3NTcgOS44ODc3IDE1LjU0ODhDOS40MTg5NiAxNi4wMjYxIDguODE1MjMgMTYuMTM2MiA4LjMxMjk5IDE2LjEzNjJINi40ODkyNlYxMC40OTIxSDguMzEyOTlDOC44MTUyMiAxMC40OTIxIDkuNDE4OTcgMTAuNjAyMiA5Ljg4NzcgMTEuMDc5NUMxMC4zNTIzIDExLjU1MjcgMTAuNTg3OSAxMi4yODg1IDEwLjU4NzkgMTMuMzE0OVpNNS40NDMzNiAxMi41NDg4QzUuNDQzMzEgMTIuODc4OCA1LjM5MTEgMTMuNDAxMyA1LjA0OTMyIDEzLjg0ODFDNC42ODY1IDE0LjMyMiA0LjA4MjA3IDE0LjYwNTMgMy4yMDM2MSAxNC42MDU0SDIuNzc0NDFWMTYuMTM2MkgxLjUzNTE2VjEwLjQ5MjFIMy4yMDM2MUM0LjA4MjA3IDEwLjQ5MjMgNC42ODY1IDEwLjc3NDEgNS4wNDkzMiAxMS4yNDhDNS4zOTE0OSAxMS42OTUxIDUuNDQzMzYgMTIuMjE4NyA1LjQ0MzM2IDEyLjU0ODhaIiBmaWxsPSIjMTY2REZGIi8+ICAgPHBhdGggZD0iTTE5Ljk5OTkgNy45OTk1MVYyMi4wMDA1SDQuMDAwODVWMTguMDEwM0g2LjAwMDM3VjE5Ljk5OTVIMTguMDAwNFY5SDEzLjAwMDlWNC4wMDA0OUg2LjAwMDM3VjguOTMyNjJINC4wMDA4NVYxLjk5OTUxSDEzLjk5OTlMMTkuOTk5OSA3Ljk5OTUxWiIgZmlsbD0iIzE2NkRGRiIvPiA8L3N2Zz4=') !important;
+            width: 1.5em;
+            height: 1.5em;
+            vertical-align: middle;
+            margin: 0 0.5em;
+        }
+    }
+}
+
+a.zip-link:not(.button) {
+    &::after {
+        content: '';
+        display: inline-block;
+        background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIj4gICA8cGF0aCBkPSJNNCAyMlYySDE0TDIwIDhWMjJINFpNMTMgOVY0SDZWMjBIMThWOUgxM1oiIGZpbGw9IiMxNjZERkYiLz4gICA8cGF0aCBkPSJNNy40OTk2NiAzLjk4ODA0SDkuMjI0NjVWNS43MTMwM0g3LjQ5OTY2VjMuOTg4MDRaIiBmaWxsPSIjMTY2REZGIi8+ICAgPHBhdGggZD0iTTcuNDk5NzEgNy40MzU1SDkuMjI0N1Y5LjE2MDQ5SDcuNDk5NzFWNy40MzU1WiIgZmlsbD0iIzE2NkRGRiIvPiAgIDxwYXRoIGQ9Ik05LjIyMzc2IDUuNzExNzdIMTAuOTQ4OFY3LjQzNjc2SDkuMjIzNzZWNS43MTE3N1oiIGZpbGw9IiMxNjZERkYiLz4gICA8cGF0aCBkPSJNOS4yMjQ3IDkuMTYwNDlMMTAuOTQ4OCA5LjE1OTU1VjEwLjg4NDVIOS4yMjM3Nkw5LjIyNDcgOS4xNjA0OVoiIGZpbGw9IiMxNjZERkYiLz4gICA8cGF0aCBkPSJNNy40OTk3MSAxMC44OTM3SDkuMjI0N1YxMi42MTg3SDcuNDk5NzFWMTAuODkzN1oiIGZpbGw9IiMxNjZERkYiLz4gICA8cGF0aCBkPSJNMTAuMDg2NyAxMy40ODc1QzEwLjA5MjEgMTMuNDk4NSAxMC45NDk1IDE1LjIxODIgMTAuOTQ5NSAxNi45MzczQzEwLjk0OTIgMTcuNzk5MyAxMC41MTY5IDE4LjY2MTQgOS4yMjM4NyAxOC42NjE0QzcuOTMxMTIgMTguNjYxMiA3LjQ5OTk3IDE3Ljc5OTIgNy40OTk3NCAxNi45MzczQzcuNDk5NzQgMTUuMjEyNyA4LjM2MjU0IDEzLjQ4NzUgOC4zNjI1NCAxMy40ODc1SDEwLjA4NjdaTTkuMjI1MzMgMTYuMDc0NUM4Ljc0ODczIDE2LjA3NDUgOC4zNjEyOSAxNi40NjA3IDguMzYxMDcgMTYuOTM3M0M4LjM2MTA3IDE3LjQxNCA4Ljc0ODU5IDE3LjgwMTUgOS4yMjUzMyAxNy44MDE1QzkuNzAxODUgMTcuODAxMyAxMC4wODgxIDE3LjQxMzggMTAuMDg4MSAxNi45MzczQzEwLjA4NzkgMTYuNDYwOSA5LjcwMTcxIDE2LjA3NDcgOS4yMjUzMyAxNi4wNzQ1WiIgZmlsbD0iIzE2NkRGRiIvPiA8L3N2Zz4=') !important;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        width: 1.5em;
+        height: 1.5em;
+        vertical-align: middle;
+        margin: 0 0.5em;
+    }
+}
+
+/* images */
+img{
+        vertical-align: bottom;
+}
+
+main img {
+    max-width: 100%;
+    width: auto;
+    height: auto;
+}
+
+.icon img {
+    width: 100%;
+    height: auto;
+}
+
+/* text */
+p{
+        font-size: var(--text-font-size-m);
+        font-style: normal;
+        font-weight: 400;
+        line-height: 1.75;
+
+        @media (width <= 768px) {
+                line-height: 1.5;
+        }
+}
+
+/* sup/sub 親要素のフォントサイズの70% */
+sup,
+sub {
+    font-size: 0.7em;
+}
+sup {
+        vertical-align: text-top;
+}
+sub {
+        vertical-align: baseline;
+}

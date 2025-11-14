@@ -1,0 +1,105 @@
+/* ========================================
+     CSS Variables & Base Settings
+     ======================================== */
+
+:root {
+    /* colors background */
+    --background-color: #fff;
+    --background-blue-01: #F3F8FF;
+    --background-blue-02: #F0F2F4;
+    --background-gray-01: #F0F0F0;
+    --background-gray-02: #E3E3E3;
+    --background-gray-03: #ECECEC;
+    --background-blue-hover: #D7ECF7;
+    --background-navy: #001A4A;
+
+    /* colors text */
+    --text-black: #323232;
+    --text-white: #FFF;
+    --text-blue: #166DFF;
+    --text-light-blue: #8AB6FF;
+    --text-gray: #5E5E5E;
+
+    /* colors link */
+    --link-blue: #166DFF;
+    --link-orange: #FF741A;
+    --link-black: #1C1C1C;
+
+    /* colors border */
+    --border-gray: #C1C6CC;
+    --border-black-01: #333;
+    --border-black-02: #616161CC; /* #616161 · 80% */
+    --border-black-03: #555;
+
+    /* colors button */
+    --btn-blue: #166DFF;
+    --btn-black: #1C1C1C;
+    --btn-blue-hover: #004AB3;
+    --btn-white-hover: #D9D9D9;
+    --btn-orange-hover: #D96316;
+    
+
+    /* fonts */
+    --body-font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", system-ui, sans-serif;
+    --heading-font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", system-ui, sans-serif;
+
+    /* heading sizes */
+    --heading-font-size-xxxl: 52px;
+    --heading-font-size-xxl: 46px;
+    --heading-font-size-xl: 40px;
+    --heading-font-size-l: 36px;
+    --heading-font-size-m: 32px;
+    --heading-font-size-s: 26px;
+    --heading-font-size-ss: 24px;
+    --heading-font-size-xs: 20px;
+    --heading-font-size-xxs: 18px;
+    --heading-font-size-xxxs: 16px;
+
+    /* text sizes */
+    --text-font-size-m: 16px;
+    --text-font-size-s: 14px;
+    --text-font-size-xs: 12px;
+
+    /* nav height */
+    --nav-local-height: 64px;
+    --nav-breadcrumbs-height: 21px;
+
+    /* breakpoint */
+    --breakpoint-sp: 768px;
+}
+
+/* SP用 */
+@media (width <= 768px) {
+    :root {
+
+        /* heading sizes */
+        --heading-font-size-xxxl: 30px;
+        --heading-font-size-xxl: 28px;
+        --heading-font-size-xl: 26px;
+        --heading-font-size-l: 24px;
+        --heading-font-size-m: 22px;
+        --heading-font-size-s: 20px;
+        --heading-font-size-ss: 18px;
+        --heading-font-size-xs: 18px;
+        --heading-font-size-xxs: 18px;
+        --heading-font-size-xxxs: 16px;
+
+        /* nav height */
+        --nav-local-height: 45px;
+        --nav-breadcrumbs-height: 21px;
+    }
+}
+
+/* fallback fonts */
+@font-face {
+    font-family: "Noto Sans JP";
+    font-size: 16px;
+    size-adjust: 88.82%;
+    src: local('Arial');
+}
+
+/* @font-face {
+    font-family: roboto-fallback;
+    size-adjust: 99.529%;
+    src: local('Arial');
+} */

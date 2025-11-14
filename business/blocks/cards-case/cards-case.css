@@ -1,0 +1,114 @@
+.cards-case{
+  margin-top: 48px;
+  
+  @media (width <= 768px) {
+    margin-top: 32px;
+  }
+}
+
+.card-case-list{
+  display: flex;
+  width: 100%;
+  gap: 24px;
+  flex-wrap: wrap;
+
+  @media (width <= 768px) {
+    flex-direction: column;
+  }
+}
+
+.card-case-listItem{
+  width: calc((100% - (24px * 3)) / 4);
+
+  @media (width <= 768px) {
+    width: 100%;
+  }
+}
+
+.card-case-item,
+.card-case-item-link,
+.card-case-item-inner{
+  height: 100%;
+}
+
+.card-case-item-link{
+  display: block;
+  color: var(--text-black) !important;
+  border-radius: 8px;
+  transition: box-shadow 300ms ease-out;
+  box-shadow: 0 2px 4px 2px rgba(0, 0, 0, 0.08);
+}
+.card-case-item-link:hover{
+  box-shadow: 0 6px 20px 0 rgb(0 0 0 / 30%);
+}
+
+.card-case-item-inner{
+  border-radius: 8px;
+  border: 1px solid var(--border-gray);
+  background-color: var(--background-color);
+  overflow: hidden;
+}
+
+.card-case-item-image-wrapper{
+  width: 100%;
+  height: 160px;
+}
+
+.card-case-item-image-wrapper img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-case-item-content{
+  padding: 16px 24px 32px;
+}
+
+.card-case-item-category{
+  width: fit-content;
+  font-size: 12px;
+  line-height: 1.25;
+  font-weight: 500;
+  padding: 4px 12px;
+  border-radius: 4px;
+  border: 1px solid var(--border-gray);
+}
+
+.card-case-item-name{
+  color: var(--link-blue) !important;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.card-case-item-title{
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.25;
+  text-align: left !important;
+}
+
+.card-case-item-tag-list{
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 32px;
+}
+
+.card-case-item-tag-list-listItem{
+  display: block;
+  width: fit-content;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.25;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: var(--background-blue-02);
+}
+
+/* マージン */
+.card-case-item-category + .card-case-item-name,
+.card-case-item-name + .card-case-item-title{
+  margin-top: 8px;
+}

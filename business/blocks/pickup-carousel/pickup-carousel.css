@@ -1,0 +1,370 @@
+.pickup-carousel {
+  margin-top: 40px;
+  position: relative;
+}
+
+.pickup-carousel-content-wrapper {
+  position: relative;
+  margin-right: calc((100vw - 100%) / -2);
+}
+
+.pickup-carousel-inner {
+  position: relative;
+  overflow: hidden;
+  touch-action: pan-x pinch-zoom;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.pickup-carousel-track {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  margin-left: 4px;
+  transform: translateX(0);
+  touch-action: pan-x pinch-zoom;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: grab;
+}
+
+.pickup-carousel-track:active {
+  cursor: grabbing;
+}
+
+.pickup-carousel-track li {
+  flex: 0 0 30%;
+  margin-right: 2%;
+}
+
+.pickup-carousel-item {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 360 / 460;
+  touch-action: pan-x pinch-zoom;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.pickup-carousel-item .image-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.pickup-carousel-item:hover .image-wrapper {
+  transform: scale(1.1);
+}
+
+.pickup-carousel-content {
+  position: relative;
+  z-index: 2;
+  padding: 40px;
+  color: var(--background-color);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.pickup-carousel-content .tag {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.pickup-carousel-content .title {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.4;
+  margin-block: 0 24px;
+  white-space: pre-line;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 10;
+  overflow: hidden;
+}
+
+.pickup-carousel-content .details-button {
+    width: fit-content;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.5;
+    padding: 8px 24px;
+    border-radius: 100px;
+    border: 2px solid var(--background-color);
+    transition: all 0.3s ease;
+}
+
+.pickup-carousel-item:hover .pickup-carousel-content .details-button {
+    background-color: var(--background-color);
+    color: var(--text-black);
+}
+
+
+/* ナビゲーションボタンのスタイル */
+.pickup-carousel > .pickup-carousel-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute !important;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 64px;
+  height: 64px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.60);
+  cursor: pointer;
+  padding: 0;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.pickup-carousel > .pickup-carousel-nav::after {
+  content: '' !important;
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+}
+
+.pickup-carousel > .pickup-carousel-nav:focus,
+.pickup-carousel > .pickup-carousel-nav:hover {
+    opacity: 1;
+  }
+
+  .pickup-carousel > .pickup-carousel-nav:hover {
+    background: rgba(0, 0, 0, 0.70);
+  }
+
+.pickup-carousel > .pickup-carousel-nav.prev {
+  left: -54px;
+}
+
+.pickup-carousel > .pickup-carousel-nav.next {
+  right: -44px;
+}
+
+.pickup-carousel > .pickup-carousel-nav.prev::after {
+    transform: translate(-50%, -50%) scaleX(-1) !important;
+  }
+
+.pickup-carousel-indicators {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  gap: 16px;
+  margin-top: 40px;
+}
+
+.pickup-carousel-indicator button {
+    display: flex;
+  width: 6px;
+  height: 6px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background-color: #E3E3E3;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.pickup-carousel-indicator button:hover,
+.pickup-carousel-indicator button:focus {
+    opacity: 1;
+}
+
+.pickup-carousel-indicator button::after {
+    content: none !important;
+  }
+
+.pickup-carousel-indicator button[disabled] {
+  background-color: var(--text-black);
+}
+
+.pickup-carousel-indicator button[disabled] svg {
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    width: calc(100% + 10px);
+    height: calc(100% + 10px);
+    transform: rotate(-90deg);
+}
+
+.pickup-carousel-indicator button[disabled] circle {
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.pickup-carousel-indicator button[disabled] circle.base {
+  stroke: #E3E3E3;
+  stroke-dasharray: 100 100;
+}
+
+.pickup-carousel-indicator button[disabled] circle.progress {
+  stroke: var(--text-black);
+  transition: stroke-dasharray 0.1s linear;
+}
+
+@keyframes progress {
+  0% {
+    stroke-dasharray: 0 100;
+  }
+  100% {
+    stroke-dasharray: 100 100;
+  }
+}
+
+.pause-button {
+  width: 12px;
+  height: 12px;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.pause-button:focus,
+.pause-button:hover {
+    opacity: 1;
+  }
+
+.pause-button::after {
+ content: none !important;
+}
+
+.pause-button img {
+  width: 100%;
+  height: 100%;
+  filter: brightness(0) saturate(100%) invert(16%) sepia(0%) saturate(1%) hue-rotate(202deg) brightness(97%) contrast(89%);
+}
+
+
+/* テキストがない場合 */
+.pickup-carousel-item.text-hide .pickup-carousel-content {
+  opacity: 0;
+}
+
+
+/* レスポンシブ対応 */
+@media (max-width: 1700px) {
+    .pickup-carousel-content .title {
+        -webkit-line-clamp: 9;
+    }
+}
+
+@media (max-width: 1500px) {
+    .pickup-carousel-content .title {
+        -webkit-line-clamp: 8;
+    }
+}
+
+@media (max-width: 1300px) {
+    .pickup-carousel-content .title {
+        -webkit-line-clamp: 7;
+    }
+}
+
+@media (max-width: 1320px) {
+    .pickup-carousel > .pickup-carousel-nav.prev {
+        left: 16px;
+      }
+      
+      .pickup-carousel > .pickup-carousel-nav.next {
+        right: 16px;
+      }
+  }
+
+@media (max-width: 1180px) {
+    .pickup-carousel-content .title {
+        font-size: 18px;
+    }
+    .pickup-carousel-content .title {
+        -webkit-line-clamp: 9;
+    }
+}
+
+@media (max-width: 1050px) {
+    .pickup-carousel-content .title {
+        -webkit-line-clamp: 7;
+    }
+}
+
+@media (max-width: 900px) {
+    .pickup-carousel-content {
+        padding: 24px;
+    }
+    .pickup-carousel-content .tag {
+        font-size: 12px;
+        margin-bottom: 8px;
+    }
+}
+
+@media (max-width: 900px) and (min-width: 769px) {
+    .pickup-carousel-content .title {
+        margin-bottom: 16px;
+    }
+    .pickup-carousel-content .details-button {
+        padding: 4px 16px;
+    }
+}
+
+@media (max-width: 768px) {
+  .pickup-carousel {
+    margin-top: 32px;
+  }
+
+  .pickup-carousel-item {
+      aspect-ratio: 240 / 310;
+  }
+
+  .pickup-carousel-item:hover img {
+    transform: none;
+  }
+
+  .pickup-carousel > .pickup-carousel-nav {
+    display: none;
+  }
+
+  .pickup-carousel-track li {
+    flex: 0 0 70%;
+    margin-right: 4%;
+  }
+
+  .pickup-carousel-content {
+    padding: 24px;
+  }
+
+  .pickup-carousel-content .tag {
+    font-size: 12px;
+    margin-bottom: 8px;
+  }
+
+  .pickup-carousel-content .title {
+    font-size: 18px;
+  }
+
+  .pickup-carousel-item:hover .image-wrapper {
+    transform: none;
+  }
+
+  .pickup-carousel-item:hover .pickup-carousel-content .details-button {
+    background-color: transparent;
+    color: var(--background-color);
+}
+}

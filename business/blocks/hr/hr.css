@@ -1,0 +1,58 @@
+/* hrブロックのスタイル */
+.hr.block {
+  margin-block: 64px;
+  &.xs-spacing {
+    margin-block: 16px;
+  }
+  &.s-spacing {
+    margin-block: 32px;
+  }
+  &.l-spacing {
+    margin-block: 120px;
+  }
+  &.xl-spacing {
+    margin-block: 160px;
+  }
+  &.no-spacing {
+    margin-block: 0;
+  }
+
+  /* spacing-top */
+  &.spacing-top {
+    margin-block: 64px 0;
+  }
+  &.xs-spacing-top {
+    margin-block: 16px 0;
+  }
+  &.s-spacing-top {
+    margin-block: 32px 0;
+  }
+  &.l-spacing-top {
+    margin-block: 120px 0;
+  }
+  &.xl-spacing-top {
+    margin-block: 160px 0;
+  }
+
+  /* spacing-bottom */
+  &.spacing-bottom {
+    margin-block: 0 64px;
+  }
+  &.xs-spacing-bottom {
+    margin-block: 0 16px;
+  }
+  &.s-spacing-bottom {
+    margin-block: 0 32px;
+  }
+  &.l-spacing-bottom {
+    margin-block: 0 120px;
+  }
+  &.xl-spacing-bottom {
+    margin-block: 0 160px;
+  }
+}
+
+.hr.block hr {
+  border-top: 1px solid var(--border-gray);
+  width: 100%;
+}

@@ -1,0 +1,407 @@
+.contact-multi{
+    width: 100vw;
+    margin-inline: calc(50% - 50vw);
+    padding: 64px 0;
+    margin-top: 64px;
+
+    @media only screen and (width <= 768px){
+        padding: 24px 0;
+        margin-top: 48px;
+    }
+}
+
+.contact-multi-header{
+    width: 100%;
+    max-width: 1440px;
+    padding: 0 120px;
+    text-align: center;
+    margin: 0 auto;
+
+    @media only screen and (width <= 768px){
+        padding: 0 24px;
+        text-align: left;
+    }
+    
+    div > *:first-child {
+        margin-top: 0;
+    }
+
+    h2{
+        font-size: var(--heading-font-size-m);
+        font-weight: 700;
+        line-height: 125%;
+    }
+
+    p{
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 150%;
+        margin-top: 16px;
+
+        @media only screen and (width <= 768px){
+            margin-top: 12px;
+        }
+    }
+}
+
+.contact-multi-inner{
+    display: flex;
+    width: 100%;
+    max-width: 1440px;
+    padding: 0 120px;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin: 32px auto 0;
+
+    @media only screen and (width <= 768px){
+        padding: 0 24px;
+        margin-top: 24px;
+        gap: 16px;
+    }
+
+    > div{
+        width: 100%;
+        border-radius: 8px;
+        background: var(--background-color);
+
+        > div{
+            display: flex;
+            flex-direction: column;
+            padding: 24px 24px 32px;
+            height: 100%;
+
+            > *:first-child {
+                margin-top: 0;
+            }
+            
+            &[data-align="center"]{
+                align-items: center;
+
+                h3, p{
+                    text-align: center;
+                }
+            }
+
+            &[data-align="right"]{
+                align-items: flex-end;
+
+                h3, p{
+                    text-align: right;
+                }
+            }
+
+            @media only screen and (width <= 768px){
+                padding-top: 24px;
+            }
+
+            /* アイコンがある場合 */
+            p:has(picture){
+                width: 80px;
+                height: 80px;
+
+                picture{
+                    width: 100%;
+                    height: 100%;
+                    display: block;
+                }
+
+                img{
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+
+                + h3{
+                    margin-top: 24px;
+                    width: 100%;
+    
+                    @media only screen and (width <= 768px){
+                        margin-top: 16px;
+                    }
+                }
+            }
+
+            h3{
+                font-size: 18px;
+                font-weight: 700;
+                line-height: 125%; /* 22.5px */
+
+                @media only screen and (width <= 768px){
+                    font-size: 16px;
+                }
+            }
+ 
+            h3 + p{
+                font-size: 16px;
+                line-height: 1.5;
+                margin-top: 16px;
+                flex: 1;
+
+
+                @media only screen and (width <= 768px){
+                    margin-top: 10px;
+                    text-align: left;
+                }
+            }
+
+            p.button-container{
+                width: 100%;
+                margin-top: 32px;
+
+                @media only screen and (width <= 768px){
+                    margin-top: 24px;
+                }
+
+                a.button{
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+/* クラスのパターン */
+.contact-multi{
+    /* テキスト色 */
+    &.text-black{
+        color: var(--text-black) !important;
+    }
+    &.text-white{
+        .contact-multi-header{
+            color: var(--text-white) !important;
+        }
+    }
+    
+    /* アイコンサイズ */
+    &.icon-s{
+        .contact-multi-inner > div > div p:has(picture){
+            width: 48px;
+            height: 48px;
+        }
+    }
+    &.icon-l{
+        .contact-multi-inner > div > div p:has(picture){
+            width: 120px;
+            height: 120px;
+        }
+    }
+    
+    /* ボタン数 */
+    &.button5 {
+        .contact-multi-inner{
+            > div:nth-child(-n+3){
+                width: calc((100% - (24px * 2)) / 3);
+            }
+            > div:nth-child(n+4){
+                width: calc((100% - 24px) / 2);
+            }
+        }
+    }
+    &.button4 {
+        .contact-multi-inner{
+            > div:nth-child(-n+3){
+                width: calc((100% - (24px * 2)) / 3);
+            }
+            > div:nth-child(n+4){
+                width: 100%;
+
+                > div{
+                    flex-direction: row;
+                    gap: 24px;
+                    align-items: center;
+
+                    @media only screen and (width <= 768px){
+                        flex-direction: column;
+                        align-items: unset;
+                        gap: 0;
+                    }
+
+                    .contact-multi-inner-text-box{
+                        flex: 1 1 auto;
+                        text-align: left;
+
+                        h3{
+                            margin-top: 0;
+                        }
+                    }
+                    
+                    /* アイコンがある場合 */
+                    > p:has(picture) {
+                        flex: 0 0 auto;
+                        + .contact-multi-inner-text-box{
+                            h3{
+                                @media only screen and (width <= 768px){
+                                    margin-top: 16px;
+                                }
+                            }
+                        }
+                    }
+                    
+                    p.button-container{
+                        flex: 0 0 auto;
+                        flex-basis: 334px;
+                        width: 334px;
+                        margin-top: 0;
+
+                        @media only screen and (width <= 768px){
+                            flex-basis: 100%;
+                            width: 100%;
+                            margin-top: 24px;
+                        }
+                    }
+                    
+                    
+                }
+            }
+        }
+    }
+
+    &.button3 {
+        .contact-multi-inner{
+            > div{
+                width: calc((100% - (24px * 2)) / 3);
+            }
+        }
+    }
+    &.button2 {
+        .contact-multi-inner{
+            > div{
+                width: calc((100% - 24px) / 2);
+            }
+        }
+    }
+    &.button1 {
+        .contact-multi-inner{
+            > div{
+                width: 100%;
+
+                > div{
+                    flex-direction: row;
+                    gap: 24px;
+                    align-items: center;
+
+                    @media only screen and (width <= 768px){
+                        flex-direction: column;
+                        align-items: unset;
+                        gap: 0;
+                    }
+
+                    .contact-multi-inner-text-box{
+                        flex: 1 1 auto;
+                        text-align: left;
+
+                        h3{
+                            margin-top: 0;
+                            @media only screen and (width <= 768px){
+                                margin-top: 16px;
+                            }
+                        }
+                    }
+                    
+                    /* アイコンがある場合 */
+                    > p:has(picture) {
+                        flex: 0 0 auto;
+                    }
+                    
+                    p.button-container{
+                        flex: 0 0 auto;
+                        flex-basis: 334px;
+                        width: 334px;
+                        margin-top: 0;
+
+                        @media only screen and (width <= 768px){
+                            flex-basis: 100%;
+                            width: 100%;
+                            margin-top: 24px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+  &.vertical-item {
+    .contact-multi-inner{
+        > div{
+            > div{
+                flex-direction: row;
+                gap: 24px;
+                align-items: center;
+
+                @media only screen and (width <= 768px){
+                    flex-direction: column;
+                    align-items: unset;
+                    gap: 0;
+                }
+
+                .contact-multi-inner-text-box{
+                    flex: 1 1 auto;
+                    text-align: left;
+
+                    h3{
+                        margin-top: 0;
+
+                    }
+                }
+                
+                /* アイコンがある場合 */
+                > p:has(picture) {
+                    flex: 0 0 auto;
+                    
+                    + .contact-multi-inner-text-box{
+                        h3{
+                            @media only screen and (width <= 768px){
+                                margin-top: 16px;
+                            }
+                        }
+                    }
+                }
+                
+                p.button-container{
+                    flex: 0 0 auto;
+                    flex-basis: 334px;
+                    width: 334px;
+                    margin-top: 0;
+
+                    @media only screen and (width <= 768px){
+                        flex-basis: 100%;
+                        width: 100%;
+                        margin-top: 24px;
+                    }
+                }
+            }
+        }
+    }
+  }
+  /* 背景色パターン */
+  &.bg-gray01 {
+    background-color: var(--background-gray-01);
+  }
+  &.bg-gray02 {
+    background-color: var(--background-gray-02);
+  }
+  &.bg-blue01 {
+    background-color: var(--background-blue-01);
+  }
+  &.bg-white {
+    background-color: var(--background-color);
+  }
+
+} 
+
+@media only screen and (width <= 768px){
+    .contact-multi{
+        /* ボタン数 */
+        &.button2,
+        &.button3,
+        &.button4,
+        &.button5 {
+            .contact-multi-inner{
+                > div{
+                    width: 100% !important;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,63 @@
+/* Cards Metrics Block - セマンティックな説明リスト構造のスタイル */
+
+.cards-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.cards-metrics-items {
+  display: flex;
+  flex-direction: column;
+  background-color: #F4F8FA;
+  padding: 24px;
+}
+
+.cards-metrics-dl {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.cards-metrics-dl dt p,
+.cards-metrics-dl dd p {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.cards-metrics-dl dd p{
+  color: var(--text-blue);
+}
+
+.cards-metrics-dl dd p strong {
+  font-size: var(--heading-font-size-m);
+  padding: 0 2px;
+}
+
+/* レスポンシブレイアウト用クラス */
+.cards-metrics-items.full-width {
+  flex: 1 1 100%;
+}
+
+.cards-metrics-items.half-width {
+  flex: 1 1 calc((100% - 14px) / 2);
+}
+
+.cards-metrics-items.third-width {
+  flex: 1 1 calc((100% - 14px * 2) / 3);
+}
+
+@media (max-width: 767px) {
+  
+  /* モバイルでは全て横幅いっぱい */
+  .cards-metrics-items.full-width,
+  .cards-metrics-items.half-width,
+  .cards-metrics-items.third-width {
+    flex: 1 1 100%;
+  }
+
+}

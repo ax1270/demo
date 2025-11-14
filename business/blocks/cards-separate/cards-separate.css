@@ -1,0 +1,347 @@
+.cards-separate {
+  margin-top: 48px;
+  
+  @media (width <= 768px) {
+    margin-top: 32px;
+  }
+}
+
+.cards-separate-item {
+  width: 100%;
+}
+
+.cards-separate > ul {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px 24px;
+}
+
+.cards-separate-listItem {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 3;
+  gap: 0;
+}
+.cards-separate-item {
+  transition: box-shadow 300ms ease-out;
+  box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  overflow: hidden;
+  display: inherit;
+  grid-template-rows: inherit;
+  grid-row: inherit;
+}
+
+.cards-separate-item-inner {
+  height: 100%;
+  display: inherit;
+  grid-template-rows: inherit;
+  grid-row: inherit;
+  padding-bottom: 32px;
+}
+
+.cards-separate-item-inner .buttons-wrapper .button-container .button.secondary{
+  background-color: var(--text-white);
+}
+
+.cards-separate .cards-separate-listItem > .cards-separate-item.-link {
+  text-decoration: none;
+  
+  &:hover{
+    text-decoration: none;
+    transition: box-shadow 300ms ease-out, color 300ms ease-out;
+    box-shadow: 0 6px 20px 0 rgb(0 0 0 / 30%);
+
+    h3{
+      color: var(--link-blue);
+    }
+  }
+}
+
+/* クラスのパターン */
+.cards-separate {
+  /* 線なし */
+  &.no-border .cards-separate-item {
+    border-radius: 4px;
+    box-shadow: none;
+    .cards-separate-item-inner{
+      padding-bottom: 0;
+    }
+    .cards-separate-item-heading{
+      width: 100%;
+      padding-top: 0;
+    }
+    .cards-separate-item-body1,
+    .cards-separate-item-body2{
+      padding-inline: 0;
+    }
+  }
+  /* シャドウの枠 */
+  &.border .cards-separate-item {
+    box-shadow: none;
+    border: 1px solid var(--border-gray);
+  }
+
+  /* 四角 */
+  &.no-radius .cards-separate-item {
+    border-radius: 0;
+  }
+
+  /* マージンなし */
+  &.no-margin > ul {
+    gap: 0;
+  }
+
+  /* カラム */
+  &.col1 > ul {
+    grid-template-columns: 1fr;
+  }
+
+  &.col2 > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  &.col3 > ul {
+    grid-template-columns: repeat(3, 1fr);
+
+    .buttons-wrapper {
+      flex-direction: column;
+    }
+  }
+
+  &.col4 > ul {
+    grid-template-columns: repeat(4, 1fr);
+    .buttons-wrapper {
+      flex-direction: column;
+    }
+  }
+
+  @media only screen and (width <= 768px){
+    &.col1 > ul,
+    &.col2 > ul,
+    &.col3 > ul,
+    &.col4 > ul {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* 背景色パターン */
+  &.bg-gray01 .cards-separate-item {
+    background-color: var(--background-gray-01);
+    .cards-separate-item-tags li {
+      background-color: var(--background-color);
+    }
+  }
+  &.bg-gray02 .cards-separate-item {
+    background-color: var(--background-gray-02);
+  }
+  &.bg-blue01 .cards-separate-item {
+    background-color: var(--background-blue-01);
+  }
+  &.bg-navy .cards-separate-item {
+    background-color: var(--background-navy);
+    /* font系の設定 */
+    p, h3, li, .a-container a {
+      color: var(--text-white);
+    }
+    .cards-separate-item-tags li {
+      color: var(--text-black);
+    }
+  }
+  &.bg-white .cards-separate-item {
+    background-color: var(--background-color);
+  }
+
+  /* ボタン縦並び */
+  /* &.button-vertical .cards-separate-item {
+    .buttons-wrapper {
+      flex-direction: column;
+    }
+  } */
+
+}
+
+.cards-separate {
+  .cards-separate-item-heading {
+    margin-inline: auto;
+    padding: 24px 0;
+    width: calc(100% - 48px);
+    border-bottom: 1px solid var(--border-gray);
+
+    > *:first-child {
+      margin-top: 0;
+    }
+  }
+
+  .cards-separate-item-body1 {
+    padding: 24px 24px 0;
+
+    > *:first-child {
+      margin-top: 0;
+    }
+  }
+
+  .cards-separate-item-body2 {
+    padding: 0 24px;
+  }
+
+  /* font系の設定 */
+  p, li {
+    color: var(--text-black);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  a {
+    font-size: 16px;
+    text-decoration: underline;
+  }
+
+  p{
+    margin: 0;
+    margin-top: 16px;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    transition: color 300ms ease-out;
+    color: var(--text-black);
+    font-size: var(--heading-font-size-s);
+    font-weight: 700;
+    line-height: 1.25;
+    margin-top: 16px;
+  }
+
+  /* 見出しのサイズ */
+  &.heading-l.col1{
+    h1, h2, h3, h4, h5, h6 {
+      font-size: var(--heading-font-size-l);
+    }
+  }
+
+  &.heading-l.col2,
+  &.heading-l.col3,
+  &.heading-l.col4{
+    h1, h2, h3, h4, h5, h6 {
+      font-size: var(--heading-font-size-m);
+    }
+  }
+
+  &.heading-s.col1{
+    h1, h2, h3, h4, h5, h6 {
+      font-size: var(--heading-font-size-ss);
+    }
+  }
+
+  &.heading-s.col2,
+  &.heading-s.col3,
+  &.heading-s.col4{
+    h1, h2, h3, h4, h5, h6 {
+      font-size: var(--heading-font-size-xs);
+    }
+  }
+
+  /* ボタン */
+  .buttons-wrapper {
+    margin-top: 32px;
+    display: flex;
+    gap: 8px;
+    .button-container {
+      margin-top: 0;
+      width: 100%;
+      .button {
+        width: 100%;
+      }
+    }
+  }
+
+  ul.cards-separate-item-lists,
+  ol.cards-separate-item-lists{
+    padding-left: 1.25em;
+    margin-top: 16px;
+  }
+  ul.cards-separate-item-lists{
+    list-style-type: disc;
+  }
+  ol.cards-separate-item-lists{
+    list-style-type: decimal;
+  }
+
+  /* 2階層のulデザイン */
+  ul.cards-separate-item-lists ul{
+    list-style-type: circle;
+    margin-top: 0;
+    padding-left: 20px;
+  }
+
+  /* 3階層のulデザイン */
+  ul.cards-separate-item-lists ul ul{
+    list-style-type: circle;
+    margin-top: 0;
+    padding-left: 20px;
+  }
+
+  /* 2階層のolデザイン */
+  ol.cards-separate-item-lists ol{
+    list-style-type: lower-alpha;
+    margin-top: 0;
+    padding-left: 20px;
+  }
+
+  /* 3階層のolデザイン */
+  ol.cards-separate-item-lists ol ol{
+    list-style-type: lower-roman;
+    margin-top: 0;
+    padding-left: 20px;
+  }
+
+  /* captionクラスの装飾なし */
+  ul.cards-separate-item-lists.caption{
+    list-style-type: none;
+    padding-left: 0;
+  }
+
+  /* captionクラス内のネストされたulも装飾なし */
+  ul.caption ul{
+    list-style-type: none;
+    padding-left: 0;
+  }
+
+  /* captionクラス内のcards-separate-item-listsのmargin-topを0に */
+  ul.caption ul.cards-separate-item-lists{
+    margin-top: 0;
+  }
+
+  .cards-separate-item-tags{
+    margin-top: 32px;
+    display: flex;
+    width: 100%;
+    align-items: flex-start;
+    gap: 8px;
+    flex-wrap: wrap;
+
+    li{
+      display: flex;
+      padding: 4px 12px;
+      align-items: center;
+      gap: 8px;
+      border-radius: 4px;
+      background: var(--background-blue-02);
+      color: var(--text-black);
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 16.5px;
+    }
+  }
+}
+
+@media only screen and (width <= 768px){
+  .cards-separate > ul { 
+    grid-template-columns: 1fr;
+  }
+
+  .cards-separate .cards-separate-listItem{
+    width: 100%;
+  }
+
+}

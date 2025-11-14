@@ -1,0 +1,118 @@
+.sidebar-container{
+    width: 240px;
+    flex-basis: 240px;
+    min-height: 200px; /* CLS対策 */
+    margin: 0;
+    padding: 0;
+
+    @media (width <= 768px) {
+        width: 100%;
+        flex-basis: 100%;
+    }
+
+    h3{
+        font-size: var(--heading-font-size-xxs);
+        padding-bottom: 16px;
+        border-bottom: 1px solid var(--border-black-01);
+
+        @media (width <= 768px) {
+            font-size: var(--heading-font-size-xs);
+            padding-bottom: 24px;
+        }
+    }
+
+    .images-wrapper{
+        .images{
+            > div{
+                & + &{
+                    margin-top: 16px;
+        
+                    @media (width <= 768px) {
+                        margin-top: 24px;
+                    }
+                }
+            }
+        }
+
+        img{
+            max-width: 240px;
+            height: auto;
+
+            @media (width <= 768px) {
+                max-width: 100%;
+            }
+        }
+    }
+
+    .sidebar-button{
+        margin-top: 16px;
+
+        @media (width <= 768px) {
+            margin-top: 24px;
+        }
+
+        a{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-white);
+            font-size: 24px;
+            font-weight: 600;
+            letter-spacing: 1.2px;
+            padding: 24px 16px;
+            gap: 8px;
+            background: linear-gradient(274deg, #039DDD 0%, #007BFF 100%);
+            transition: opacity 0.4s;
+            will-change: opacity;
+
+            img{
+                width: 28px;
+                vertical-align: bottom;
+            }
+
+            &:hover{
+                text-decoration: none;
+                opacity: 0.6;
+            }
+
+            &:not(.button)[target="_blank"]::after{
+                display: none;
+            }
+        }
+        
+    }
+}
+
+/* トップの記事一覧とサイドバーのwrap */
+.p-index-content {
+    width: 100%;
+    max-width: 1200px;
+    margin: 56px auto 0 !important;
+
+    @media (width <= 768px) {
+        padding: 0 24px;
+    }
+
+    .top-article-wrap {
+        display: flex;
+        width: 100%;
+        gap: 48px;
+        margin-top: 56px;
+
+        @media (width <= 768px) {
+            display: block;
+            margin-top: 40px;
+        }
+    
+        .cards-container{
+            flex: 1;
+        }
+    
+        .sidebar-container{
+            @media (width <= 768px) {
+                margin-top: 40px;
+            }
+        }
+    }
+
+}

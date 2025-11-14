@@ -1,0 +1,161 @@
+.images {
+    margin-top: 48px;
+  
+    @media (width <= 768px) {
+        margin-top: 32px;
+    }
+
+    picture{
+        display: block;
+    }
+
+    /* 画像のキャプション */
+    .caption {
+        font-size: 12px;
+        line-height: 1.25;
+        margin-top: 16px;
+
+        @media (width <= 768px) {
+            font-size: 11px;
+            line-height: 1.273;
+        }
+    }
+
+    /* デフォルト状態でのキャプション幅制限 */
+    &:not(.col1):not(.col2):not(.col3):not(.col4):not(.col5):not(.col6):not(.width90per):not(.width80per):not(.width70per):not(.width60per):not(.width50per) {
+        li {
+            > * {
+                max-width: var(--image-width, 100%);
+            }
+        }
+    }
+
+    /* 横幅のバリエーション */
+    &.width90per{
+        width: 90% !important;
+    }
+    &.width80per{
+        width: 80% !important;
+    }
+    &.width70per{
+        width: 70% !important;
+    }
+    &.width60per{
+        width: 60% !important;
+    }
+    &.width50per{
+        width: 50% !important;
+    }
+
+    /* 画像寄せ */
+    &.align-left,
+    &.align-center,
+    &.align-right{
+        width: fit-content;
+    }
+    &.align-left{
+        margin-right: auto;
+        margin-left: 0;
+    }
+    &.align-center{
+        margin-inline: auto;
+    }
+    &.align-right{
+        margin-right: 0;
+        margin-left: auto;
+    }
+
+    /* 2カラムレイアウト */
+    > ul {
+        display: grid;
+        gap: 24px;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+    ul > li {
+        margin: 0;
+
+        /* リンクスタイル */
+        > a.-link {
+            text-decoration: none;
+            display: block;
+            transition: opacity .2s ease-in-out;
+
+            &:hover {
+                opacity: 0.5;
+            }
+        }
+    }
+
+    /* カラム数のバリエーション */
+    &.col1 ul {
+        grid-template-columns: 1fr;
+    }
+
+    &.col2 ul {
+        grid-template-columns: repeat(2, 1fr);
+
+        @media (width <= 768px) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    &.col3 ul {
+        grid-template-columns: repeat(3, 1fr);
+
+        @media (width <= 768px) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    &.col4 ul {
+        grid-template-columns: repeat(4, 1fr);
+
+        @media (width <= 768px) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    &.col5 ul {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 16px;
+
+        @media (width <= 768px) {
+            grid-template-columns: 1fr;
+            gap: 24px;
+            
+        }
+    }
+    &.col6 ul {
+        grid-template-columns: repeat(6, 1fr);
+        gap: 16px;
+
+        @media (width <= 768px) {
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+    }
+
+    &.col1 ul,
+    &.col2 ul,
+    &.col3 ul,
+    &.col4 ul,
+    &.col5 ul,
+    &.col6 ul {
+        li {
+            picture {
+                display: block;
+                width: 100%;
+                height: 100%;
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    object-position: center;
+                }
+            }
+        }
+    }
+}

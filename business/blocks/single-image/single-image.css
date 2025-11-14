@@ -1,0 +1,165 @@
+/**
+ * ⚠️ 重要な注意事項 ⚠️
+ * これは廃止予定ブロックなので、編集しないでください。
+ * image.cssを修正してください。
+ */
+.single-image {
+    margin-top: 48px;
+  
+    @media (width <= 768px) {
+        margin-top: 32px;
+    }
+
+    picture{
+        display: block;
+    }
+
+    /* 画像のキャプション */
+    p {
+        font-size: 12px;
+        line-height: 1.25;
+
+        @media (width <= 768px) {
+            font-size: 11px;
+            line-height: 1.273;
+        }
+    }
+
+    /* 横幅のバリエーション */
+    &.width90per{
+        img{
+            width: 90%;
+        }
+    }
+    &.width80per{
+        img{
+            width: 80%;
+        }
+    }
+    &.width70per{
+        img{
+            width: 70%;
+        }
+    }
+    &.width60per{
+        img{
+            width: 60%;
+        }
+    }
+    &.width50per{
+        img{
+            width: 50%;
+        }
+    }
+
+    /* 画像寄せ */
+    &.image-align-left{
+        picture{
+            text-align: left !important;
+        }
+    }
+    &.image-align-center{
+        picture{
+            text-align: center !important;
+        }
+    }
+    &.image-align-right{
+        picture{
+            text-align: right !important;
+        }
+    }
+
+    /* 2カラムレイアウト */
+    ul {
+        display: grid;
+        gap: 24px;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+    li {
+        margin: 0;
+
+        /* リンクスタイル */
+        > a.-link {
+            text-decoration: none;
+            display: block;
+            transition: opacity .2s ease-in-out;
+
+            &:hover {
+                opacity: 0.5;
+            }
+        }
+    }
+
+    /* カラム数のバリエーション */
+    &.col1 ul {
+        grid-template-columns: 1fr;
+    }
+
+    &.col2 ul {
+        grid-template-columns: repeat(2, 1fr);
+
+        @media (width <= 768px) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    &.col3 ul {
+        grid-template-columns: repeat(3, 1fr);
+
+        @media (width <= 768px) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    &.col4 ul {
+        grid-template-columns: repeat(4, 1fr);
+
+        @media (width <= 768px) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    &.col5 ul {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 16px;
+
+        @media (width <= 768px) {
+            grid-template-columns: 1fr;
+            gap: 24px;
+            
+        }
+    }
+    &.col6 ul {
+        grid-template-columns: repeat(6, 1fr);
+        gap: 16px;
+
+        @media (width <= 768px) {
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+    }
+
+    &.col1 ul,
+    &.col2 ul,
+    &.col3 ul,
+    &.col4 ul,
+    &.col5 ul,
+    &.col6 ul {
+        li {
+            picture {
+                display: block;
+                width: 100%;
+                height: 100%;
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    object-position: center;
+                }
+            }
+        }
+    }
+}

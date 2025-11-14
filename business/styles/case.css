@@ -1,0 +1,106 @@
+/* ========================================
+   Case Styles - 導入事例ページスタイル
+   ======================================== */
+
+/* data-page-style="casestudy" */
+main[data-page-style="casestudy"] .section + .section{
+    margin-top: 32px;
+}
+/* 導入サービスの上マージン */
+main[data-page-style="casestudy"] .section + .section[data-background-color="gray01"]{
+    margin-top: 64px;
+}
+/* 導入サービスのパディング */
+main[data-page-style="casestudy"]> .section.bg-section-container > .bg-section-wrapper{
+    padding-block: 64px;
+}
+/* 関連導入事例の上マージン */
+main[data-page-style="casestudy"] .section[data-background-color="gray01"] + .section[data-content-width="default"]{
+    margin-top: 40px;
+}
+
+main[data-page-style="casestudy"] .images .caption{
+    font-size: var(--text-font-size-m);
+    line-height: 1.5;
+}
+
+
+/* 導入事例ページの本文 */
+main[data-page-style="casestudy"] .default-content-wrapper h2 + p{
+    margin-top: 24px;
+}
+
+/* data-section-type="point" */
+.section[data-section-type="point"]{
+    margin-top: calc(32px + 20px) !important;
+}
+
+.point-content{
+    border-radius: 8px;
+    border: 1px solid var(--text-blue);
+    background: var(--background-color);
+    box-shadow: 0 2px 4px 2px rgba(0, 0, 0, 0.08);
+    padding: 32px 40px 40px;
+    position: relative;
+
+    @media (width <= 768px) {
+        padding: 32px 24px 24px;
+    }
+}
+
+.point-icon{
+    width: fit-content;
+    background: var(--background-color);
+    margin-top: 0 !important;
+    position: absolute;
+    top: -20px;
+    left: 32px;
+
+    @media (width <= 768px) {
+        left: 12px;
+    }
+}
+.point-icon img{
+    width: 103px;
+}
+
+/* テキストのスタイル */
+.point-content h2{
+    font-size: var(--heading-font-size-xs);
+    margin-top: 40px;
+}
+
+.point-content .point-icon + .default-content-wrapper > h2:first-child{
+    margin-top: 0;
+}
+
+.point-content p{
+    line-height: 1.5;
+}
+
+main[data-page-style="casestudy"] .point-content .default-content-wrapper h2 + p{
+    margin-top: 16px;
+}
+
+/* 導入サービス リンク集 */
+.point-content .point-link-wrap{
+    display: flex;
+    list-style-type: none;
+    gap: 8px;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-top: 16px;
+
+    @media (width <= 768px) {
+        gap:16px;
+        flex-direction: column;
+    }
+}
+
+.point-content .point-link-items{
+    line-height: 1.5;
+}
+
+.point-content .point-link-items a{
+    text-decoration: underline;
+}

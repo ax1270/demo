@@ -1,0 +1,42 @@
+.text-group{
+    margin-top: 48px;
+  
+    @media (width <= 768px) {
+        margin-top: 32px;
+    }
+}
+
+.text-group {
+    > div{
+        margin-top: 16px;
+
+        @media (width <= 768px) {
+            margin-top: 12px;
+        }
+
+        .text-group-title {
+            font-size: 16px !important;
+            font-weight: 700 !important;
+            line-height: 1.75 !important;
+            padding: 0 !important;
+            margin: 0;
+            border: none !important;
+        }
+    
+        .text-group-paragraph {
+            margin-top: 8px !important;
+        }
+
+        > div[data-align="justify"] p{
+            text-align: justify;
+        }
+        > div[data-align="center"] p{
+            text-align: center;
+        }
+        > div[data-align="right"] p{
+            text-align: right;
+        }
+    }
+
+    
+}

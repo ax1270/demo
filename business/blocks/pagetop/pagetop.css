@@ -1,0 +1,35 @@
+.pagetop-container{
+    padding-left: 4px;
+    margin-top: 56px;
+
+    @media (width <= 768px) {
+        padding-left: 0;
+        margin-top: 40px;
+    }
+
+    a{
+        display: flex;
+        width: fit-content;
+        align-items: center;
+        color: var(--text-black);
+        text-decoration: none !important;
+        font-weight: 700;
+        gap: 4px;
+
+        @media (width <= 768px) {
+            gap: 8px;
+        }
+
+        .icon{
+            display: contents;
+
+            img{
+                width: 8.5px;
+
+                @media (width <= 768px) {
+                    width: 7.6px;
+                }
+            }
+        }
+    }
+}

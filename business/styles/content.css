@@ -1,0 +1,84 @@
+/* ========================================
+   Content Styles
+   ======================================== */
+
+/* ブログ・サービスページ共通 */
+.default-content-wrapper{
+    p:not([class]){
+        margin-top: 16px;
+
+        @media (width <= 768px) {
+            margin-top: 12px;
+        }
+    }
+
+    h1, h2, h3, h4, h5, h6{
+        + p:not([class]){
+            margin-top: 40px;
+
+            @media (width <= 768px) {
+                margin-top: 24px;
+            }
+        }
+    }
+
+    p.button-container{
+        margin-top: 48px;
+
+        @media (width <= 768px) {
+            margin-top: 32px;
+        }
+    }
+}
+/* ul, ol */
+.default-content-wrapper{
+    ul,
+    ol{
+        font-size: var(--text-font-size-m);
+        font-style: normal;
+        font-weight: 400;
+        line-height: 1.75;
+        padding-left: 2em;
+        margin-top: 16px;
+
+        @media (width <= 768px) {
+            /* margin-top: 12px; */
+        }
+    }
+    
+    ul{
+        list-style-type: disc;
+    }
+
+    ol{
+        list-style-type: decimal;
+    }
+
+    /* 2階層のulデザイン */
+    ul ul{
+        list-style-type: circle;
+        margin-top: 0;
+        padding-left: 20px;
+    }
+
+    /* 3階層のulデザイン */
+    ul ul ul{
+        list-style-type: circle;
+        margin-top: 0;
+        padding-left: 20px;
+    }
+
+    /* 2階層のolデザイン */
+    ol ol{
+        list-style-type: lower-alpha;
+        margin-top: 0;
+        padding-left: 20px;
+    }
+
+    /* 3階層のolデザイン */
+    ol ol ol{
+        list-style-type: lower-roman;
+        margin-top: 0;
+        padding-left: 20px;
+    }
+}

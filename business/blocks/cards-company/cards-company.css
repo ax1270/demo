@@ -1,0 +1,60 @@
+.cards-company{
+    display: flex;
+    gap: 32px;
+    padding: 32px 40px;
+    border-radius: 8px;
+    background: var(--background-color);
+    box-shadow: 0 2px 4px 2px rgba(0, 0, 0, 0.08);
+    margin-top: 32px;
+
+    @media (width <= 768px) {
+        flex-direction: column;
+        padding: 24px;
+    }
+}
+
+.cards-company-content-logo{
+    flex-basis: 201px;
+    width: 201px;
+
+    @media (width <= 768px) {
+        flex-basis: auto;
+    }
+}
+
+.cards-company-content-info{
+    display: flex;
+    flex: 1;
+    flex-wrap: wrap;
+    gap: 24px 40px;
+
+    @media (width <= 768px) {
+        flex-direction: column;
+        gap: 16px;
+    }
+}
+
+.cards-company-name{
+    font-size: var(--heading-font-size-xs);
+    width: 100%;
+    margin-top: 0;
+}
+
+.cards-company-name + dl{
+    @media (width <= 768px) {
+        margin-top: calc(24px - 16px);
+    }
+}
+
+.cards-company-dt p{
+    font-weight: 700;
+    font-size: 12px;
+}
+
+.cards-company-dd p{
+    margin-top: 4px;
+}
+
+.cards-company-dd p a:not(.button){
+    text-decoration: underline;
+}

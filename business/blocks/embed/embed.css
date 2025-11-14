@@ -1,0 +1,185 @@
+.embed {
+  width: 100%;
+  text-align: center;
+  margin-top: 48px;
+  
+  @media (width <= 768px) {
+    margin-top: 32px;
+  }
+}
+
+.embed > div {
+  display: flex;
+  justify-content: center;
+}
+
+.embed.embed-twitter .twitter-tweet-rendered {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.embed .embed-placeholder {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  position: relative;
+}
+
+.embed .embed-placeholder > * {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  inset: 0;
+}
+
+.embed .embed-placeholder picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.embed .embed-placeholder-play button {
+  box-sizing: border-box;
+  position: relative;
+  display: block;
+  transform: scale(3);
+  width: 22px;
+  height: 22px;
+  border: 2px solid;
+  border-radius: 20px;
+  padding: 0;
+}
+
+.embed .embed-placeholder-play button::before {
+  content: "";
+  display: block;
+  box-sizing: border-box;
+  position: absolute;
+  width: 0;
+  height: 10px;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 6px solid;
+  top: 4px;
+  left: 7px;
+}
+
+.embed .embed-placeholder-play button::after {
+  display: none;
+}
+
+/* テキストコンテンツのスタイル調整 */
+.embed:not([class*="embed-"]):not(.embed-is-loaded) {
+    text-align: left;
+    line-height: 1.6;
+}
+
+/* テキストコンテンツ */
+.embed .embed-text-content {
+    display: block;
+}
+
+.embed .embed-text-content h1,
+.embed .embed-text-content h2,
+.embed .embed-text-content h3,
+.embed .embed-text-content h4,
+.embed .embed-text-content h5,
+.embed .embed-text-content h6 {
+    margin-top: 24px;
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.embed .embed-text-content p {
+    margin-top: 24px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* data-align属性対応 */
+.embed .embed-text-content [data-align="center"] {
+    text-align: center;
+}
+
+.embed .embed-text-content [data-align="left"] {
+    text-align: left;
+}
+
+.embed .embed-text-content [data-align="right"] {
+    text-align: right;
+}
+
+.embed .embed-text-content [data-align="justify"] {
+    text-align: justify;
+}
+
+/* 動画コンテナ */
+.embed .embed-video-container {
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+.embed .embed-video-container.embed-is-loaded {
+    display: block;
+}
+
+/* カラムレイアウト */
+.embed-box {
+    display: block !important;
+}
+
+.embed.col2,
+.embed.col3,
+.embed.col4 {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.embed .embed-box {
+    min-width: 0;
+    width: 100%;
+}
+
+.embed.col1,
+.embed.small {
+    margin-inline: auto;
+}
+
+@media (width >= 769px) {
+    .embed.col1 {
+        max-width: 1000px;
+    }
+
+    .embed.small {
+        max-width: 588px;
+    }
+
+    .embed.col2 .embed-box {
+        max-width: 588px;
+    }
+
+    .embed.col3 .embed-box {
+        max-width: 384px;
+    }
+
+    .embed.col4 .embed-box {
+        max-width: 282px;
+    }
+}
+
+/* レスポンシブ対応 */
+@media (width <= 768px) {
+    .embed.col2,
+    .embed.col3,
+    .embed.col4 {
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    .embed.col4 > div {
+        flex: 1 1 100%;
+    }
+}

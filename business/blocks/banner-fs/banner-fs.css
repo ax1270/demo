@@ -1,0 +1,41 @@
+.banner-fs-container{
+    .banner-fs-wrap{
+        display: flex;
+        width: 100%;
+        align-items: center;
+        gap: 32px;
+        background: url("/images/bg-fs-pc.png") no-repeat center / cover;
+        padding: 32px;
+        border-radius: 8px;
+        margin-top: 56px;
+
+        @media (width <= 768px) {
+            flex-direction: column;
+            gap: 16px;
+            padding: 24px;
+            border-radius: 16px;
+            margin-top: 40px;
+        }
+
+        img{
+            width: 268px;
+            
+            @media (width <= 768px) {
+                width: 100%;
+            }
+        }
+
+        .banner-fs-text{
+            flex: 1;
+
+            p + p{
+                margin-top: 8px;
+
+                @media (width <= 768px) {
+                    margin-top: 24px;
+                }
+            }
+        }
+
+    }
+}

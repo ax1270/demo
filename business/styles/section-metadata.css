@@ -1,0 +1,113 @@
+/* ========================================
+   Section Metadata Styles
+   ======================================== */
+
+/* section metadata 見出しの文字サイズ */
+.section[data-heading-size*="h1-xl"] .default-content-wrapper > h1 {
+    font-size: var(--heading-font-size-xxxl);
+}
+
+.section[data-heading-size*="h1-l"] .default-content-wrapper > h1{
+    font-size: var(--heading-font-size-xxl);
+}
+
+.section[data-heading-size*="h2-l"] .default-content-wrapper > h2{
+    font-size: var(--heading-font-size-l);
+}
+
+.section[data-heading-size*="h3-l"] .default-content-wrapper > h3{
+    font-size: var(--heading-font-size-m);
+}
+
+.section[data-heading-size*="h1-s"] .default-content-wrapper > h1 {
+    font-size: var(--heading-font-size-l);
+}
+
+.section[data-heading-size*="h2-s"] .default-content-wrapper > h2 {
+    font-size: var(--heading-font-size-s);
+}
+
+.section[data-heading-size*="h3-s"] .default-content-wrapper > h3 {
+    font-size: var(--heading-font-size-xs);
+}
+
+/* section metadata 見出しの文字揃え - default-content-wrapperの中の要素のみに適用 */
+.section[data-heading-align="left"] .default-content-wrapper :is(h1, h2, h3, h4, h5, h6) {
+    text-align: left;
+}
+.section[data-heading-align="center"] .default-content-wrapper :is(h1, h2, h3, h4, h5, h6) {
+    text-align: center;
+}
+.section[data-heading-align="right"] .default-content-wrapper :is(h1, h2, h3, h4, h5, h6) {
+    text-align: right;
+}
+
+/* section metadata 見出しの文字色 */
+.section[data-heading-color="black"] :is(h1, h2, h3, h4, h5, h6) {
+    color: var(--text-black);
+}
+.section[data-heading-color="white"] :is(h1, h2, h3, h4, h5, h6) {
+    color: var(--background-color);
+}
+
+/* section metadata テキストの文字揃え - default-content-wrapperの中の要素のみに適用 */
+.section[data-text-align="left"] .default-content-wrapper p {
+    text-align: left;
+}
+.section[data-text-align="center"] .default-content-wrapper p {
+    text-align: center;
+}
+.section[data-text-align="right"] .default-content-wrapper p {
+    text-align: right;
+}
+
+/* section metadata 画像寄せ */
+.section[data-image-align="left"] picture{
+    text-align: left;
+}
+.section[data-image-align="center"] picture{
+    text-align: center;
+}
+.section[data-image-align="right"] picture{
+    text-align: right;
+}
+
+/* section metadata 画像寄せ - imagesブロック対応 */
+.section[data-image-align="left"] .images ul {
+    justify-items: start;
+}
+.section[data-image-align="center"] .images ul {
+    justify-items: center;
+}
+.section[data-image-align="right"] .images ul {
+    justify-items: end;
+}
+
+/* section metadata コンテンツ幅設定 */
+.section[data-content-width="default"] > div {
+    max-width: 1248px !important;
+}
+.section[data-content-width="narrow"] > div{
+    max-width: 998px !important; /* calc(24px * 2 + 950px) */
+    padding-inline: 24px;
+}
+
+/* section metadata ページ幅設定 */
+main[data-page-width="narrow"] .section,
+main[data-page-width="narrow"] > .section.bg-section-container > .bg-section-wrapper {
+    max-width: 998px !important; /* calc(24px * 2 + 950px) */
+    margin-inline: auto;
+    padding-inline: 24px;
+}
+main[data-page-width="narrow"] .section.bg-section-container{
+    max-width: 100% !important;
+
+    @media (width <= 1046px) {
+        padding-inline: 0;
+    }
+}
+
+main[data-page-width="narrow"] .section[data-content-width="default"] > div,
+main[data-page-width="narrow"] .section[data-content-width="default"] {
+    max-width: 1248px !important;
+}

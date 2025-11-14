@@ -1,0 +1,2952 @@
+.smb {
+    font-family: Meiryo, "Hiragino Kaku Gothic ProN", "Hiragino Sans", system-ui,
+        sans-serif;
+    color: #333;
+    font-size: 16px;
+    line-height: 1.75;
+    margin: 0 auto;
+}
+@media (max-width: 768px) {
+    .smb {
+        font-size: 14px;
+        line-height: 1.57143;
+    }
+}
+.smb li {
+    list-style: none;
+}
+.smb img {
+    display: block;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+}
+.smb .header a,
+.smb .footer a {
+    display: block;
+    text-decoration: none;
+    color: #333;
+}
+.smb button {
+    text-align: left;
+}
+.smb button:focus {
+    outline: 0;
+}
+.smb input:focus {
+    outline: 0;
+}
+.smb p{
+    margin: 0;
+}
+.smb > main {
+    padding-top: 75px;
+}
+@media (max-width: 768px) {
+    .smb img{
+        width: 100%;
+        max-width: 118px;
+    }
+    .smb > main {
+        padding-top: 58px;
+    }
+}
+
+/*----------- header -----------*/
+.smb .header {
+    position: fixed;
+    width: 100%;
+    border-bottom: solid 1px #bfbfc0;
+    z-index: 1002;
+    background-color: #fff;
+    padding-top: 5px;
+}
+@media (max-width: 768px) {
+    .smb .header {
+        height: 55px;
+        min-width: initial;
+        padding-top: 3px;
+        border-bottom: none;
+        background-color: initial;
+    }
+    .smb .header.is-active {
+        height: 100vh;
+    }
+}
+.smb .header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    border-top: solid 5px #357eec;
+    z-index: 100;
+}
+@media (max-width: 768px) {
+    .smb .header::before {
+        border-top: solid 3px #357eec;
+    }
+}
+.smb .header__inner {
+    padding: 0 35px;
+    max-width: 1350px;
+    height: 69px;
+    margin: 0 auto;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+@media (max-width: 768px) {
+    .smb .header__inner {
+        display: none;
+    }
+}
+.smb .header__ttl {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+.smb .header__ttl__logo {
+    width: 140px;
+    margin-right: 18px;
+}
+.smb .header__ttl__item {
+    width: auto;
+    padding-left: 26px;
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+.smb .header__ttl__item::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    width: 0;
+    height: 26px;
+    border-left: solid 1px #bfbfc0;
+}
+.smb .header__ttl__item > a {
+    font-size: 18px;
+    line-height: 1;
+    letter-spacing: 0.05em;
+    -webkit-transition: opacity 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in-out;
+}
+.smb .header__ttl__item > a:hover {
+    opacity: 0.5;
+}
+
+@-webkit-keyframes overlay {
+    0% {
+        display: none;
+        opacity: 0;
+    }
+    1% {
+        display: block;
+        opacity: 0;
+    }
+    100% {
+        display: block;
+        opacity: 1;
+    }
+}
+@keyframes overlay {
+    0% {
+        display: none;
+        opacity: 0;
+    }
+    1% {
+        display: block;
+        opacity: 0;
+    }
+    100% {
+        display: block;
+        opacity: 1;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    /* タブレット用 */
+    .smb .header__ttl__logo {
+        max-width: 140px;
+        margin-right: 16px;
+    }
+    .smb .header__ttl__item{
+        width: 120px;
+        padding-left: 25px;
+    }
+    .smb .header__inner {
+        padding: 0px 20px;
+    }
+}
+
+/*----------- header02 -----------*/
+.smb .header.header02{
+    border-bottom: none;
+    position: static;
+}
+.smb .header.header02 .header__ttl__item > a {
+        font-size: 16px;
+}
+.smb.solutions {
+    background-color: #fff;
+}
+.solutions > .header.header02 {
+    display:    flex;
+    margin: 0 auto;
+    max-width: 1350px;
+}
+.solutions > .header.header02 > .header__inner {
+    flex: 0 0 auto;
+}
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    /* タブレット用 */
+    .smb .header.header02 .header__ttl__item {
+        width: auto;
+    }
+}
+@media (max-width: 768px) {
+    /* SP用 */
+    .smb .header.header02{
+        display: none;
+    }
+}
+
+/*----------- footer -----------*/
+.sb-appshell-v1-header-nav_megadropdown-footer {
+    padding: 40px 0 20px;
+    background-color: #4b4d4f;
+    box-sizing: border-box;
+}
+.sb-appshell-v1-header-nav_megadropdown-footer-support-list {
+    text-align: center;
+    margin: 0 -25px;
+}
+.sb-appshell-v1-header-nav_megadropdown-footer-support-link {
+    display: inline-block;
+    margin: 0 25px;
+    font-size: 14px;
+    line-height: 1.57143;
+    position: relative;
+    padding-left: 40px;
+    text-decoration: none;
+    -webkit-transition: opacity 0.4s;
+    transition: opacity 0.4s;
+    will-change: opacity;
+}
+.sb-appshell-v1-header-nav_megadropdown-footer-support-link:hover {
+    opacity: 0.6;
+}
+.sb-appshell-v1-header-nav_megadropdown-footer-support-link:link,
+.sb-appshell-v1-header-nav_megadropdown-footer-support-link:visited,
+.sb-appshell-v1-header-nav_megadropdown-footer-support-link:active,
+.sb-appshell-v1-header-nav_megadropdown-footer-support-link:focus,
+.sb-appshell-v1-header-nav_megadropdown-footer-support-link:hover {
+    color: #fff;
+    text-decoration: none;
+}
+.sb-appshell-v1-header-nav_megadropdown-footer-support-link::before {
+    display: block;
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    background-image: url("/etc.clientlibs/softbankbtob/clientlibs/clientlib-sites-basic/softbankbtob-site/resources/img/icon-contact.svg");
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    width: 50px;
+    height: 50px;
+    text-indent: -9999px;
+    overflow: hidden;
+    width: 30px;
+    height: 30px;
+    background-size: 30px 30px;
+}
+.sb-appshell-v1-header-nav_megadropdown-footer-support-link-faq::before {
+    background-image: url("/etc.clientlibs/softbankbtob/clientlibs/clientlib-sites-basic/softbankbtob-site/resources/img/icon-faq.svg");
+}
+.sb-appshell-v1-header-nav_megadropdown-footer-support-button {
+    display: inline-block;
+    margin: 0 25px;
+    box-sizing: border-box;
+    padding: 13px 10px;
+    min-width: 200px;
+    min-height: 32px;
+    color: #424242;
+    font-size: 14px;
+    line-height: 1;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 20px;
+    text-decoration: none;
+    text-decoration: none;
+    -webkit-transition: opacity 0.4s;
+    transition: opacity 0.4s;
+    will-change: opacity;
+}
+.sb-appshell-v1-header-nav_megadropdown-footer-support-button:hover {
+    opacity: 0.6;
+}
+.sb-appshell-v1-header-nav_megadropdown-footer-support-button:link,
+.sb-appshell-v1-header-nav_megadropdown-footer-support-button:visited,
+.sb-appshell-v1-header-nav_megadropdown-footer-support-button:active,
+.sb-appshell-v1-header-nav_megadropdown-footer-support-button:focus,
+.sb-appshell-v1-header-nav_megadropdown-footer-support-button:hover {
+    color: #000;
+    text-decoration: none;
+}
+.sb-appshell-v1-header-nav_megadropdown-footer-support-button-inner {
+    padding-left: 35px;
+    position: relative;
+}
+.sb-appshell-v1-header-nav_megadropdown-footer-support-button-inner::before {
+    display: block;
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    background-image: url("/etc.clientlibs/softbankbtob/clientlibs/clientlib-sites-basic/softbankbtob-site/resources/img/icon-chatsupport.svg");
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    width: 50px;
+    height: 50px;
+    text-indent: -9999px;
+    overflow: hidden;
+    width: 30px;
+    height: 30px;
+    background-size: 30px 30px;
+}
+.sb-appshell-v1-header-nav_megadropdown-footer-english {
+    max-width: 950px;
+    margin: 5px auto 0;
+    text-align: right;
+}
+.sb-appshell-v1-header-nav_megadropdown-footer-english-button {
+    display: inline-block;
+    min-width: 120px;
+    min-height: 30px;
+    border: 1px solid #c1c1c2;
+    border-radius: 16px;
+    color: #fff;
+    font-size: 13px;
+    line-height: 1;
+    text-decoration: none;
+    box-sizing: border-box;
+    padding: 9px 10px 8px;
+    text-align: center;
+    font-weight: normal;
+    text-decoration: none;
+    -webkit-transition: opacity 0.4s;
+    transition: opacity 0.4s;
+    will-change: opacity;
+}
+.sb-appshell-v1-header-nav_megadropdown-footer-english-button:hover {
+    opacity: 0.6;
+}
+.sb-appshell-v1-header-nav_megadropdown-footer-english-button:link,
+.sb-appshell-v1-header-nav_megadropdown-footer-english-button:visited,
+.sb-appshell-v1-header-nav_megadropdown-footer-english-button:active,
+.sb-appshell-v1-header-nav_megadropdown-footer-english-button:focus,
+.sb-appshell-v1-header-nav_megadropdown-footer-english-button:hover {
+    color: #fff;
+    text-decoration: none;
+}
+.sb-appshell-v1-header-nav_megadropdown-footer-english-button-inner {
+    padding-left: 26px;
+    position: relative;
+}
+.sb-appshell-v1-header-nav_megadropdown-footer-english-button-inner::before {
+    display: block;
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    background-image: url("/etc.clientlibs/softbankbtob/clientlibs/clientlib-sites-basic/softbankbtob-site/resources/img/icon-english.png");
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 30px;
+    text-indent: -9999px;
+    overflow: hidden;
+    width: 18px;
+    height: 18px;
+    background-size: 18px 18px;
+}
+.sb-appshell-v1-header-nav_megadropdown-footer-english-button--invisible {
+    visibility: hidden;
+}
+
+.sb-appshell-v1-header-fixed-area {
+    .sb-appshell-v1-header-fixed-area_inner {
+        width: 100%;
+        z-index: 10003;
+    }
+
+    &.sb-appshell-v1-header-fixed-area--sticky {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        z-index: 10003;
+        width: 100%;
+
+        .sb-appshell-v1-header-fixed-area_inner {
+            width: auto;
+            z-index: 0;
+        }
+
+        &.sb-appshell-v1-header-fixed-area--fixed .sb-appshell-v1-header-fixed-area_inner {
+            position: static;
+            top: auto;
+        }
+    }
+
+    &.sb-appshell-v1-header-fixed-area--fixed .sb-appshell-v1-header-fixed-area_inner {
+        position: fixed;
+        top: 0;
+    }
+}
+
+.sb-appshell-v1-header {
+    position: relative;
+    z-index: 10004;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    height: 105px;
+
+    /* min-width:990px; */
+    border-top: 5px solid #357eec;
+    font-family: Meiryo, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', system-ui, sans-serif;
+    font-size: 14px;
+    line-height: 1.42857;
+    color: #333;
+    background-color: #ffffff;
+}
+
+[lang='en'] .sb-appshell-v1-header {
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.sb-appshell-v1-header_utility {
+    position: absolute;
+    right: 20px;
+    top: 9.5px;
+}
+
+.sb-appshell-v1-header_utility-list {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-flow: row nowrap;
+    -ms-flex-flow: row nowrap;
+    flex-flow: row nowrap;
+    -webkit-box-pack: end;
+    -webkit-justify-content: flex-end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    -webkit-align-content: stretch;
+    -ms-flex-line-pack: stretch;
+    align-content: stretch;
+}
+
+.sb-appshell-v1-header_utility-item {
+    margin-left: 20px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: stretch;
+    -webkit-align-items: stretch;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+
+    &:first-child {
+        margin-left: 0;
+    }
+}
+
+.sb-appshell-v1-header_utility-link {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    box-sizing: border-box;
+    color: #424242;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 1;
+    position: relative;
+    margin: 0;
+    min-height: 24px;
+    text-decoration: none;
+    -webkit-transition: opacity 0.4s;
+    transition: opacity 0.4s;
+    will-change: opacity;
+
+    &:hover {
+        opacity: 0.6;
+    }
+
+    &:link, &:visited, &:active, &:focus, &:hover {
+        color: #424242;
+        text-decoration: none;
+    }
+
+    &::before {
+        display: block;
+        content: '';
+        margin-right: 5px;
+        background-image: url("https://cdn.softbank.jp/site/set/common/sunshine/shared/img/icon-utility-mysoftbank-01.svg");
+        background-position: 0 0;
+        background-repeat: no-repeat;
+        width: 35px;
+        height: 35px;
+        background-size: 35px 35px;
+        text-indent: -9999px;
+        overflow: hidden;
+    }
+}
+
+.sb-appshell-v1-header_utility-link-mysoftbank::before {
+    background-image: url("https://cdn.softbank.jp/site/set/common/sunshine/shared/img/icon-utility-mysoftbank-01.svg");
+}
+
+.sb-appshell-v1-header_utility-link-support::before {
+    background-image: url("https://cdn.softbank.jp/site/set/common/sunshine/shared/img/icon-utility-support-01.svg");
+}
+
+.sb-appshell-v1-header_utility-link-search::before {
+    background-image: url("https://cdn.softbank.jp/site/set/common/sunshine/shared/img/icon-utility-shop-01.svg");
+}
+
+.sb-appshell-v1-header_utility-link-bizconciersite::before {
+    background-image: url("https://cdn.softbank.jp/site/set/common/sunshine/shared/img/icon-utility-bizconciersite-01.svg");
+}
+
+.sb-appshell-v1-header_utility-link-webmagazine::before {
+    background-image: url("https://cdn.softbank.jp/site/set/common/sunshine/shared/img/icon-utility-webmagazine-01.svg");
+}
+
+.sb-appshell-v1-header_utility-link-mailmagazine::before {
+    background-image: url("https://cdn.softbank.jp/site/set/common/sunshine/shared/img/icon-utility-mailmagazine-01.svg");
+}
+
+.sb-appshell-v1-header_utility-link-disaster::before {
+    background-image: url("https://cdn.softbank.jp/site/set/common/sunshine/shared/img/icon-utility-disaster-01.svg");
+}
+
+.sb-appshell-v1-header_utility-button {
+    padding-left: 10px;
+}
+
+.sb-appshell-v1-header_utility-button-english {
+    padding: 8px 20px 7px;
+    border: 1px solid #c1c1c2;
+    border-radius: 15px;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 13px;
+    line-height: 1;
+    display: inline-block;
+    text-decoration: none;
+    -webkit-transition: opacity 0.4s;
+    transition: opacity 0.4s;
+    will-change: opacity;
+
+    &:hover {
+        opacity: 0.6;
+    }
+
+    &:link, &:visited, &:active, &:focus, &:hover {
+        color: #424242;
+        text-decoration: none;
+    }
+}
+
+.sb-appshell-v1-header_utility-button-english--invisible {
+    visibility: hidden;
+}
+
+.sb-appshell-v1-header_utility-button-inner {
+    display: inline-block;
+    position: relative;
+    padding-left: 26px;
+
+    &::before {
+        display: block;
+        content: '';
+        position: absolute;
+        left: 0;
+        top: -4px;
+        background-image: url("https://cdn.softbank.jp/site/set/common/sunshine/shared/img/icon-english.png");
+        background-position: 0 0;
+        background-repeat: no-repeat;
+        width: 18px;
+        height: 18px;
+        background-size: 18px 18px;
+        text-indent: -9999px;
+        overflow: hidden;
+    }
+}
+
+.sb-appshell-v1-header_inner {
+    margin: 0 auto;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-flow: row nowrap;
+    -ms-flex-flow: row nowrap;
+    flex-flow: row nowrap;
+    -webkit-box-pack: start;
+    -webkit-justify-content: start;
+    -ms-flex-pack: start;
+    justify-content: start;
+    -webkit-box-align: stretch;
+    -webkit-align-items: stretch;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    top: 30px;
+}
+
+.sb-appshell-v1-header-nav {
+    height: 28px;
+    box-sizing: border-box;
+    padding: 0 5px 0 20px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    display: block;
+}
+
+.sb-appshell-v1-header-nav_globalnav {
+    font-size: 14px;
+    line-height: 1;
+    box-sizing: border-box;
+
+    ul > li {
+        list-style-type: none;
+    }
+}
+
+.sb-appshell-v1-header-nav_globalnav-list {
+    margin: 0;
+    padding: 0;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-flow: row nowrap;
+    -ms-flex-flow: row nowrap;
+    flex-flow: row nowrap;
+    -webkit-box-pack: end;
+    -webkit-justify-content: flex-end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    -webkit-box-align: stretch;
+    -webkit-align-items: stretch;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+    list-style-type: none;
+}
+
+.sb-appshell-v1-header-nav_globalnav-item {
+    padding: 0;
+    margin: 0;
+}
+
+.sb-appshell-v1-header-nav_globalnav-link {
+    display: block;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 1;
+    color: #424242;
+    padding: 0px 15px;
+    height: 28px;
+    box-sizing: border-box;
+    text-decoration: none;
+    cursor: default;
+
+    &:link, &:visited, &:active, &:hover, &:focus {
+        color: #424242;
+        text-decoration: none;
+    }
+
+    &[href] {
+        cursor: pointer;
+        text-decoration: none;
+        -webkit-transition: opacity 0.4s;
+        transition: opacity 0.4s;
+        will-change: opacity;
+
+        &:hover {
+            opacity: 0.6;
+        }
+    }
+}
+
+.sb-appshell-v1-header-nav_globalnav-link-inner {
+    position: relative;
+    display: inline-block;
+    box-sizing: border-box;
+    height: 28px;
+    padding: 0;
+
+    &::after {
+        display: none;
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background-color: #328cf9;
+    }
+}
+
+.sb-appshell-v1-header-nav_globalnav-link--current .sb-appshell-v1-header-nav_globalnav-link-inner::after {
+    display: block;
+}
+
+.sb-appshell-v1-header-nav_megadropdown {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    min-width: 990px;
+    width: 100%;
+    z-index: 1003;
+}
+
+.sb-appshell-v1-header-nav_megadropdown--show {
+    display: block;
+}
+
+.sb-appshell-v1-header-nav_megadropdown-view {
+    position: relative;
+    z-index: 1003;
+    width: 100%;
+}
+
+.sb-appshell-v1-header-nav_megadropdown-view-inner {
+    position: relative;
+    background: #eaecef;
+    border-bottom: 5px solid #307bf0;
+    overflow: hidden;
+}
+
+.sb-appshell-v1-header-nav_megadropdown-view .ps__rail-y {
+    z-index: 1010;
+}
+
+.sb-appshell-v1-header-nav_megadropdown-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0.3;
+    background-color: #000;
+    z-index: 1002;
+}
+
+.sb-appshell-v1-header-nav_megadropdown-header {
+    width: 100%;
+
+    &::before {
+        display: block;
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 62px;
+        background-color: #4b4d4f;
+        z-index: 1003;
+    }
+}
+
+.sb-appshell-v1-header-nav_megadropdown-header-inner {
+    position: relative;
+    z-index: 1006;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    width: 960px;
+    margin: 0 auto;
+    padding: 15px 0;
+}
+
+.sb-appshell-v1-header-nav_megadropdown-header-search {
+    height: 32px;
+}
+
+.sb-appshell-v1-header-nav_megadropdown-header-search-form {
+    width: auto;
+    height: auto;
+    border: none;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.sb-appshell-v1-header-nav_megadropdown-header-search-form-data {
+    position: relative;
+    width: auto;
+    height: 32px;
+    background-color: transparent;
+    border-radius: 0;
+}
+
+.sb-appshell-v1-header-nav_megadropdown-header-search-form-text {
+    float: none;
+    box-sizing: border-box;
+    padding: 0;
+    width: 0;
+    height: 32px;
+    border: none;
+    font-family: inherit;
+    font-size: 14px;
+    color: #000;
+    background-color: #fff;
+    border-radius: 16px;
+    outline: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-indent: 10px;
+    -webkit-transition: width 0.1s ease-out;
+    transition: width 0.1s ease-out;
+    display: inline-block;
+    margin: 0;
+}
+
+.sb-appshell-v1-header-nav_megadropdown-header-search-form-submit {
+    box-sizing: border-box;
+    border: none;
+    font-size: 11px;
+    background-color: #555555;
+    background-image: url("https://cdn.softbank.jp/site/set/common/sunshine/shared/img/icon-search-white.svg");
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    width: 48px;
+    height: 48px;
+    text-indent: -9999px;
+    overflow: hidden;
+    background-size: 17px;
+    background-position: center center;
+    width: 32px;
+    height: 32px;
+    border-radius: 16px;
+    outline: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    text-indent: -9999px;
+    cursor: pointer;
+    text-decoration: none;
+    -webkit-transition: opacity 0.4s;
+    transition: opacity 0.4s;
+    will-change: opacity;
+    will-change: initial;
+    margin-top: 0px;
+    &:hover {
+        opacity: 0.6;
+    }
+}
+
+.sb-appshell-v1-header-nav_megadropdown-header-search--open {
+    .sb-appshell-v1-header-nav_megadropdown-header-search-form {
+        width: 210px;
+    }
+
+    .sb-appshell-v1-header-nav_megadropdown-header-search-form-text {
+        width: 210px;
+        padding: 5px 40px 5px 5px;
+    }
+
+    .sb-appshell-v1-header-nav_megadropdown-header-search-form-submit {
+        border-radius: 16px;
+        background-color: #000;
+        left: inherit;
+        right: 0;
+    }
+}
+
+.sb-appshell-v1-header-nav_megadropdown-header-close-button {
+    position: relative;
+    display: block;
+    padding: 0;
+    margin: 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #fff;
+    font-size: 16px;
+    line-height: 1;
+    padding-left: 20px;
+    z-index: 1006;
+    text-decoration: none;
+    -webkit-transition: opacity 0.4s;
+    transition: opacity 0.4s;
+    will-change: opacity;
+
+    &:hover {
+        opacity: 0.6;
+    }
+
+    &::before, &::after {
+        display: block;
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 16px;
+        width: 17px;
+        height: 1px;
+        background-color: #fff;
+    }
+
+    &::before {
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+
+    &::after {
+        -webkit-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+    }
+
+    &:link, &:visited, &:active, &:focus, &:hover {
+        color: #fff;
+        text-decoration: none;
+    }
+}
+
+.sb-appshell-v1-header-nav_megadropdown-contents {
+    overflow: hidden;
+    position: relative;
+}
+
+.sb-appshell-v1-header-nav_megadropdown-category-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    z-index: 1004;
+}
+
+.sb-appshell-v1-header-nav_megadropdown-category-item--current {
+    position: relative;
+    z-index: 1005;
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv3-header {
+    text-align: left;
+    min-height: 18px;
+    padding: 22px 0;
+    min-width: 990px;
+    max-width: 990px;
+    padding: 30px 20px 0 10px;
+    box-sizing: border-box;
+    margin: 0 auto 0 auto;
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv3-header-link-text {
+    display: inline-block;
+    color: #333;
+    font-size: 20px;
+    font-weight: normal;
+    line-height: 1;
+    padding: 10px 30px 10px 10px;
+    position: relative;
+    text-decoration: none;
+    -webkit-transition: opacity 0.4s;
+    transition: opacity 0.4s;
+    will-change: opacity;
+
+    &::before {
+        display: block;
+        content: '';
+        position: absolute;
+        right: 2px;
+        top: 50%;
+        width: 9px;
+        height: 9px;
+        border-top: 2px solid #fff;
+        border-right: 2px solid #fff;
+        -webkit-transform: translateY(-50%) rotate(45deg);
+        -ms-transform: translateY(-50%) rotate(45deg);
+        transform: translateY(-50%) rotate(45deg);
+        -webkit-transition: -webkit-transform 0.1s ease-out 0.2s;
+        transition: -webkit-transform 0.1s ease-out 0.2s;
+        transition: transform 0.1s ease-out 0.2s;
+        transition: transform 0.1s ease-out 0.2s, -webkit-transform 0.1s ease-out 0.2s;
+        border-top: 2px solid #333;
+        border-right: 2px solid #333;
+    }
+
+    &:hover {
+        opacity: 0.6;
+    }
+
+    &::before {
+        top: 15px;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv3-header-link a {
+    &:link, &:visited, &:active, &:focus, &:hover {
+        color: #333;
+        text-decoration: none;
+    }
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv3-header-link-text-nolink {
+    display: inline-block;
+    color: #333;
+    font-size: 20px;
+    font-weight: normal;
+    line-height: 1;
+    padding: 10px 10px 10px 10px;
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv3-section {
+    background: #eaecef;
+    padding: 1px 0 50px;
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv4 {
+    min-width: 990px;
+    max-width: 990px;
+    padding: 0 20px;
+    box-sizing: border-box;
+    margin: 0 auto 0 auto;
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv4-title {
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 1;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #3d4041;
+    margin-top: 40px;
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv3-section + .sb-appshell-v1-header-nav_megadropdown-lv3-section .sb-appshell-v1-header-nav_megadropdown-lv4-title {
+    margin-top: 10px;
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv4 > .sb-appshell-v1-header-nav_megadropdown-lv4-list {
+    overflow: hidden;
+    margin: 0px -36px;
+    padding-left: 36px;
+
+    > .sb-appshell-v1-header-nav_megadropdown-lv4-item {
+        width: 25%;
+        padding-top: 36px;
+        padding-left: 36px;
+
+        &:nth-child(4n+1) {
+            margin-left: -36px;
+        }
+
+        &:nth-child(1), &:nth-child(2), &:nth-child(3), &:nth-child(4) {
+            padding-top: 0;
+        }
+    }
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv4-list {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    overflow: visible !important;
+}
+
+@media only screen and (max-width: 990px) {
+    .sb-appshell-v1-header-nav_megadropdown-lv4-list {
+        overflow: hidden !important;
+    }
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv4-item {
+    box-sizing: border-box;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: stretch;
+    -webkit-align-items: stretch;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    line-height: inherit;
+    margin: 0;
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv4 > .sb-appshell-v1-header-nav_megadropdown-lv4-list > .sb-appshell-v1-header-nav_megadropdown-lv4-item {
+    padding-top: 0;
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv4-link-container {
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: stretch;
+    -webkit-align-items: stretch;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+    box-sizing: border-box;
+    width: 100%;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-flow: column nowrap;
+    -ms-flex-flow: column nowrap;
+    flex-flow: column nowrap;
+
+    &::after {
+        display: block;
+        content: '';
+        width: 100%;
+        margin: 0;
+        background-color: #6c6a6a;
+        height: 1px;
+    }
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv4-link {
+    display: -webkit-box!important;
+    display: -webkit-flex!important;
+    display: -ms-flexbox!important;
+    display: flex!important;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    min-height: 60px;
+    font-size: 16px;
+    line-height: 1.5;
+    box-sizing: border-box;
+    padding: 5px 20px 5px 0;
+    width: 100%;
+    outline: none;
+    text-align: left;
+    color: #333;
+    text-decoration: none;
+    font-weight: normal;
+    cursor: pointer;
+    position: relative;
+    text-decoration: none;
+    -webkit-transition: opacity 0.4s;
+    transition: opacity 0.4s;
+    will-change: opacity;
+    -webkit-transition: opacity 0.4s,color 0.2s linear;
+    transition: opacity 0.4s, color 0.2s linear;
+
+    &::before {
+        display: block;
+        content: '';
+        position: absolute;
+        right: 2px;
+        top: 50%;
+        width: 9px;
+        height: 9px;
+        border-top: 2px solid #fff;
+        border-right: 2px solid #fff;
+        -webkit-transform: translateY(-50%) rotate(45deg);
+        -ms-transform: translateY(-50%) rotate(45deg);
+        transform: translateY(-50%) rotate(45deg);
+        -webkit-transition: -webkit-transform 0.1s ease-out 0.2s;
+        transition: -webkit-transform 0.1s ease-out 0.2s;
+        transition: transform 0.1s ease-out 0.2s;
+        transition: transform 0.1s ease-out 0.2s, -webkit-transform 0.1s ease-out 0.2s;
+        border-top: 2px solid #333;
+        border-right: 2px solid #333;
+    }
+
+    &:hover {
+        opacity: 0.6;
+    }
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv4-link--accordion {
+    position: relative;
+
+    &::before {
+        display: block;
+        content: '';
+        position: absolute;
+        top: 50%;
+        right: 0;
+        height: 0;
+        width: 14px;
+        border: none;
+        border-bottom: 2px solid #ffffff;
+        -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+        -webkit-transform: none;
+        -ms-transform: none;
+        transform: none;
+    }
+
+    &::after {
+        display: block;
+        content: '';
+        position: absolute;
+        top: 50%;
+        right: 0;
+        height: 0;
+        width: 14px;
+        border: none;
+        border-bottom: 2px solid #ffffff;
+        -webkit-transform-origin: center;
+        -ms-transform-origin: center;
+        transform-origin: center;
+        -webkit-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        transform: rotate(90deg);
+        -webkit-transition: color 0.3s ease-out 0s, -webkit-transform 0.3s ease-out 0s;
+        transition: color 0.3s ease-out 0s, -webkit-transform 0.3s ease-out 0s;
+        transition: transform 0.3s ease-out 0s, color 0.3s ease-out 0s;
+        transition: transform 0.3s ease-out 0s, color 0.3s ease-out 0s, -webkit-transform 0.3s ease-out 0s;
+        -webkit-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        transform: rotate(90deg);
+    }
+
+    &::before {
+        border-bottom: 2px solid #333;
+        -webkit-transition: border-color 0.2s linear;
+        transition: border-color 0.2s linear;
+    }
+
+    &::after {
+        border-bottom: 2px solid #333;
+        -webkit-transition: border-color 0.2s linear,-webkit-transform 0.3s ease-out 0s;
+        transition: border-color 0.2s linear,-webkit-transform 0.3s ease-out 0s;
+        transition: transform 0.3s ease-out 0s,border-color 0.2s linear;
+        transition: transform 0.3s ease-out 0s, border-color 0.2s linear, -webkit-transform 0.3s ease-out 0s;
+    }
+}
+
+a[target='_blank'].sb-appshell-v1-header-nav_megadropdown-lv4-link {
+    position: relative;
+
+    &::before {
+        display: block;
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 50%;
+        border: none;
+        -webkit-transform: translateY(-50%) rotate(0deg);
+        -ms-transform: translateY(-50%) rotate(0deg);
+        transform: translateY(-50%) rotate(0deg);
+        -webkit-transition: none 0s ease-out 0s;
+        transition: none 0s ease-out 0s;
+        background-image: url("https://cdn.softbank.jp/site/set/common/sunshine/shared/img/icon-blank-white.svg");
+        background-position: 0 0;
+        background-repeat: no-repeat;
+        width: 11px;
+        height: 9px;
+        text-indent: -9999px;
+        overflow: hidden;
+        width: 11px;
+        height: 9px;
+        background-size: 100%;
+        background-image: url("https://cdn.softbank.jp/site/set/common/sunshine/shared/img/icon-blank-black.svg");
+        background-position: 0 0;
+        background-repeat: no-repeat;
+        width: 20px;
+        height: 20px;
+        text-indent: -9999px;
+        overflow: hidden;
+        width: 12px;
+        height: 12px;
+        background-size: 100%;
+    }
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv4 {
+    a {
+        &:link, &:visited, &:active, &:focus, &:hover {
+            color: #333;
+            text-decoration: none;
+        }
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    .sb-appshell-v1-header-nav_megadropdown-lv4-link-container::after {
+        -webkit-transition: height 0.05s linear 0s, margin 0.1s linear 0s, width 0.1s linear 0s, background-color 0.1s linear 0s;
+        transition: height 0.05s linear 0s, margin 0.1s linear 0s, width 0.1s linear 0s, background-color 0.1s linear 0s;
+    }
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv4-item.sb-appshell-v1-header-nav_megadropdown-lv4--open {
+    .sb-appshell-v1-header-nav_megadropdown-lv4-link-container::after {
+        width: 250px;
+        height: 11px;
+        margin: 0 -20px;
+        -webkit-transition: height 0.2s ease-out 0s, margin 0s linear 0s, width 0s linear 0s;
+        transition: height 0.2s ease-out 0s, margin 0s linear 0s, width 0s linear 0s;
+        background-color: #fff;
+    }
+
+    .sb-appshell-v1-header-nav_megadropdown-lv4-link {
+        color: #328cf9;
+
+        &::after {
+            -webkit-transition: color 0.3s ease-out 0s, -webkit-transform 0.3s ease-out 0s;
+            transition: color 0.3s ease-out 0s, -webkit-transform 0.3s ease-out 0s;
+            transition: transform 0.3s ease-out 0s, color 0.3s ease-out 0s;
+            transition: transform 0.3s ease-out 0s, color 0.3s ease-out 0s, -webkit-transform 0.3s ease-out 0s;
+            -webkit-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+            transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+
+        &::before, &::after {
+            border-color: #328cf9;
+        }
+
+        &:link, &:visited, &:active, &:focus, &:hover {
+            color: #328cf9;
+        }
+    }
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv5 {
+    height: 0;
+    overflow: hidden;
+    background-color: #fff;
+
+    &.disp-none {
+        display: none;
+    }
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv5-inner {
+    position: relative;
+    min-width: 990px;
+    max-width: 990px;
+    margin: 0 auto 0 auto;
+    padding: 10px 20px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv5-top {
+    float: left;
+    width: 210px;
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv5-links {
+    float: right;
+    width: 100%;
+    margin: 0 auto 0 auto;
+
+    > .sb-appshell-v1-header-nav_megadropdown-lv5-links-list {
+        overflow: hidden;
+        margin: 0px -36px;
+        padding-left: 36px;
+
+        > .sb-appshell-v1-header-nav_megadropdown-lv5-links-item {
+            width: 25%;
+            padding-top: 36px;
+            padding-left: 36px;
+
+            &:nth-child(4n+1) {
+                margin-left: -36px;
+            }
+
+            &:nth-child(1), &:nth-child(2), &:nth-child(3), &:nth-child(4) {
+                padding-top: 0;
+            }
+        }
+    }
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv5-links-list {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    overflow: visible !important;
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv5-links-item {
+    box-sizing: border-box;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: stretch;
+    -webkit-align-items: stretch;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+    width: 100%;
+    line-height: inherit;
+    margin: 0;
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv5-links > .sb-appshell-v1-header-nav_megadropdown-lv5-links-list > .sb-appshell-v1-header-nav_megadropdown-lv5-links-item {
+    padding-top: 0;
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv5-top + .sb-appshell-v1-header-nav_megadropdown-lv5-links {
+    width: 704px;
+    margin: 0 auto 0 auto;
+
+    > .sb-appshell-v1-header-nav_megadropdown-lv5-links-list {
+        > .sb-appshell-v1-header-nav_megadropdown-lv5-links-item {
+            &:nth-child(4n+1) {
+                margin-left: 0;
+            }
+
+            width: 33.33333%;
+            padding-top: 36px;
+            padding-left: 36px;
+
+            &:nth-child(3n+1) {
+                margin-left: -36px;
+            }
+
+            &:nth-child(1), &:nth-child(2), &:nth-child(3) {
+                padding-top: 0;
+            }
+
+            padding-top: 0;
+        }
+
+        overflow: hidden;
+        margin: 0px -36px;
+        padding-left: 36px;
+    }
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv5-link {
+    display: -webkit-box!important;
+    display: -webkit-flex!important;
+    display: -ms-flexbox!important;
+    display: flex!important;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    min-height: 50px;
+    font-size: 16px;
+    line-height: 1.5;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 5px 20px 5px 0;
+    text-align: left;
+    text-decoration: none;
+    -webkit-transition: opacity 0.4s;
+    transition: opacity 0.4s;
+    will-change: opacity;
+
+    &:hover {
+        opacity: 0.6;
+    }
+
+    &:link, &:visited, &:active, &:focus, &:hover {
+        color: #fff;
+        text-decoration: none;
+        font-weight: normal;
+    }
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv5-link--accordion::before {
+    -webkit-transform: translateY(-80%) rotate(135deg);
+    -ms-transform: translateY(-80%) rotate(135deg);
+    transform: translateY(-80%) rotate(135deg);
+}
+
+a[target='_blank'].sb-appshell-v1-header-nav_megadropdown-lv5-link {
+    position: relative;
+
+    &::before {
+        display: block;
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 50%;
+        border: none;
+        -webkit-transform: translateY(-50%) rotate(0deg);
+        -ms-transform: translateY(-50%) rotate(0deg);
+        transform: translateY(-50%) rotate(0deg);
+        -webkit-transition: none 0s ease-out 0s;
+        transition: none 0s ease-out 0s;
+        background-image: url("https://cdn.softbank.jp/site/set/common/sunshine/shared/img/icon-blank-white.svg");
+        background-position: 0 0;
+        background-repeat: no-repeat;
+        width: 11px;
+        height: 9px;
+        text-indent: -9999px;
+        overflow: hidden;
+        width: 11px;
+        height: 9px;
+        background-size: 100%;
+        background-image: url("https://cdn.softbank.jp/site/set/common/sunshine/shared/img/icon-blank-black.svg");
+        background-position: 0 0;
+        background-repeat: no-repeat;
+        width: 20px;
+        height: 20px;
+        text-indent: -9999px;
+        overflow: hidden;
+        width: 12px;
+        height: 12px;
+        background-size: 100%;
+    }
+}
+
+.sb-appshell-v1-header-nav_megadropdown-footer {
+    padding: 40px 0 20px;
+    background-color: #4b4d4f;
+    box-sizing: border-box;
+}
+
+.sb-appshell-v1-header-nav_megadropdown-footer-support-list {
+    text-align: center;
+    margin: 0 -25px;
+}
+
+.sb-appshell-v1-header-nav_megadropdown-footer-support-link {
+    display: inline-block;
+    margin: 0 25px;
+    font-size: 14px;
+    line-height: 1.57143;
+    position: relative;
+    padding-left: 40px;
+    text-decoration: none;
+    -webkit-transition: opacity 0.4s;
+    transition: opacity 0.4s;
+    will-change: opacity;
+
+    &:hover {
+        opacity: 0.6;
+    }
+
+    &:link, &:visited, &:active, &:focus, &:hover {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    &::before {
+        display: block;
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        background-image: url("https://cdn.softbank.jp/site/set/common/sunshine/shared/img/icon-contact.svg");
+        background-position: 0 0;
+        background-repeat: no-repeat;
+        width: 50px;
+        height: 50px;
+        text-indent: -9999px;
+        overflow: hidden;
+        width: 30px;
+        height: 30px;
+        background-size: 30px 30px;
+    }
+}
+
+.sb-appshell-v1-header-nav_megadropdown-footer-support-link-faq::before {
+    background-image: url("https://cdn.softbank.jp/site/set/common/sunshine/shared/img/icon-faq.svg");
+}
+
+.smb .header {
+    .sb-appshell-v1-header-nav_megadropdown-footer-support-link-documents {
+        padding-left: 27px;
+        color: #fff;
+        display: inline-block;
+    }
+    .sb-appshell-v1-header-nav_megadropdown-footer-support-link-documents::before {
+        width: 20px;
+        height: 22px;
+        background-image: url("https://www.softbank.jp/site/set/common/sunshine/shared/img/icon-documents.svg");
+        background-size: 100% auto
+    }
+}
+ 
+.sb-appshell-v1-header-nav_megadropdown-footer-english {
+    width: 950px;
+    margin: 5px auto 0;
+    text-align: right;
+}
+
+.sb-appshell-v1-header-nav_megadropdown-footer-english-button {
+    display: inline-block;
+    min-width: 120px;
+    min-height: 30px;
+    border: 1px solid #c1c1c2;
+    border-radius: 16px;
+    color: #fff;
+    font-size: 13px;
+    line-height: 1;
+    text-decoration: none;
+    box-sizing: border-box;
+    padding: 9px 10px 8px;
+    text-align: center;
+    font-weight: normal;
+    text-decoration: none;
+    -webkit-transition: opacity 0.4s;
+    transition: opacity 0.4s;
+    will-change: opacity;
+
+    &:hover {
+        opacity: 0.6;
+    }
+
+    &:link, &:visited, &:active, &:focus, &:hover {
+        color: #fff;
+        text-decoration: none;
+    }
+}
+
+.sb-appshell-v1-header-nav_megadropdown-footer-english-button-inner {
+    padding-left: 26px;
+    position: relative;
+
+    &::before {
+        display: block;
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        background-image: url("https://cdn.softbank.jp/site/set/common/sunshine/shared/img/icon-english.png");
+        background-position: 0 0;
+        background-repeat: no-repeat;
+        width: 30px;
+        height: 30px;
+        text-indent: -9999px;
+        overflow: hidden;
+        width: 18px;
+        height: 18px;
+        background-size: 18px 18px;
+    }
+}
+
+.sb-appshell-v1-header-nav_megadropdown-footer-english-button--invisible {
+    visibility: hidden;
+}
+
+.solutions.globalnavi > .header.header02 {
+    display: block;
+    position: relative;
+    height: 80px;
+}
+
+.smb {
+
+    &.solutions.globalnavi {
+        position: relative;
+
+        .header {
+            @media screen and (max-width: 768px) {
+                position: relative;
+                padding-top: 0;
+                height: auto;
+                width: auto;
+            }
+            a.sb-appshell-v1-header_utility-link {
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+            }
+        }
+
+        .header__inner {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 45px;
+        }
+        
+        &:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            border-top: solid 5px #357eec;
+            z-index: 100;
+            @media screen and (max-width: 768px) {
+                border-top: solid 3px #357eec;
+            }
+        }
+    }
+}
+
+.sb-appshell-v1-header-nav_globalnav-link {
+    padding: 0 11px;
+}
+
+.sb-appshell-v1-header-nav_megadropdown {
+    width: 100vw;
+    left: 45%;
+    transform: translateX(-50%);
+    min-width: auto;
+}
+
+.sb-appshell-v1-header-nav_megadropdown-footer-english-button {
+    display: inline-block !important;
+    color: #fff !important;
+}
+
+.sb-appshell-v1-header-nav_megadropdown-header-inner, .sb-appshell-v1-header-nav_megadropdown-lv3-header {
+    width: 100%;
+    max-width: 1350px;
+    padding-left: 35px;
+    padding-right: 35px;
+    min-width: auto;
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv4 {
+    width: 100%;
+    max-width: 1350px;
+    padding: 0 45px;
+    min-width: auto;
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv3-header-link-text {
+    display: inline-block !important;
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv5-inner {
+    width: 100%;
+    max-width: 1350px;
+    padding-left: 35px;
+    padding-right: 35px;
+    min-width: auto;
+}
+
+.sb-appshell-v1-header-nav_megadropdown-lv5-top {
+    width: 25%;
+
+    + .sb-appshell-v1-header-nav_megadropdown-lv5-links {
+        width: 75%;
+    }
+}
+
+.sb-appshell-v1-header-nav_megadropdown-footer-english {
+    width: 100%;
+    max-width: 1350px;
+    padding-left: 35px;
+    padding-right: 35px;
+    min-width: auto;
+}
+
+.sb-appshell-v1-header {
+    display: none;
+}
+
+.sb-appshell-v1-header-fixed-area {
+    display: none !important;
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+
+    .sb-appshell-v1-header-nav_globalnav-link,
+    .sb-appshell-v1-header-nav_megadropdown-lv4-link,
+    .sb-appshell-v1-header-nav_megadropdown-lv5-link {
+        font-size: 13px;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+    .sb-appshell-v1-header-fixed-area {
+        display: block !important;
+    }
+
+    @-webkit-keyframes sunshine-arrowR {
+        0% {
+            -webkit-transform: translate3d(0, 0, 0) rotate(-45deg);
+            transform: translate3d(0, 0, 0) rotate(-45deg);
+        }
+
+        50% {
+            -webkit-transform: translate3d(30%, 0, 0) rotate(-45deg);
+            transform: translate3d(30%, 0, 0) rotate(-45deg);
+        }
+
+        100% {
+            -webkit-transform: translate3d(0, 0, 0) rotate(-45deg);
+            transform: translate3d(0, 0, 0) rotate(-45deg);
+        }
+    }
+
+    @keyframes sunshine-arrowR {
+        0% {
+            -webkit-transform: translate3d(0, 0, 0) rotate(-45deg);
+            transform: translate3d(0, 0, 0) rotate(-45deg);
+        }
+
+        50% {
+            -webkit-transform: translate3d(30%, 0, 0) rotate(-45deg);
+            transform: translate3d(30%, 0, 0) rotate(-45deg);
+        }
+
+        100% {
+            -webkit-transform: translate3d(0, 0, 0) rotate(-45deg);
+            transform: translate3d(0, 0, 0) rotate(-45deg);
+        }
+    }
+
+    .sb-appshell-v1-header-fixed-area {
+        .sb-appshell-v1-header-fixed-area_inner {
+            width: 100%;
+            z-index: 10000;
+        }
+
+        &.sb-appshell-v1-header-fixed-area--sticky {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            z-index: 10000;
+            width: 100%;
+
+            .sb-appshell-v1-header-fixed-area_inner {
+                width: auto;
+            }
+
+            &.sb-appshell-v1-header-fixed-area--fixed .sb-appshell-v1-header-fixed-area_inner {
+                width: 100%;
+            }
+        }
+
+        &.sb-appshell-v1-header-fixed-area--forcefixed {
+            position: relative;
+            z-index: 999;
+            height: 58px;
+
+            .sb-appshell-v1-header-fixed-area_inner {
+                position: fixed;
+                top: 0;
+                z-index: auto;
+                width: 100%;
+            }
+        }
+
+        &.sb-appshell-v1-header-fixed-area--hidden {
+            display: none;
+        }
+
+        &.sb-appshell-v1-header-fixed-area--fixed {
+            position: static;
+
+            .sb-appshell-v1-header-fixed-area_inner {
+                position: fixed;
+                top: 0;
+            }
+
+            &.sb-appshell-v1-header-fixed-area--forcefixed {
+                position: static;
+
+                .sb-appshell-v1-header-fixed-area_inner {
+                    position: fixed;
+                    z-index: 999;
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    .sb-appshell-v1-header {
+        position: relative;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        justify-content: space-between;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        width: 100%;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-size: 14px;
+        line-height: 1.55;
+        color: #333;
+        border: none;
+        background: #ffffff;
+        border-top: 3px solid #357eec;
+        border-bottom: solid 1px #bfbfc0;
+        height: 59px;
+        min-height: 59px;
+    }
+
+    .sb-appshell-v1-header_inner {
+        position: absolute;
+        margin: 0 0;
+        width: auto;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .sb-appshell-v1-header_inner__logo {
+        position: relative;
+        vertical-align: middle;
+        width: 130px;
+        line-height: 1;
+        text-indent: -9999px;
+        padding-left: 13px;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    .sb-appshell-v1-header_inner__logo__image {
+        display: block;
+        width: 107px;
+        height: 29px;
+        line-height: 1;
+        text-indent: -9999px;
+        background: url(https://cdn.softbank.jp/site/set/common/sunshine/shared/img/logo-sb.svg) no-repeat center center;
+        -webkit-background-size: 100% 100%;
+        background-size: 100%;
+        top: 12px;
+    }
+
+    .sb-appshell-v1-header_inner__item {
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        &::before {
+            content: "";
+            display: block;
+            position: absolute;
+            width: 0;
+            height: 20px;
+            top: 50%;
+            left: -2px;
+            transform: translateY(-50%);
+            border-left: solid 1px #bfbfc0;
+        }
+
+        a {
+            padding-left: 16px;
+            color: #333;
+            text-decoration: none;    
+            &:link, &:visited, &:active, &:focus, &:hover {
+                color: #333;
+                outline: none;
+                text-decoration: none;
+            }
+        }
+    }
+
+    .sb-appshell-v1-header_utility {
+        display: table-cell;
+        vertical-align: middle;
+        width: 60px;
+        height: 55px;
+        top: 0;
+        right: 0;
+
+        &::after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+    }
+
+    .sb-appshell-v1-header_menu-button {
+        position: relative;
+        display: block;
+        width: 60px;
+        height: 55px;
+        padding: 0;
+        border: 0;
+        outline: none;
+        cursor: pointer;
+        background-color: #fff;
+        margin-top: 0px;
+    }
+
+    .sb-appshell-v1-header_menu-button-border {
+        display: block;
+        width: 30px;
+        height: 2px;
+        background: #e0e2e5;
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: auto;
+        -webkit-transition: background 0.4s ease-in;
+        transition: background 0.4s ease-in;
+    }
+
+    .sb-appshell-v1-header_menu-button-border-top {
+        -webkit-transform-origin: center;
+        transform-origin: center;
+        top: 13.5px;
+    }
+
+    .sb-appshell-v1-header_menu-button-border-middle {
+        top: 20.5px;
+    }
+
+    .sb-appshell-v1-header_menu-button-border-bottom {
+        top: 27.5px;
+    }
+
+    .sb-appshell-v1-header_menu-button-text {
+        color: #e0e2e5;
+        font-size: 10px;
+        line-height: 1;
+        letter-spacing: 2.8px;
+        position: absolute;
+        left: 11px;
+        top: 34.5px;
+        width: auto;
+        text-align: center;
+        -webkit-transform: scale(0.8);
+        transform: scale(0.8);
+        -webkit-transition: color 0.4s ease-in;
+        transition: color 0.4s ease-in;
+    }
+
+    .sb-appshell-v1-header_menu-button--active {
+        .sb-appshell-v1-header_menu-button-border {
+            background: #363738;
+        }
+
+        .sb-appshell-v1-header_menu-button-text {
+            color: #363738;
+        }
+    }
+
+    .sb-appshell-v1-menu {
+        position: fixed;
+        top: 58px;
+        z-index: 100001;
+        display: none;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        width: 100%;
+        background: #fff;
+
+        &.sb-appshell-v1-menu--show {
+            display: block;
+        }
+
+        &.sb-appshell-v1-menu--hide {
+            display: none;
+        }
+
+        margin: 0;
+        padding: 0;
+        font-size: 14px;
+        line-height: 1.55;
+        color: #fff;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    .sb-appshell-v1-menu_view {
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        background: #4a4d4f;
+        border-top: 3px solid #357eec;
+        border-bottom: 3px solid #0080f4;
+        min-height: 100vh;
+    }
+
+    .sb-appshell-v1-menu_header {
+        padding: 18px 14px 20px 14px;
+    }
+
+    .sb-appshell-v1-menu_footer {
+        padding: 30px 14px 30px 14px;
+    }
+
+    .sb-appshell-v1-menu_link-home {
+        font-size: 15px;
+        color: #fff;
+        text-decoration: none;
+
+        &:focus, &:hover, &:active, &:visited {
+            color: #fff;
+        }
+    }
+
+    .sb-appshell-v1-menu_link-home-icon {
+        width: 18px;
+        height: 18px;
+        margin: -1px 4.5px -2px 0;
+    }
+
+    .sb-appshell-v1-menu_button-close {
+        position: absolute;
+        top: 11.5px;
+        right: 14px;
+        padding: 6px;
+        background: transparent;
+        border: none;
+    }
+
+    .sb-appshell-v1-menu_button-close-line {
+        fill: #ffffff;
+    }
+
+    .sb-appshell-v1-menu_search {
+        position: relative;
+        width: 200px;
+        height: 35px;
+        margin: 0 auto;
+    }
+
+    .sb-appshell-v1-menu_search-form {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: auto;
+        height: auto;
+        border: none;
+        background-color: transparent;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+
+    .sb-appshell-v1-menu_search-form-data {
+        position: relative;
+        width: auto;
+        height: 35px;
+        background-color: transparent;
+        border-radius: 0;
+    }
+
+    .sb-appshell-v1-menu_search-form-label {
+        display: block;
+        overflow: hidden;
+        width: 0;
+        height: 0;
+        text-indent: -9999px;
+    }
+
+    .sb-appshell-v1-menu input[type='text'].sb-appshell-v1-menu_search-form-text {
+        float: none;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 0;
+        width: 0;
+        height: 35px;
+        border: none;
+        font-family: inherit;
+        font-size: 14px;
+        color: #000;
+        background-color: #fff;
+        border-radius: 17px 0 0 17px;
+        outline: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        text-indent: 10px;
+        -webkit-transition: width 0.1s ease-out;
+        transition: width 0.1s ease-out;
+        display: inline-block;
+        margin: 0;
+    }
+
+    .sb-appshell-v1-menu_search-form-submit {
+        position: absolute;
+        right: 0;
+        top: 0;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        border: none;
+        font-size: 11px;
+        background-color: #000;
+        -webkit-background-size: 17px 17px;
+        background-size: 17px;
+        background-position: center center;
+        width: 35px;
+        height: 35px;
+        padding: 0;
+        border-radius: 17px;
+        outline: none;
+        margin-top: 0px;
+    }
+
+    .sb-appshell-v1-menu_search-form-submit-icon {
+        display: block;
+        width: 35px;
+        height: 35px;
+    }
+
+    .sb-appshell-v1-menu_search--open {
+        .sb-appshell-v1-menu_search-form {
+            width: 100%;
+        }
+
+        input[type='text'].sb-appshell-v1-menu_search-form-text {
+            width: 182.5px;
+            padding: 5px 35px 5px 5px;
+        }
+    }
+
+    .sb-appshell-v1-menu_tab {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        background-color: #ebf0f4;
+    }
+
+    .sb-appshell-v1-menu_tab-list {
+        width: 80px;
+
+        &::selection {
+            background: transparent;
+        }
+    }
+
+    .sb-appshell-v1-menu_tab-panels {
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+        flex: 1;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        width: -webkit-calc(100% - 80px);
+        width: calc(100% - 80px);
+        padding: 23px 20px 27.5px 20px;
+        background-color: #fff;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+
+    .sb-appshell-v1-menu_tab-button {
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        width: 100%;
+        min-height: 85px;
+        padding: 10px 0;
+        border: 0;
+        background-color: #ebf0f4;
+        outline: none;
+        font-size: 10px;
+        line-height: 15px;
+        color: #333;
+        text-align: center;
+        -webkit-transition: color 0.3s ease-out, background-color 0.3s ease-out;
+        transition: color 0.3s ease-out, background-color 0.3s ease-out;
+        -webkit-appearance: none;
+        appearance: none;
+
+        &[aria-selected='true'] {
+            color: #0080f4;
+            background-color: #fff;
+        }
+
+        &:first-child {
+            padding-top: 15px;
+        }
+    }
+
+    .sb-appshell-v1-menu_tab-icon {
+        margin: 0 auto 5px auto;
+        width: 45px;
+        height: 45px;
+    }
+
+    .sb-appshell-v1-menu_tab-icon-normal {
+        display: block;
+        -webkit-box-shadow: 0px 0px 2.5px rgba(0, 0, 0, 0.3);
+        box-shadow: 0px 0px 2.5px rgba(0, 0, 0, 0.3);
+        border-radius: 50%;
+    }
+
+    .sb-appshell-v1-menu_tab-icon-current {
+        display: none;
+    }
+
+    [aria-selected='true'] {
+        .sb-appshell-v1-menu_tab-icon-normal {
+            display: none;
+        }
+
+        .sb-appshell-v1-menu_tab-icon-current {
+            display: block;
+            -webkit-animation: sunshineMenuTabButton linear 0.1s;
+            animation: sunshineMenuTabButton linear 0.1s;
+            -webkit-animation-iteration-count: 1;
+            animation-iteration-count: 1;
+            -webkit-transform: scale(1);
+            transform: scale(1);
+        }
+    }
+
+    @-webkit-keyframes sunshineMenuTabButton {
+        0% {
+            -webkit-transform: scale(1);
+            transform: scale(1);
+        }
+
+        30% {
+            -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+        }
+
+        100% {
+            -webkit-transform: scale(1);
+            transform: scale(1);
+        }
+    }
+
+    @keyframes sunshineMenuTabButton {
+        0% {
+            -webkit-transform: scale(1);
+            transform: scale(1);
+        }
+
+        30% {
+            -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+        }
+
+        100% {
+            -webkit-transform: scale(1);
+            transform: scale(1);
+        }
+    }
+
+    .sb-appshell-v1-menu_tab-panel {
+        will-change: opacity;
+
+        &[aria-hidden='true'] {
+            display: none;
+        }
+    }
+
+    .sb-appshell-v1-menu_utility-list {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        max-width: 315px;
+        font-size: 12px;
+        margin: 0 auto;
+    }
+
+    .sb-appshell-v1-menu_utility-item {
+        margin: 20px 0 0 0;
+        padding: 0 19px;
+    }
+
+    .sb-appshell-v1-menu_utility {
+        .sb-appshell-v1-menu_utility-mysoftbank, .sb-appshell-v1-menu_utility-search, .sb-appshell-v1-menu_support-contact, .sb-appshell-v1-menu_support-faq, .sb-appshell-v1-menu_support-bizconciersite, .sb-appshell-v1-menu_support-documents {
+            font-size: 12px;
+            line-height: 18px;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .sb-appshell-v1-menu_utility-mysoftbank-icon, .sb-appshell-v1-menu_utility-search-icon, .sb-appshell-v1-menu_support-contact-icon, .sb-appshell-v1-menu_support-faq-icon, .sb-appshell-v1-menu_support-bizconciersite-icon, .sb-appshell-v1-menu_support-documents-icon {
+            vertical-align: middle;
+        }
+    }
+ 
+    .sb-appshell-v1-menu_utility-search-icon {
+        width: 32px;
+        height: 32px;
+        margin: -11px 4.5px -7px 0;
+    }
+
+    .sb-appshell-v1-menu_support {
+        text-align: center;
+    }
+
+    .sb-appshell-v1-menu_support-list {
+        display: -webkit-inline-box;
+        display: -webkit-inline-flex;
+        display: inline-flex;
+        -webkit-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: center;
+        justify-content: center;
+        max-width: 265px;
+        font-size: 12px;
+        margin: 20px auto 0 auto;
+    }
+
+    .sb-appshell-v1-menu_support-list-w100p {
+        max-width: 100%;
+    }
+
+    .sb-appshell-v1-menu_support {
+        .sb-appshell-v1-menu_utility-mysoftbank, .sb-appshell-v1-menu_utility-search, .sb-appshell-v1-menu_support-contact, .sb-appshell-v1-menu_support-faq, .sb-appshell-v1-menu_support-bizconciersite, .sb-appshell-v1-menu_support-documents {
+            font-size: 12px;
+            color: #fff;
+            line-height: 18px;
+            text-decoration: none;
+        }
+
+        .sb-appshell-v1-menu_utility-mysoftbank-icon, .sb-appshell-v1-menu_utility-search-icon, .sb-appshell-v1-menu_support-contact-icon, .sb-appshell-v1-menu_support-faq-icon, .sb-appshell-v1-menu_support-bizconciersite-icon, .sb-appshell-v1-menu_support-documents-icon {
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+    }
+
+    .sb-appshell-v1-menu_support-item {
+        margin-top: 8px;
+
+        &:not(:last-child) {
+            margin-right: 10px;
+        }
+    }
+
+    .sb-appshell-v1-menu_support-item-ml0 {
+        margin-left: 0;
+    }
+
+    .sb-appshell-v1-menu_support-contact-icon, .sb-appshell-v1-menu_support-faq-icon, .sb-appshell-v1-menu_support-bizconciersite-icon {
+        width: 25px;
+        height: 25px;
+    }
+
+    .sb-appshell-v1-menu_support-documents-icon {
+        width: 18px;
+        height: 19px;
+    }
+
+    .sb-appshell-v1-menu_support .sb-appshell-v1-menu_support-bizconciersite-icon, .sb-appshell-v1-menu_support-documents-icon {
+        margin-right: 4px;
+    }
+
+    .sb-appshell-v1-menu_english {
+        margin-top: 30px;
+        text-align: right;
+
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+
+    .sb-appshell-v1-menu_english-button {
+        display: inline-block;
+        width: 120px;
+        height: 30px;
+        border: 1px solid #c1c1c2;
+        border-radius: 15px;
+        color: #fff;
+        font-weight: normal;
+        font-size: 11px;
+        line-height: 1;
+        text-decoration: none;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 8px;
+        text-align: center;
+
+        &:link, &:visited, &:active, &:focus, &:hover {
+            color: #fff;
+            text-decoration: none;
+        }
+    }
+
+    .sb-appshell-v1-menu_english-button-inner {
+        position: relative;
+        padding-left: 23px;
+
+        &::before {
+            content: '';
+            display: block;
+            position: absolute;
+            left: 0;
+            top: -1px;
+            background-image: url("https://cdn.softbank.jp/site/set/common/sunshine/shared/img/icon-english.png");
+            background-position: 0 0;
+            background-repeat: no-repeat;
+            width: 15px;
+            height: 15px;
+            -webkit-background-size: 15px 15px;
+            background-size: 15px 15px;
+            text-indent: -9999px;
+            overflow: hidden;
+            width: 15px;
+            height: 15px;
+            background-size: 15px 15px;
+        }
+    }
+
+    .sb-appshell-v1-menu_english-button--invisible {
+        visibility: hidden;
+    }
+
+    .sb-appshell-v1-menu_sitemap-category-title {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 18px;
+        line-height: 24px;
+        color: #0080f4;
+        font-weight: normal;
+        text-decoration: none;
+    }
+
+    .sb-appshell-v1-menu .sb-appshell-v1-menu_tab .sb-appshell-v1-menu_sitemap-lv3-title {
+        display: block;
+        padding: 15px 30px 14px 10px;
+        color: #333;
+        font-size: 14px;
+        line-height: 21px;
+        font-weight: normal;
+        text-decoration: none;
+
+        &:focus, &:hover, &:active, &:visited {
+            color: #333;
+        }
+
+        &:last-child {
+            border-bottom: 1px solid #bfbfbf;
+        }
+
+        &:not([aria-expanded]):not([target='_blank']) {
+            position: relative;
+
+            &::before {
+                display: block;
+                content: '';
+                position: absolute;
+                right: 12px;
+                top: 50%;
+                width: 8px;
+                height: 8px;
+                border-top: 1px solid #333;
+                border-right: 1px solid #333;
+                -webkit-transform: translateY(-50%) rotate(45deg);
+                transform: translateY(-50%) rotate(45deg);
+                -webkit-transition: -webkit-transform 0.1s ease-out 0.2s;
+                transition: -webkit-transform 0.1s ease-out 0.2s;
+                transition: transform 0.1s ease-out 0.2s;
+                transition: transform 0.1s ease-out 0.2s, -webkit-transform 0.1s ease-out 0.2s;
+            }
+        }
+
+        &[aria-expanded] {
+            position: relative;
+        }
+
+        &[aria-expanded='false'] {
+            border-bottom: 1px solid #bfbfbf;
+        }
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv4[aria-hidden='true'] {
+        margin-left: 15px;
+        margin-bottom: 15px;
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv3-title {
+        &[aria-expanded] {
+            &::before {
+                display: block;
+                content: '';
+                position: absolute;
+                top: 50%;
+                right: 10px;
+                height: 0;
+                width: 10px;
+                border: none;
+                border-bottom: 1px solid #333;
+                -webkit-transform: translateY(-50%);
+                transform: translateY(-50%);
+                -webkit-transform: none;
+                transform: none;
+            }
+
+            &::after {
+                display: block;
+                content: '';
+                position: absolute;
+                top: 50%;
+                right: 10px;
+                height: 0;
+                width: 10px;
+                border: none;
+                border-bottom: 1px solid #333;
+                -webkit-transform-origin: center;
+                transform-origin: center;
+                -webkit-transform: rotate(90deg);
+                transform: rotate(90deg);
+                -webkit-transition: color 0.3s ease-out 0s, -webkit-transform 0.3s ease-out 0s;
+                transition: color 0.3s ease-out 0s, -webkit-transform 0.3s ease-out 0s;
+                transition: transform 0.3s ease-out 0s, color 0.3s ease-out 0s;
+                transition: transform 0.3s ease-out 0s, color 0.3s ease-out 0s, -webkit-transform 0.3s ease-out 0s;
+                -webkit-transform: rotate(90deg);
+                transform: rotate(90deg);
+            }
+        }
+
+        &[aria-expanded='true']::after {
+            -webkit-transition: color 0.3s ease-out 0s, -webkit-transform 0.3s ease-out 0s;
+            transition: color 0.3s ease-out 0s, -webkit-transform 0.3s ease-out 0s;
+            transition: transform 0.3s ease-out 0s, color 0.3s ease-out 0s;
+            transition: transform 0.3s ease-out 0s, color 0.3s ease-out 0s, -webkit-transform 0.3s ease-out 0s;
+            -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+
+        &[target='_blank'] {
+            position: relative;
+
+            &::before {
+                display: block;
+                content: '';
+                position: absolute;
+                right: 10px;
+                top: 50%;
+                border: none;
+                -webkit-transform: translateY(-50%) rotate(0deg);
+                transform: translateY(-50%) rotate(0deg);
+                -webkit-transition: none 0s ease-out 0s;
+                transition: none 0s ease-out 0s;
+                background-image: url("https://cdn.softbank.jp/site/set/common/sunshine/shared/img/icon-blank-black.svg");
+                background-position: 0 0;
+                background-repeat: no-repeat;
+                width: 10px;
+                height: 10px;
+                -webkit-background-size: 10px 10px;
+                background-size: 10px 10px;
+                text-indent: -9999px;
+                overflow: hidden;
+                width: 10px;
+                height: 10px;
+                -webkit-background-size: 100% 100%;
+                background-size: 100%;
+            }
+        }
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv3-list {
+        margin: 0;
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv4 {
+        overflow: hidden;
+        height: 0;
+        border-bottom: 1px solid #bfbfbf;
+        margin-left: 0px;
+        margin-bottom: 0px;
+        -webkit-transition: margin-left 0.1s ease-out 0.2s, margin-bottom 0.1s ease-out 0.1s;
+        transition: margin-left 0.1s ease-out 0.2s, margin-bottom 0.1s ease-out 0.1s;
+
+        &[aria-hidden='false'] {
+            margin-left: 15px;
+            margin-bottom: 15px;
+            -webkit-transition: margin-left 0.1s ease-out 0s, margin-bottom 0.1s ease-out 0s;
+            transition: margin-left 0.1s ease-out 0s, margin-bottom 0.1s ease-out 0s;
+        }
+
+        &.disp-none {
+            display: none;
+        }
+    }
+
+    .sb-appshell-v1-menu .sb-appshell-v1-menu_tab .sb-appshell-v1-menu_sitemap-lv4-title {
+        display: block;
+        padding: 13px 30px 13px 15px;
+        color: #333;
+        font-size: 13px;
+        line-height: 18.5px;
+        font-weight: normal;
+        text-decoration: none;
+
+        &:focus, &:hover, &:active, &:visited {
+            color: #333;
+        }
+
+        &:not([aria-expanded]):not([target='_blank']) {
+            position: relative;
+
+            &::before {
+                display: block;
+                content: '';
+                position: absolute;
+                right: 12px;
+                top: 50%;
+                width: 8px;
+                height: 8px;
+                border-top: 1px solid #333;
+                border-right: 1px solid #333;
+                -webkit-transform: translateY(-50%) rotate(45deg);
+                transform: translateY(-50%) rotate(45deg);
+                -webkit-transition: -webkit-transform 0.1s ease-out 0.2s;
+                transition: -webkit-transform 0.1s ease-out 0.2s;
+                transition: transform 0.1s ease-out 0.2s;
+                transition: transform 0.1s ease-out 0.2s, -webkit-transform 0.1s ease-out 0.2s;
+            }
+        }
+
+        &[aria-expanded] {
+            position: relative;
+
+            &::before {
+                display: block;
+                content: '';
+                position: absolute;
+                top: 50%;
+                right: 10px;
+                height: 0;
+                width: 10px;
+                border: none;
+                border-bottom: 1px solid #333;
+                -webkit-transform: translateY(-50%);
+                transform: translateY(-50%);
+                -webkit-transform: none;
+                transform: none;
+            }
+
+            &::after {
+                display: block;
+                content: '';
+                position: absolute;
+                top: 50%;
+                right: 10px;
+                height: 0;
+                width: 10px;
+                border: none;
+                border-bottom: 1px solid #333;
+                -webkit-transform-origin: center;
+                transform-origin: center;
+                -webkit-transform: rotate(90deg);
+                transform: rotate(90deg);
+                -webkit-transition: color 0.3s ease-out 0s, -webkit-transform 0.3s ease-out 0s;
+                transition: color 0.3s ease-out 0s, -webkit-transform 0.3s ease-out 0s;
+                transition: transform 0.3s ease-out 0s, color 0.3s ease-out 0s;
+                transition: transform 0.3s ease-out 0s, color 0.3s ease-out 0s, -webkit-transform 0.3s ease-out 0s;
+                -webkit-transform: rotate(90deg);
+                transform: rotate(90deg);
+            }
+        }
+
+        &[aria-expanded='true']::after {
+            -webkit-transition: color 0.3s ease-out 0s, -webkit-transform 0.3s ease-out 0s;
+            transition: color 0.3s ease-out 0s, -webkit-transform 0.3s ease-out 0s;
+            transition: transform 0.3s ease-out 0s, color 0.3s ease-out 0s;
+            transition: transform 0.3s ease-out 0s, color 0.3s ease-out 0s, -webkit-transform 0.3s ease-out 0s;
+            -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+
+        &[target='_blank'] {
+            position: relative;
+
+            &::before {
+                display: block;
+                content: '';
+                position: absolute;
+                right: 10px;
+                top: 50%;
+                border: none;
+                -webkit-transform: translateY(-50%) rotate(0deg);
+                transform: translateY(-50%) rotate(0deg);
+                -webkit-transition: none 0s ease-out 0s;
+                transition: none 0s ease-out 0s;
+                background-image: url("https://cdn.softbank.jp/site/set/common/sunshine/shared/img/icon-blank-black.svg");
+                background-position: 0 0;
+                background-repeat: no-repeat;
+                width: 10px;
+                height: 10px;
+                -webkit-background-size: 10px 10px;
+                background-size: 10px 10px;
+                text-indent: -9999px;
+                overflow: hidden;
+                width: 10px;
+                height: 10px;
+                -webkit-background-size: 100% 100%;
+                background-size: 100%;
+            }
+        }
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv4-list {
+        border-left: 1px solid #bfbfbf;
+        margin: 0;
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv4-item {
+        border-bottom: 1px solid #bfbfbf;
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv5 {
+        overflow: hidden;
+        height: 0;
+
+        &.disp-none {
+            display:none;
+        }
+    }
+
+    .sb-appshell-v1-menu .sb-appshell-v1-menu_tab .sb-appshell-v1-menu_sitemap-lv5-title {
+        display: block;
+        padding: 8.5px 30px 8.5px 25.5px;
+        color: #333;
+        font-size: 12px;
+        line-height: 18px;
+        font-weight: normal;
+        text-decoration: none;
+
+        &:focus, &:hover, &:active, &:visited {
+            color: #333;
+        }
+
+        &[target='_blank'] {
+            position: relative;
+
+            &::before {
+                display: block;
+                content: '';
+                position: absolute;
+                right: 10px;
+                top: 50%;
+                border: none;
+                -webkit-transform: translateY(-50%) rotate(0deg);
+                transform: translateY(-50%) rotate(0deg);
+                -webkit-transition: none 0s ease-out 0s;
+                transition: none 0s ease-out 0s;
+                background-image: url("https://cdn.softbank.jp/site/set/common/sunshine/shared/img/icon-blank-black.svg");
+                background-position: 0 0;
+                background-repeat: no-repeat;
+                width: 10px;
+                height: 10px;
+                -webkit-background-size: 10px 10px;
+                background-size: 10px 10px;
+                text-indent: -9999px;
+                overflow: hidden;
+                width: 10px;
+                height: 10px;
+                -webkit-background-size: 100% 100%;
+                background-size: 100%;
+            }
+        }
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv5-list {
+        padding: 15px 0;
+        margin: 0;
+    }
+
+    .sb-appshell-v1-menu_sitemap-lv3-item a:hover, .sb-appshell-v1-menu_header a:hover {
+        text-decoration: none;
+    }
+
+    .sb-appshell-v1-header {
+        display: block;
+    }
+}
+
+.sb-appshell-v1-header-nav_megadropdown-category-item {
+    transition: all 0.4s ease-in-out;
+    transform: translateX(100%);
+    opacity: 0;
+
+    &.sb-appshell-v1-header-nav_megadropdown-category-item--current {
+        transition: all 0.4s ease-in-out;
+        transform: translateX(0%);
+        opacity: 1;
+    }
+
+    &.sb-appshell-v1-header-nav_megadropdown-category-item--preview {
+        transition: all 0.2s ease-in-out;
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+}

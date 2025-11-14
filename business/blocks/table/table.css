@@ -1,0 +1,255 @@
+.table-container {
+
+    .table-wrapper{
+        margin-top: 48px;
+  
+        @media (width <= 768px) {
+            margin-top: 32px;
+        }
+    }
+
+    /* 表組みのタイトル */
+    .default-content-wrapper:has(h5) + .table-wrapper{
+        margin-top: 8px;
+    }
+
+    .default-content-wrapper{
+        h5{
+            @media (width <= 768px) {
+                font-size: 14px;
+            }
+        }
+    }
+
+    /* テーブル上のテキスト */
+    &.table-top-text-right{
+        .default-content-wrapper:has(p){
+            p{
+                text-align: right;
+            }
+        }
+    }
+    &.table-top-text-center{
+        .default-content-wrapper:has(p){
+            p{
+                text-align: center;
+            }
+        }
+    }
+    &.table-top-text-left{
+        .default-content-wrapper:has(p){
+            p{
+                text-align: left;
+            }
+        }
+    }
+
+    &.table-top-text-right,
+    &.table-top-text-center,
+    &.table-top-text-left{
+        .default-content-wrapper:has(p){
+            + .table-wrapper{
+                margin-top: 8px;
+            }
+
+            margin-top: 32px;
+
+            @media (width <= 768px) {
+                margin-top: 20px;
+            }
+        }
+    }
+}
+
+.table{
+    table {
+        width: 100%;
+        overflow-x: auto;
+        border-collapse: collapse;
+        font-size: var(--text-font-size-m);
+
+        /* @media (width <= 768px) {
+            min-width: 600px;
+        } */
+
+        tr{
+            th, td{
+                padding: 16px;
+                border: 1px solid var(--border-black-02);
+
+                &:not([data-valign]) {
+                    vertical-align: top;
+                }
+
+                @media (width <= 768px) {
+                    padding: 8px;
+                }
+            }
+
+            th{
+                /* width: 240px; */
+                text-align: center;
+                font-weight: 700;
+                background-color: var(--background-gray-01);
+
+                @media (width <= 768px) {
+                    /* width: 120px; */
+                }
+
+                p{
+                    font-weight: 700;
+
+                    &:first-child{
+                        margin-top: 0;
+                    }
+                }
+                
+            }
+
+            td{
+                text-align: left;
+                line-height: 1.75;
+                
+                @media (width <= 768px) {
+                    line-height: 1.5;
+                }
+
+                ul,
+                ol{
+                    font-size: var(--text-font-size-m);
+                    padding-left: 1.25em;
+                    margin-top: 16px;
+        
+                    @media (width <= 768px) {
+                        margin-top: 12px;
+                    }
+                }
+                ul{
+                    list-style-type: disc;
+                }
+                ol{
+                    list-style-type: decimal;
+                }
+
+                /* 2階層のulデザイン */
+                ul ul{
+                    list-style-type: circle;
+                    margin-top: 0;
+                    padding-left: 20px;
+                }
+
+                /* 3階層のulデザイン */
+                ul ul ul{
+                    list-style-type: circle;
+                    margin-top: 0;
+                    padding-left: 20px;
+                }
+
+                /* 2階層のolデザイン */
+                ol ol{
+                    list-style-type: lower-alpha;
+                    margin-top: 0;
+                    padding-left: 20px;
+                }
+
+                /* 3階層のolデザイン */
+                ol ol ol{
+                    list-style-type: lower-roman;
+                    margin-top: 0;
+                    padding-left: 20px;
+                }
+
+                /* captionクラスの装飾なし */
+                ul.caption{
+                    list-style-type: none;
+                    padding-left: 0;
+                }
+
+                /* captionクラス内のネストされたulも装飾なし */
+                ul.caption ul{
+                    list-style-type: none;
+                    padding-left: 0;
+                }
+
+                /* captionクラス内のulのmargin-topを0に */
+                ul.caption ul{
+                    margin-top: 0;
+                }
+
+                > p:first-child,
+                > ul:first-child,
+                > ol:first-child{
+                    margin-top: 0;
+                }
+            }
+        }
+    }
+
+    &.gray01{
+        table{
+            tr{
+                th{
+                    background-color: var(--background-gray-01);
+                }
+            }
+        }
+    }
+    &.gray02{
+        table{
+            tr{
+                th{
+                    background-color: #d9d9d9;
+                }
+            }
+        }
+    }
+    &.gray03{
+        table{
+            tr{
+                th{
+                    background-color: #bfbfbf;
+                }
+            }
+        }
+    }
+    &.scroll{
+        overflow-x: scroll;
+        table{
+            width: 120%;
+        }
+        &.size-w-150{
+            table{
+                width: 150%;
+            }
+        }
+        &.size-w-200{
+            table{
+                width: 200%;
+            }
+        }
+    }
+    &.scroll-sp-only{
+        @media (width <= 768px) {
+            overflow-x: scroll;
+        }
+        table{
+            @media (width <= 768px) {
+                width: 120%;
+            }
+        }
+        &.size-w-150{
+            table{
+                @media (width <= 768px) {
+                    width: 150%;
+                }
+            }
+        }
+        &.size-w-200{
+            table{
+                @media (width <= 768px) {
+                    width: 200%;
+                }
+            }
+        }
+    }
+}

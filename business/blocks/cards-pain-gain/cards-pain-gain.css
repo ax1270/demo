@@ -1,0 +1,65 @@
+.cards-pain-gain{
+    margin-top: 40px;
+}
+
+.cards-pain-gain-inner{
+    display: flex;
+    width: 100%;
+    gap: 8px;
+    justify-content: space-between;
+
+    @media (width <= 768px) {
+        flex-direction: column;
+    }
+}
+
+.cards-pain-gain-content{
+    width: calc((100% - (8px * 2 + 24px)) / 2);
+    border-radius: 4px;
+    background: #F4F8FA;
+    padding: 24px;
+
+    @media (width <= 768px) {
+        width: 100%;
+    }
+}
+
+.cards-pain-gain-title{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: var(--heading-font-size-xxs);
+    margin-top: 0;
+}
+
+.cards-pain-gain-title img{
+    width: 24px;
+}
+
+.cards-pain-gain-content.-after .cards-pain-gain-title{
+    color: var(--text-blue);
+}
+
+.cards-pain-gain-arrow{
+    width: 24px;
+    height: 24px;
+    margin: auto;
+    transform: rotate(180deg);
+
+    @media (width <= 768px) {
+        transform: rotate(270deg);
+    }
+}
+
+.cards-pain-gain-content ul{
+    list-style-type: disc;
+    padding-left: 1.25em;
+    margin-top: 16px;
+}
+
+.cards-pain-gain-content ul li{
+    line-height: 1.5;
+}
+.cards-pain-gain-content ul li + li{
+    margin-top: 12px;
+}

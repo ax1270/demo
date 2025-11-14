@@ -1,0 +1,22 @@
+.highlight-block{
+    background: var(--background-blue-01);
+    border-radius: 8px;
+    padding: 24px;
+    margin-top: 32px;
+
+    @media (width <= 768px) {
+        margin-top: 24px;
+    }
+
+    p{
+        font-weight: 700;
+
+        & + &{
+            margin-top: 8px;
+        }
+    }
+
+    > div > div > p:first-child{
+        margin-top: 0;
+    }
+}

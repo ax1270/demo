@@ -1,0 +1,161 @@
+.anchor-link{
+    width: 100vw;
+    margin-inline: calc(50% - 50vw);
+    padding: 16px;
+
+    @media (width <= 768px) {
+        padding: 8px 24px;
+    }
+
+    /* 奇数の場合 */
+    &.is-odd-items {
+        @media (width <= 768px) {
+            ul > li:last-child {
+                border-bottom: none;
+            }
+        }
+    }
+
+    /* 偶数の場合 */
+    &.is-even-items {
+        @media (width <= 768px) {
+            ul > li:nth-last-child(-n+2) {
+                border-bottom: none;
+            }
+        }
+    }
+
+    /* シャドウあり */
+    &.shadow{
+        box-shadow: 0px 6px 4px -2px rgba(0, 0, 0, 0.08);
+        @media (width <= 768px) {
+            box-shadow: 0px 3px 2px -1px rgba(0, 0, 0, 0.08);
+        }
+    }
+
+    /* 背景白 */
+    &.bg-white{
+        background: var(--background-color);
+    }
+
+    /* 背景ネイビー */
+    &.bg-navy{
+        background: var(--background-navy);
+        ul > li > a{
+            color: var(--text-white);
+            &::after{
+                background-color: var(--text-white);
+            }
+            &:hover{
+                color: var(--text-light-blue);
+
+                &::after{
+                    background-color: var(--text-light-blue);
+                }
+            }
+        }
+    }
+
+    /* テキスト白 */
+    &.text-white{
+        ul > li > a{
+            color: var(--text-white);
+            &::after{
+                background-color: var(--text-white);
+            }
+            &:hover{
+                color: var(--text-light-blue);
+                &::after{
+                    background-color: var(--text-light-blue);
+                }
+            }
+        }
+    }
+
+    ul{
+        display: flex;
+        max-width: 1200px;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 16px 0;
+        margin: 0 auto;
+        @media (768px < width <= 1200px) {
+            flex-wrap: wrap;
+            row-gap: 16px;
+        }
+
+        @media (width <= 768px) {
+            align-items: stretch;
+            justify-content: flex-start;
+            gap: 0;
+            padding: 0;
+        }
+
+        > li{
+            border-right: 1px solid var(--border-gray);
+
+            @media (768px < width) {
+                &:last-of-type{
+                    border-right: none;
+                }
+            }
+
+            @media (width <= 768px) {
+                display: flex;
+                width: 50%;
+                align-items: center;
+                border-right: none;
+                border-bottom: 1px solid var(--border-gray);
+                padding: 10px 0;
+
+                &:nth-child(odd) {
+                    a{
+                        border-right: 1px solid var(--border-gray);
+                    }
+                }
+            }
+
+            a{
+                display: inline-flex;
+                color: var(--text-black);
+                font-size: 14px;
+                font-weight: 700;
+                line-height: 150%; /* 21px */
+                align-items: center;
+                gap: 4px;
+                padding: 5.5px 24px 5.5px 32px;
+                transition: all .2s ease;
+
+                @media (width <= 768px) {
+                    width: 100%;
+                    height: 34px;
+                    align-items: center;
+                    padding: 0 12px;
+                    line-height: 120%; /* 16.8px */
+                    justify-content: space-between;
+                }
+
+                &::after{
+                    content: "";
+                    display: block;
+                    width: 1em;
+                    height: 1em;
+                    background-color: var(--link-black);
+                    mask-repeat: no-repeat;
+                    mask-position: center;
+                    mask-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNCIgaGVpZ2h0PSIxNCIgdmlld0JveD0iMCAwIDE0IDE0IiBmaWxsPSJub25lIj4gICA8cGF0aCBkPSJNNyA5LjYyNUwyLjYyNSA1LjU2MDQ4TDMuOTAxMDQgNC4zNzVMNyA3LjI1NDAzTDEwLjA5OSA0LjM3NUwxMS4zNzUgNS41NjA0OEw3IDkuNjI1WiIgZmlsbD0iIzFDMUMxQyIvPiA8L3N2Zz4=');
+                    transition: background-color .2s ease;
+                }
+
+                &:hover{
+                    color: var(--text-blue);
+
+                    &::after{
+                        background-color: var(--text-blue);
+                    }
+                }
+            }
+        }
+    }
+}

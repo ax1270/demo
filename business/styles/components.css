@@ -1,0 +1,338 @@
+/* ========================================
+     Component Styles
+     ======================================== */
+
+/* buttons */
+a.button:any-link,
+button {
+    display: inline-flex;
+    padding: 8px 34px 8px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border-radius: 4px;
+    background: var(--btn-blue);
+    color: var(--background-color);
+    text-align: center;
+    font-family: var(--body-font-family);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-decoration: none !important;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.3s ease;
+
+    &::after{
+        content: '';
+        display: block;
+        width: 1em;
+        height: 1em;
+        background: url("/business/icons/arrow-white.svg") no-repeat center / contain !important;
+        margin: 0 !important;
+        position: absolute;
+        top: 50%;
+        right: 12px;
+        transform: translate(0, -45%);
+    }
+
+    &[target="_blank"]:not(.anchor-link):not(.pdf-link):not(.zip-link){
+        &::after{
+            background-image: url("/business/icons/target-blank-white.svg") !important;
+        }
+    }
+    &.pdf-link{
+        padding-right: 48px;
+        &::after {
+        background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIj4gICA8cGF0aCBkPSJNMTUuMzk3OSAxMC40OTIxVjExLjU0MUgxMi44NzRWMTMuMTcyOEgxNC42MzYyVjE0LjIyMTZIMTIuODc0VjE2LjM3NzlIMTEuODIzN1YxMC40OTIxSDE1LjM5NzlaTTQuMzkyNTggMTIuNTQ4OEM0LjM5MjU4IDEyLjMwNDggNC4zNDkwMyAxMi4wNjE3IDQuMjE1MzMgMTEuODg2N0M0LjEwMTg5IDExLjczODUgMy44NDgyNCAxMS41NDExIDMuMjAzMTIgMTEuNTQxSDIuNTgzNVYxMy41NTUxSDMuMjAzMTJDMy44NDgyNCAxMy41NTUgNC4xMDE4OSAxMy4zNTkxIDQuMjE1MzMgMTMuMjEwOUM0LjM0OTMgMTMuMDM1OSA0LjM5MjUyIDEyLjc5MjkgNC4zOTI1OCAxMi41NDg4Wk05LjUzNzExIDEzLjMxNDlDOS41MzcxMSAxMi40MjY2IDkuMzMyMDIgMTIuMDExOSA5LjEzODY3IDExLjgxNDlDOC45NDk0MiAxMS42MjIxIDguNjc2ODggMTEuNTQxIDguMzEyNSAxMS41NDFINy41MzkwNlYxNS4wODczSDguMzEyNUM4LjY3Njg4IDE1LjA4NzMgOC45NDk0MiAxNS4wMDYyIDkuMTM4NjcgMTQuODEzNEM5LjMzMTk2IDE0LjYxNjUgOS41MzcgMTQuMjAyNiA5LjUzNzExIDEzLjMxNDlaTTEwLjU4NzQgMTMuMzE0OUMxMC41ODczIDE0LjM0MDkgMTAuMzUxNyAxNS4wNzU3IDkuODg3MjEgMTUuNTQ4OEM5LjQxODQ4IDE2LjAyNjEgOC44MTQ3NCAxNi4xMzYyIDguMzEyNSAxNi4xMzYySDYuNDg4NzdWMTAuNDkyMUg4LjMxMjVDOC44MTQ3MyAxMC40OTIxIDkuNDE4NDggMTAuNjAyMiA5Ljg4NzIxIDExLjA3OTVDMTAuMzUxOCAxMS41NTI3IDEwLjU4NzQgMTIuMjg4NSAxMC41ODc0IDEzLjMxNDlaTTUuNDQyODcgMTIuNTQ4OEM1LjQ0MjgyIDEyLjg3ODggNS4zOTA2MSAxMy40MDEzIDUuMDQ4ODMgMTMuODQ4MUM0LjY4NjAyIDE0LjMyMiA0LjA4MTU4IDE0LjYwNTMgMy4yMDMxMiAxNC42MDU0SDIuNzczOTNWMTYuMTM2MkgxLjUzNDY3VjEwLjQ5MjFIMy4yMDMxMkM0LjA4MTU4IDEwLjQ5MjMgNC42ODYwMiAxMC43NzQxIDUuMDQ4ODMgMTEuMjQ4QzUuMzkxIDExLjY5NTEgNS40NDI4NyAxMi4yMTg3IDUuNDQyODcgMTIuNTQ4OFoiIGZpbGw9IndoaXRlIi8+ICAgPHBhdGggZD0iTTE5Ljk5OTQgNy45OTk1MVYyMi4wMDA1SDQuMDAwMzdWMTguMDEwM0g1Ljk5OTg4VjE5Ljk5OTVIMTcuOTk5OVY5SDEzLjAwMDRWNC4wMDA0OUg1Ljk5OTg4VjguOTMyNjJINC4wMDAzN1YxLjk5OTUxSDEzLjk5OTRMMTkuOTk5NCA3Ljk5OTUxWiIgZmlsbD0id2hpdGUiLz4gPC9zdmc+') !important;
+        width: 1.5em;
+        height: 1.5em;
+        }
+    }
+    &.zip-link{
+        padding-right: 48px;
+        &::after {
+        background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 22V2H14L20 8V22H4ZM13 9V4H6V20H18V9H13Z" fill="white"/><path d="M7.49966 3.98804H9.22465V5.71303H7.49966V3.98804Z" fill="white"/><path d="M7.49971 7.4355H9.2247V9.16049H7.49971V7.4355Z" fill="white"/><path d="M9.22376 5.71177H10.9488V7.43676H9.22376V5.71177Z" fill="white"/><path d="M9.2247 9.16049L10.9488 9.15955V10.8845H9.22376L9.2247 9.16049Z" fill="white"/><path d="M7.49971 10.8937H9.2247V12.6187H7.49971V10.8937Z" fill="white"/><path d="M10.0867 13.4875C10.0921 13.4985 10.9495 15.2182 10.9495 16.9373C10.9492 17.7993 10.5169 18.6614 9.22387 18.6614C7.93112 18.6612 7.49997 17.7992 7.49974 16.9373C7.49974 15.2127 8.36254 13.4875 8.36254 13.4875H10.0867ZM9.22533 16.0745C8.74873 16.0745 8.36129 16.4607 8.36107 16.9373C8.36107 17.414 8.74859 17.8015 9.22533 17.8015C9.70185 17.8013 10.0881 17.4138 10.0881 16.9373C10.0879 16.4609 9.70171 16.0747 9.22533 16.0745Z" fill="white"/></svg>') !important;
+        width: 1.5em;
+        height: 1.5em;
+        }
+    }
+}
+
+a.button,
+button {
+    transition: all 0.3s ease;
+}
+
+a.button:hover,
+a.button:focus {
+    cursor: pointer;
+    position: relative;
+    background-color: var(--btn-blue-hover);
+}
+
+/* SVGボタン専用のホバースタイル */
+.svg-button:hover,
+.svg-button:focus {
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+
+button:disabled,
+button:disabled:hover {
+    background-color: var(--background-blue-01);
+    cursor: unset;
+}
+
+a.button.primary {
+    background-color: var(--link-orange);
+}
+
+a.button.primary:hover,
+a.button.primary:focus{
+    background-color: var(--btn-orange-hover);
+}
+
+a.button.secondary {
+    background-color: var(--background-color);
+    color: var(--text-black);    
+}
+
+a.button.secondary:hover,
+a.button.secondary:focus {
+    background-color: var(--btn-white-hover);
+}
+
+a.button.tertiary {
+    background-color: transparent;
+    border: 2px solid var(--btn-black);
+    color: var(--text-black);
+}
+
+/* 黒アイコン */
+a.button.tertiary,
+a.button.secondary{
+    &::after {
+        background-image: url("/business/icons/arrow-right.svg") !important;
+    }
+
+    &[target="_blank"]:not(.anchor-link):not(.pdf-link):not(.zip-link)::after{
+        background-image: url("/business/icons/target-blank-black.svg") !important;
+    }
+
+    &.pdf-link::after {
+        filter: brightness(0) saturate(100%) invert(20%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(100%);
+    }
+
+    &.zip-link::after {
+        filter: brightness(0) saturate(100%) invert(20%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(100%);
+    }
+}
+
+a.button.tertiary:hover,
+a.button.tertiary:focus {
+    background-color: var(--btn-white-hover);
+}
+
+/* text-link buttons */
+a.button.text-link {
+    color: var(--link-blue);
+    background-color: transparent;
+
+    &::after {
+        background-image: url("/business/icons/arrow-blue.svg") !important;
+        transform: translate(0, -45%) rotate(180deg);
+    }
+
+    &[target="_blank"]:not(.anchor-link):not(.pdf-link):not(.zip-link){
+        &::after {
+            background-image: url("/business/icons/target-blank-blue.svg") !important;
+            transform: translate(0, -45%);
+        }
+    }
+
+    &.pdf-link::after {
+        filter: brightness(0) saturate(100%) invert(26%) sepia(97%) saturate(2878%) hue-rotate(214deg) brightness(101%) contrast(101%);
+        transform: translate(0, -45%) rotate(0deg);
+    }
+
+    &.zip-link::after {
+        filter: brightness(0) saturate(100%) invert(26%) sepia(97%) saturate(2878%) hue-rotate(214deg) brightness(101%) contrast(101%);
+        transform: translate(0, -45%) rotate(0deg);
+    }
+}
+
+a.button.text-link:hover,
+a.button.text-link:focus {
+    text-decoration: underline !important;
+}
+
+/* anchor link buttons */
+a.button.button-anchor-link {
+    &::after {
+        transform: translate(0, -50%) rotate(90deg) !important;
+    }
+}
+
+a.button.button-anchor-link.secondary {
+    &::after {
+        transform: translate(0, -50%) rotate(90deg) !important;
+    }
+}
+
+/* buttons-wrapper */
+.buttons-wrapper {
+        display: flex;
+        gap: 8px;
+        margin-top: 32px;
+
+        .button{
+                height: 100%;
+        }
+}
+@media (width <= 768px) {
+        .buttons-wrapper {
+                &:has(.button-container:only-child),
+                &:has(.button-container:nth-child(n+3)) {
+                        flex-direction: column;
+                        .button-container .button {
+                                width: 100%;
+                        }
+                }
+                .button-container .button {
+                        text-align: left;
+                        justify-content: flex-start;
+                }
+        }
+}
+
+/* キャプション */
+ol.caption, ul.caption {
+        margin-top: 16px;
+        font-size: 12px;
+        line-height: 1.25;
+        list-style-type: none !important;
+    
+        @media (width <= 768px) {
+            margin-top: 8px;
+        }
+    
+        p, li{
+            font-size: 12px !important;
+            line-height: 1.25 !important;
+            margin-top: 0;
+        }
+    
+        a{
+            font-size: 12px !important;
+            text-decoration: underline;
+            img{
+                margin-inline: 3px;
+            }
+        }
+}
+ol.caption{
+        text-indent: -2em !important;
+        padding-left: 2em !important;
+        counter-reset: caption-counter;
+
+        li::before{
+                content: '※' counter(caption-counter);
+                counter-increment: caption-counter;
+                margin-right: 0.5em;
+        }
+}
+ul.caption{
+        text-indent: -1em !important;
+        padding-left: 1em !important;
+
+        li::before{
+                content: '※' !important;
+        }
+}
+    
+@media (width <= 768px) {
+        .caption {
+            font-size: 11px;
+            line-height: 1.273;
+    
+            p{
+                font-size: 11px;
+                line-height: 1.273;
+            }
+        }
+}
+
+/* パンくずリスト */
+.breadcrumbs{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        height: var(--nav-breadcrumbs-height);
+        max-width: none;
+        font-size: 11px;
+        background-color: #e6e8eb;
+        padding: 0;
+
+        ol{
+                display: flex;
+                width: 100%;
+                align-items: center;
+                max-width: 1350px;
+                padding: 0 45px;
+                margin: 0 auto;
+
+                > li{
+                        display: flex;
+                        width: fit-content;
+                        align-items: center;
+
+                        &:first-child{
+                                &::before{
+                                        content: '';
+                                        width: 12px;
+                                        height: 11px;
+                                        background: url("/business/icons/home.svg") no-repeat center / contain;
+                                        margin-right: 6px;
+                                }
+                        }
+
+                        a{
+                                color: currentcolor;
+                        }
+
+                        & + &{
+                                &::before{
+                                        content: ">";
+                                        display: block;
+                                        margin: 0 6px;
+                                        font-size: 12px;
+                                }
+                        }
+                }
+        }
+}
+
+@media (width <= 768px) {
+        .breadcrumbs{
+                overflow-x: scroll;
+                white-space: nowrap;
+
+                ol{
+                        padding: 0 0 0 20px;
+
+                        > li{
+                                display: flex;
+                                width: fit-content;
+                                align-items: center;
+
+                                &:last-child{
+                                        padding-right: 20px;
+                                }
+                        }
+                }
+        }
+}

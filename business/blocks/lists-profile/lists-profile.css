@@ -1,0 +1,98 @@
+.lists-profile{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  border-radius: 8px;
+  background: var(--background-color);
+  box-shadow: 0 2px 4px 2px rgba(0, 0, 0, 0.08);
+  padding: 40px;
+  margin-top: 64px;
+
+  @media (width <= 768px) {
+    padding: 24px;
+    margin-top: 32px;
+  }
+}
+
+.lists-profile-title h2,
+.lists-profile-title h3,
+.lists-profile-title h4,
+.lists-profile-title h5{
+  font-size: 18px;
+  text-align: center;
+  margin-top: 0;
+}
+
+.lists-profile-items-wrap{
+  display: flex;
+  gap: 24px 32px;
+  flex-wrap: wrap;
+  width: 100%;
+
+  @media (width <= 768px) {
+    gap: 24px;
+  }
+}
+
+/* 基本レイアウトパターン */
+.lists-profile-items-wrap .lists-profile-items {
+  display: flex;
+  flex: 0 0 100%; /* デフォルトは1列 */
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 24px;
+}
+
+.lists-profile-items-wrap .lists-profile-items picture{
+  display: block;
+  width: 100px;
+  height: 100px;
+  border-radius: 1000vmax;
+  overflow: hidden;
+}
+
+.lists-profile-items-wrap .lists-profile-items picture img{
+  object-fit: cover;
+}
+
+.lists-profile-items-wrap .lists-profile-items p{
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* 2列レイアウト */
+.lists-profile-items-wrap.items-2 .lists-profile-items,
+.lists-profile-items-wrap.items-4 .lists-profile-items {
+  flex: 0 0 calc((100% - 32px) / 2);
+}
+
+/* 3列レイアウト */
+.lists-profile-items-wrap.items-3 .lists-profile-items,
+.lists-profile-items-wrap.items-6 .lists-profile-items {
+  flex: 0 0 calc((100% - (32px * 2)) / 3);
+}
+
+/* 5つの場合の特別処理：上段3列、下段2列 */
+.lists-profile-items-wrap.items-5 .lists-profile-items {
+  flex: 0 0 calc((100% - (32px * 2)) / 3);
+}
+.lists-profile-items-wrap.items-5 .lists-profile-items:nth-child(n+4) {
+  flex: 0 0 calc((100% - 32px) / 2);
+}
+
+/* レスポンシブ対応：SPでの特別レイアウト */
+@media (max-width: 768px) {  
+  /* SPでの基本レイアウト：2列 */
+  .lists-profile-items-wrap .lists-profile-items {
+    flex: 0 0 calc((100% - 24px) / 2) !important;
+  }
+  
+  /* 奇数要素の場合：最後の1つだけ100% */
+  .lists-profile-items-wrap.items-1 .lists-profile-items,
+  .lists-profile-items-wrap.items-3 .lists-profile-items:nth-child(3),
+  .lists-profile-items-wrap.items-5 .lists-profile-items:nth-child(5) {
+    flex: 0 0 100% !important;
+  }
+}

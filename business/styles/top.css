@@ -1,0 +1,127 @@
+/* ========================================
+   Top Styles
+   ======================================== */
+
+/* index - トップページ */
+main.index {
+    padding-bottom: 0;
+}
+
+/* index-section */
+section.index-section.section{
+    max-width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 0 !important;
+
+    .index-section-content{
+        max-width: 1248px;
+        margin: 0 auto;
+        padding: 96px 24px;
+
+        @media (width <= 768px) {
+            padding: 64px 24px;
+        }
+    }
+
+    /* タイトル */
+    hgroup{
+        
+        p{
+            color: #166DFF;
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 1;
+        }
+        h2{
+            font-size: 46px;
+            line-height: 140%; /* 64.4px */
+            margin-top: 8px;
+
+            @media (width <= 768px) {
+                font-size: 28px;
+            }
+        }
+    }
+
+    /* ボタン */
+    .button-container{
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        margin-top: 40px;
+
+        @media (width <= 768px) {
+            margin-top: 32px;
+        }
+
+        .button{
+            width: fit-content;
+            padding: 16px 40px;
+            border-radius: 100px;
+            background: var(--link-blue);
+            line-height: 150%; /* 24px */
+            transition: all 0.3s ease;
+
+            @media (width <= 768px) {
+                width: 100%;
+                padding: 12px;
+            }
+
+            &::after{
+                display: none;
+            }
+
+            &:hover{
+                opacity: 1;
+                background-color: #0f5acc;
+            }
+        }
+    }
+
+    /* バリエーション */
+
+    /* 文字色白 */
+    &.text-white{
+        hgroup h2{
+            color: var(--text-white);
+        }
+
+        .button-container .button{
+            border: 2px solid var(--background-color);
+            background-color: transparent;
+
+            &:hover{
+                background-color: var(--background-color);
+                color: var(--text-black);
+            }
+        }
+    }
+
+    /* 背景色 */
+    &.bg-blue{
+        background-color: var(--background-blue-02);
+    }
+
+    /* 見出し中央寄せ */
+    &.section-contact{
+        hgroup{
+            text-align: center;
+
+            p{
+                color: var(--text-white);
+            }
+
+            h2{
+                @media (width <= 768px) {
+                    font-size: 24px;
+                }
+            }
+        }
+    }
+
+    /* cards-seminar */    
+    .card-seminar-item{
+        flex: 1; /* トップのみコンテンツ数に応じてカラム幅が可変 */
+    }
+}

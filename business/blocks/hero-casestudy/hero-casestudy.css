@@ -1,0 +1,35 @@
+.hero-casestudy{
+    margin-top: 64px;
+}
+
+.hero-casestudy-date{
+    font-weight: 700;
+    font-size: var(--heading-font-size-xs);
+}
+.hero-casestudy-img + .hero-casestudy-date{
+    margin-top: 32px;
+}
+
+.hero-casestudy-title{
+    margin-top: 16px;
+}
+
+.hero-casestudy-content a.button{
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 16px 32px;
+    margin-top: 24px;
+}
+.hero-casestudy-content a.button::after{
+    font-size: 15px;
+    position: static;
+    transform: translateY(1.5px);
+}
+
+/* PDFリンクの場合はダウンロードアイコンを表示 */
+.hero-casestudy-content a.button[href$=".pdf"][target="_blank"]:not(.button-anchor-link)::after{
+    width: 24px;
+    height: 24px;
+    background-image: url('/business/icons/download-white.svg') !important;
+}

@@ -1,0 +1,126 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+ul,
+ol,
+dl,
+dd,
+th,
+td,
+hr,
+iframe,
+fieldset,
+legend,
+button,
+input,
+textarea,
+select,
+option {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+small,
+sub,
+sup,
+th {
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+caption,
+th {
+    text-align: left;
+}
+
+a,
+ins,
+abbr[title] {
+    text-decoration: none;
+}
+
+html {
+    text-size-adjust: 100%;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: rgb(0 0 0 / 0%);
+}
+
+body {
+    line-height: 1;
+    text-size-adjust: 100%;
+}
+
+main {
+    display: block;
+}
+
+ul,
+ol {
+    list-style-type: none;
+    padding-inline-start: 0;
+    padding: 0;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+a {
+    color: inherit;
+}
+
+q::before,
+q::after {
+    content: none;
+}
+
+mark {
+    background: none;
+    color: inherit;
+}
+
+button,
+input,
+textarea,
+select {
+    background: none;
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    letter-spacing: inherit;
+}
+
+fieldset {
+    min-inline-size: auto;
+}
+
+select {
+    border-radius: 0;
+    appearance: none;
+}
+
+select::-ms-expand {
+    display: none;
+}

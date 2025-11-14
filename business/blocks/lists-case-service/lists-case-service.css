@@ -1,0 +1,87 @@
+/* lists-case-service ブロック全体 */
+.lists-case-service{
+  margin-top: 40px;
+
+}
+
+.lists-case-service-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px 24px;
+
+  @media (width <= 768px) {
+    gap: 24px;
+  }
+}
+
+/* 各アイテム（li要素） */
+.lists-case-service-items {
+  display: flex;
+  flex: 0 0 calc((100% - 24px) / 2);
+  gap: 32px;
+  padding: 40px 24px;
+  background: var(--background-color);
+  flex-direction: column;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px 2px rgba(0, 0, 0, 0.08);
+
+  @media (width <= 768px) {
+    flex: 0 0 100%;
+    gap: 32px;
+  }
+}
+
+/* 奇数の場合: 最後の1つのみ1列レイアウト＆横並び */
+.lists-case-service-wrap.odd .lists-case-service-items:last-child {
+  flex: 0 0 100%;
+  flex-direction: row; /* 最後の要素のみ横並び */
+  gap: 40px;
+  align-items: center;
+
+  @media (width <= 768px) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 32px;
+  }
+}
+
+/* コンテンツ部分（左側: 見出しとテキスト） */
+.lists-case-service-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.lists-case-service-content h1,
+.lists-case-service-content h2,
+.lists-case-service-content h3,
+.lists-case-service-content h4,
+.lists-case-service-content h5,
+.lists-case-service-content h6 {
+  font-size: var(--heading-font-size-s);
+  text-align: left !important;
+  margin-top: 0;
+}
+
+.lists-case-service-content p {
+  line-height: 1.5;
+}
+
+/* ボタン部分（右側） */
+.lists-case-service-buttons {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.lists-case-service-buttons .button-container {
+  margin: 0;
+}
+
+.lists-case-service-buttons .button {
+  width: 100%;
+  white-space: nowrap;
+}
+

@@ -1,0 +1,85 @@
+.index-teaser {
+    color: var(--background-color);
+    position: relative;
+    margin: 0 calc(50% - 50vw);
+    padding: 48px calc(50vw - 50%);
+    text-align: left;
+}
+.index-teaser-inner {
+    padding-inline: 40px;
+}
+.index-teaser .index-teaser-img picture {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+.index-teaser .index-teaser-img picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 背景画像のPCとSP出し分け */
+@media (width >= 769px) {
+    .index-teaser .index-teaser-img .sp-only{
+        display: none;
+    }
+}
+@media (width <= 768px) {
+    .index-teaser .index-teaser-img .pc-only{
+        display: none;
+    }
+}
+
+.index-teaser-content > *:first-child {
+    margin-top: 0;
+}
+
+.index-teaser-content .pretitle {
+    font-size: 16px;
+    line-height: 1;
+}
+.index-teaser-content h1 {
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 1.25;
+    margin-top: 8px;
+}
+
+.index-teaser-content .button-container {
+    margin-top: 24px;
+}
+.index-teaser-content a.button{
+    width: fit-content;
+    padding: 16px 40px;
+    border-radius: 100px;
+    background: var(--link-blue);
+    line-height: 150%;
+    transition: all 0.3s ease;
+
+    &::after{
+        display: none;
+    }
+
+    &:hover{
+        opacity: 1;
+        background-color: #0f5acc;
+    }
+}
+
+@media only screen and (width <= 768px){
+    .index-teaser {
+        margin-top: 0;
+        padding-block: 48px;
+    }
+    .index-teaser-inner {
+        padding-inline: 0;
+    }
+    .index-teaser-content a.button{
+        width: 100%;
+        padding: 12px;
+    }
+}
