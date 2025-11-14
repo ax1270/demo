@@ -27,6 +27,11 @@
     text-decoration: none;
     color: #333;
 }
+.smb a:not(.button)[target="_blank"] {
+    &::after {
+        content: none;
+    }
+}
 .smb button {
     text-align: left;
 }
