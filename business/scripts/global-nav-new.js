@@ -10,6 +10,7 @@
  */
 
 import { loadFragment } from '../blocks/fragment/fragment.js';
+import decorateSearchWidget from '../blocks/header/header-search-widget.js';
 
 // 定数定義
 const MEGAMENU_FILENAME = 'header-megamenu.json';
@@ -35,6 +36,35 @@ function isExternalLink(href) {
   ];
   
   return !internalPatterns.some(pattern => href.includes(pattern));
+}
+
+/**
+ * セクションからpタグの情報を取得するヘルパー関数
+ * @param {Element} section セクション要素
+ * @returns {Object|null} {text, href, hasLink} または null
+ */
+function extractParagraphInfo(section) {
+  if (!section) return null;
+  
+  const p = section.querySelector('p');
+  if (!p) return null;
+
+  const link = p.querySelector('a');
+  let text = '';
+  let href = '';
+  let hasLink = false;
+
+  if (link) {
+    href = link.getAttribute('href') || '';
+    text = link.textContent.trim();
+    hasLink = !!href;
+  } else {
+    text = p.textContent.trim();
+  }
+
+  if (!text) return null;
+
+  return { text, href, hasLink };
 }
 
 /**
@@ -394,26 +424,6 @@ function createPCMegadropdown(menuStructure) {
   footerSupportList.appendChild(documentsLink);
   footerSupport.appendChild(footerSupportList);
   footer.appendChild(footerSupport);
-
-  const footerEnglish = document.createElement('div');
-  footerEnglish.className = 'sb-appshell-v1-header-nav_megadropdown-footer-english';
-
-  const englishLink = document.createElement('a');
-  englishLink.href = 'https://global.tm.softbank.jp/en/';
-  englishLink.className = 'sb-appshell-v1-header-nav_megadropdown-footer-english-button';
-  
-  // 外部リンク判定
-  if (isExternalLink(englishLink.href)) {
-    englishLink.target = '_blank';
-  }
-
-  const englishSpan = document.createElement('span');
-  englishSpan.className = 'sb-appshell-v1-header-nav_megadropdown-footer-english-button-inner';
-  englishSpan.textContent = 'ENGLISH';
-
-  englishLink.appendChild(englishSpan);
-  footerEnglish.appendChild(englishLink);
-  footer.appendChild(footerEnglish);
 
   viewInner.appendChild(footer);
   view.appendChild(viewInner);
@@ -797,27 +807,6 @@ function createSPMenuFooter() {
 
   support.appendChild(supportList);
   footer.appendChild(support);
-
-  // ENGLISHセクション
-  const english = document.createElement('div');
-  english.className = 'sb-appshell-v1-menu_english';
-
-  const englishLink = document.createElement('a');
-  englishLink.href = 'https://global.tm.softbank.jp/en/';
-  englishLink.className = 'sb-appshell-v1-menu_english-button';
-  
-  // 外部リンク判定
-  if (isExternalLink(englishLink.href)) {
-    englishLink.target = '_blank';
-  }
-
-  const englishSpan = document.createElement('span');
-  englishSpan.className = 'sb-appshell-v1-menu_english-button-inner';
-  englishSpan.textContent = 'ENGLISH';
-
-  englishLink.appendChild(englishSpan);
-  english.appendChild(englishLink);
-  footer.appendChild(english);
 
   // SVGシンボル定義
   const svgContainer = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -1376,39 +1365,24 @@ function createPCHeader(menuStructure, fragment) {
   if (fragment) {
     const sections = fragment.querySelectorAll('.section');
     if (sections.length > 1) {
-      const secondSection = sections[1];
-      const p = secondSection.querySelector('p');
-      if (p) {
-        const link = p.querySelector('a');
-        let titleText = '';
-        let titleHref = '';
-        let hasLink = false;
+      const info = extractParagraphInfo(sections[1]);
+      
+      if (info) {
+        const titleDiv = document.createElement('div');
+        titleDiv.className = 'header__ttl__item';
 
-        if (link) {
-          titleHref = link.getAttribute('href') || '';
-          titleText = link.textContent.trim();
-          hasLink = !!titleHref;
+        if (info.hasLink) {
+          const titleLink = document.createElement('a');
+          titleLink.href = info.href;
+          titleLink.textContent = info.text;
+          titleDiv.appendChild(titleLink);
         } else {
-          titleText = p.textContent.trim();
+          const titleSpan = document.createElement('span');
+          titleSpan.textContent = info.text;
+          titleDiv.appendChild(titleSpan);
         }
 
-        if (titleText) {
-          const titleDiv = document.createElement('div');
-          titleDiv.className = 'header__ttl__item';
-
-          if (hasLink) {
-            const titleLink = document.createElement('a');
-            titleLink.href = titleHref;
-            titleLink.textContent = titleText;
-            titleDiv.appendChild(titleLink);
-          } else {
-            const titleSpan = document.createElement('span');
-            titleSpan.textContent = titleText;
-            titleDiv.appendChild(titleSpan);
-          }
-
-          headerTtl.appendChild(titleDiv);
-        }
+        headerTtl.appendChild(titleDiv);
       }
     }
   }
@@ -1510,6 +1484,61 @@ function createUtilityMenu(fragment) {
     }
   }
 
+  // 検索ウィジェットを追加
+  const searchUtilityItem = document.createElement('div');
+  searchUtilityItem.className = 'sb-appshell-v1-header_utility-item sb-appshell-v1-header_utility-item--search';
+  
+  // 検索ウィジェット用のコンテナ
+  const searchWidgetContainer = document.createElement('div');
+  searchWidgetContainer.className = 'header-search-widget-container';
+  
+  searchUtilityItem.appendChild(searchWidgetContainer);
+  utilityList.appendChild(searchUtilityItem);
+
+  // 検索ウィジェットを初期化（DOMに追加された後に実行）
+  setTimeout(() => {
+    decorateSearchWidget(searchWidgetContainer);
+  }, 0);
+
+  // オーサリング情報: Section 4からボタンを取得
+  if (fragment) {
+    const sections = fragment.querySelectorAll('.section');
+    if (sections.length > 3) {
+      const info = extractParagraphInfo(sections[3]);
+
+      if (info) {
+        const utilityItem = document.createElement('div');
+        utilityItem.className = 'sb-appshell-v1-header_utility-item sb-appshell-v1-header_utility-item--bordered';
+
+        if (info.hasLink) {
+          const utilityLink = document.createElement('a');
+          utilityLink.href = info.href;
+          utilityLink.className = 'sb-appshell-v1-header_utility-link';
+
+          const utilitySpan = document.createElement('span');
+          utilitySpan.className = 'sb-appshell-v1-header_utility-link-inner';
+          utilitySpan.textContent = info.text;
+
+          utilityLink.appendChild(utilitySpan);
+          utilityItem.appendChild(utilityLink);
+        } else {
+          const utilitySpan = document.createElement('span');
+          utilitySpan.className = 'sb-appshell-v1-header_utility-link';
+          utilitySpan.style.cursor = 'default';
+
+          const textSpan = document.createElement('span');
+          textSpan.className = 'sb-appshell-v1-header_utility-link-inner';
+          textSpan.textContent = info.text;
+
+          utilitySpan.appendChild(textSpan);
+          utilityItem.appendChild(utilitySpan);
+        }
+
+        utilityList.appendChild(utilityItem);
+      }
+    }
+  }
+
   utility.appendChild(utilityList);
   return utility;
 }
@@ -1577,39 +1606,24 @@ function createSPHeader(menuStructure, fragment) {
   if (fragment) {
     const sections = fragment.querySelectorAll('.section');
     if (sections.length > 1) {
-      const secondSection = sections[1];
-      const p = secondSection.querySelector('p');
-      if (p) {
-        const link = p.querySelector('a');
-        let spTitleText = '';
-        let spTitleHref = '';
-        let spHasLink = false;
+      const info = extractParagraphInfo(sections[1]);
 
-        if (link) {
-          spTitleHref = link.getAttribute('href') || '';
-          spTitleText = link.textContent.trim();
-          spHasLink = !!spTitleHref;
+      if (info) {
+        const spItem = document.createElement('div');
+        spItem.className = 'sb-appshell-v1-header_inner__item';
+
+        if (info.hasLink) {
+          const spItemLink = document.createElement('a');
+          spItemLink.href = info.href;
+          spItemLink.textContent = info.text;
+          spItem.appendChild(spItemLink);
         } else {
-          spTitleText = p.textContent.trim();
+          const spItemSpan = document.createElement('span');
+          spItemSpan.textContent = info.text;
+          spItem.appendChild(spItemSpan);
         }
 
-        if (spTitleText) {
-          const spItem = document.createElement('div');
-          spItem.className = 'sb-appshell-v1-header_inner__item';
-
-          if (spHasLink) {
-            const spItemLink = document.createElement('a');
-            spItemLink.href = spTitleHref;
-            spItemLink.textContent = spTitleText;
-            spItem.appendChild(spItemLink);
-          } else {
-            const spItemSpan = document.createElement('span');
-            spItemSpan.textContent = spTitleText;
-            spItem.appendChild(spItemSpan);
-          }
-
-          spHeaderInner.appendChild(spItem);
-        }
+        spHeaderInner.appendChild(spItem);
       }
     }
   }

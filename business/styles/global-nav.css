@@ -2951,3 +2951,102 @@ a[target='_blank'].sb-appshell-v1-header-nav_megadropdown-lv5-link {
         opacity: 0;
     }
 }
+
+/* ヘッダー検索ウィジェットのスタイル */
+.sb-appshell-v1-header_utility-item--search {
+    margin-left: 20px;
+}
+
+/* Section 4ボタンの区切り線 */
+.sb-appshell-v1-header_utility-item--bordered {
+    position: relative;
+    padding-left: 25px;
+}
+
+.sb-appshell-v1-header_utility-item--bordered::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    width: 0;
+    height: 26px;
+    border-left: solid 1px #bfbfc0;
+}
+
+.header-search-widget-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* 検索ウィジェットのラッパー（ヘッダー用にコンパクトサイズ） */
+.header-search-widget-container .search-trigger-wrapper {
+    position: relative;
+    width: auto;
+    height: auto;
+    padding: 8px 20px 7px;
+    box-sizing: border-box;
+}
+
+.header-search-widget-container .search-trigger-wrapper:hover {
+    opacity: 0.6;
+}
+
+/* コンテンツ表示用のラッパー */
+.header-search-widget-container .search-content-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 100%;
+    pointer-events: none;
+}
+
+/* 検索アイコン */
+.header-search-widget-container .search-icon {
+    width: 18px;
+    height: 18px;
+    background-image: url('/business/icons/search-header.svg');
+    background-size: contain;
+}
+
+/* 検索テキスト */
+.header-search-widget-container .search-text {
+    color: #333;
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 1;
+}
+
+/* 検索入力フィールド（透明で全体をカバー） */
+.header-search-widget-container .search-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: transparent;
+    outline: none;
+    opacity: 0;
+    cursor: pointer;
+    border-radius: 15px;
+}
+
+.header-search-widget-container .search-input::placeholder {
+    opacity: 0;
+}
+
+/* gen-search-widgetのスタイルをヘッダー用に調整 */
+.header-search-widget-container gen-search-widget {
+    display: block;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .sb-appshell-v1-header_utility-item--search {
+        display: none;
+    }
+}
