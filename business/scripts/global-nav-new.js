@@ -16,6 +16,26 @@ const MEGAMENU_FILENAME = 'header-megamenu.json';
 const AUTHORING_INFO_PATH = '/global-nav';
 
 /**
+ * 外部リンクかどうかを判定する
+ * lifecycle.jsの処理と同じロジックを使用
+ * @param {string} href リンクのhref属性
+ * @returns {boolean} 外部リンクの場合true
+ */
+function isExternalLink(href) {
+  if (!href) return false;
+  
+  // 内部サイトのURLパターン
+  const internalPatterns = [
+    'https://main--softbank-eds-develop--aquaring.aem.page/',
+    'https://main--aem-eds--softbankbtob.aem.page/',
+    'https://www.softbank.jp/biz/',
+    'http://localhost:3000/',
+  ];
+  
+  return !internalPatterns.some(pattern => href.includes(pattern));
+}
+
+/**
  * メガメニューデータを取得する関数
  * @param {string} navPath ナビゲーションパス
  * @returns {Promise<Array>} メガメニューデータ
@@ -116,7 +136,13 @@ function createGlobalNavItem(menuItem) {
     const a = document.createElement('a');
     a.href = menuItem.link || '#';
     a.className = 'sb-appshell-v1-header-nav_globalnav-link';
-    if (menuItem.target) a.target = menuItem.target;
+    
+    // 外部リンク判定（自動判定を優先、JSONのtargetは将来廃止予定）
+    if (isExternalLink(a.href)) {
+      a.target = '_blank';
+    } else if (menuItem.target) {
+      a.target = menuItem.target;
+    }
 
     const span = document.createElement('span');
     span.className = 'sb-appshell-v1-header-nav_globalnav-link-inner';
@@ -166,7 +192,13 @@ function createLv4Item(item) {
       topLink.href = item.link;
       topLink.className = 'sb-appshell-v1-header-nav_megadropdown-lv5-link';
       topLink.textContent = `${item.label} トップ`;
-      if (item.target) topLink.target = item.target;
+      
+      // 外部リンク判定（自動判定を優先、JSONのtargetは将来廃止予定）
+      if (isExternalLink(topLink.href)) {
+        topLink.target = '_blank';
+      } else if (item.target) {
+        topLink.target = item.target;
+      }
 
       lv5Top.appendChild(topLink);
       lv5Inner.appendChild(lv5Top);
@@ -188,7 +220,13 @@ function createLv4Item(item) {
         lv5Link.href = child.link || '#';
         lv5Link.className = 'sb-appshell-v1-header-nav_megadropdown-lv5-link';
         lv5Link.textContent = child.label;
-        if (child.target) lv5Link.target = child.target;
+        
+        // 外部リンク判定（自動判定を優先、JSONのtargetは将来廃止予定）
+        if (isExternalLink(lv5Link.href)) {
+          lv5Link.target = '_blank';
+        } else if (child.target) {
+          lv5Link.target = child.target;
+        }
 
         lv5Item.appendChild(lv5Link);
         lv5LinksList.appendChild(lv5Item);
@@ -206,7 +244,13 @@ function createLv4Item(item) {
     link.href = item.link || '#';
     link.className = 'sb-appshell-v1-header-nav_megadropdown-lv4-link';
     link.textContent = item.label;
-    if (item.target) link.target = item.target;
+    
+    // 外部リンク判定（自動判定を優先、JSONのtargetは将来廃止予定）
+    if (isExternalLink(link.href)) {
+      link.target = '_blank';
+    } else if (item.target) {
+      link.target = item.target;
+    }
 
     container.appendChild(link);
     li.appendChild(container);
@@ -236,9 +280,14 @@ function createMegadropdownCategoryItem(menuItem) {
     headerLink.href = menuItem.link;
     headerLink.className = 'sb-appshell-v1-header-nav_megadropdown-lv3-header-link-text';
     headerLink.textContent = `${menuItem.label} トップ`;
-    if (menuItem.target) {
+    
+    // 外部リンク判定（自動判定を優先、JSONのtargetは将来廃止予定）
+    if (isExternalLink(headerLink.href)) {
+      headerLink.target = '_blank';
+    } else if (menuItem.target) {
       headerLink.target = menuItem.target;
     }
+    
     headerLinkDiv.appendChild(headerLink);
   } else {
     const headerSpan = document.createElement('span');
@@ -334,6 +383,11 @@ function createPCMegadropdown(menuStructure) {
   documentsLink.href = '/biz/resources/documents/';
   documentsLink.className = 'sb-appshell-v1-header-nav_megadropdown-footer-support-link sb-appshell-v1-header-nav_megadropdown-footer-support-link-documents';
   documentsLink.textContent = '資料ダウンロード';
+  
+  // 外部リンク判定
+  if (isExternalLink(documentsLink.href)) {
+    documentsLink.target = '_blank';
+  }
 
   footerSupportList.appendChild(documentsLink);
   footerSupport.appendChild(footerSupportList);
@@ -345,6 +399,11 @@ function createPCMegadropdown(menuStructure) {
   const englishLink = document.createElement('a');
   englishLink.href = 'https://global.tm.softbank.jp/en/';
   englishLink.className = 'sb-appshell-v1-header-nav_megadropdown-footer-english-button';
+  
+  // 外部リンク判定
+  if (isExternalLink(englishLink.href)) {
+    englishLink.target = '_blank';
+  }
 
   const englishSpan = document.createElement('span');
   englishSpan.className = 'sb-appshell-v1-header-nav_megadropdown-footer-english-button-inner';
@@ -432,7 +491,13 @@ function createSPLv3Item(menuItem) {
     link.href = menuItem.link || '#';
     link.className = 'sb-appshell-v1-menu_sitemap-lv3-title';
     link.textContent = menuItem.label;
-    if (menuItem.target) link.target = menuItem.target;
+    
+    // 外部リンク判定（自動判定を優先、JSONのtargetは将来廃止予定）
+    if (isExternalLink(link.href)) {
+      link.target = '_blank';
+    } else if (menuItem.target) {
+      link.target = menuItem.target;
+    }
 
     li.appendChild(link);
   }
@@ -476,7 +541,13 @@ function createSPLv4Item(item) {
       topLink.href = item.link;
       topLink.className = 'sb-appshell-v1-menu_sitemap-lv5-title';
       topLink.textContent = `${item.label} トップ`;
-      if (item.target) topLink.target = item.target;
+      
+      // 外部リンク判定（自動判定を優先、JSONのtargetは将来廃止予定）
+      if (isExternalLink(topLink.href)) {
+        topLink.target = '_blank';
+      } else if (item.target) {
+        topLink.target = item.target;
+      }
 
       topItem.appendChild(topLink);
       lv5List.appendChild(topItem);
@@ -491,7 +562,13 @@ function createSPLv4Item(item) {
       link.href = child.link || '#';
       link.className = 'sb-appshell-v1-menu_sitemap-lv5-title';
       link.textContent = child.label;
-      if (child.target) link.target = child.target;
+      
+      // 外部リンク判定（自動判定を優先、JSONのtargetは将来廃止予定）
+      if (isExternalLink(link.href)) {
+        link.target = '_blank';
+      } else if (child.target) {
+        link.target = child.target;
+      }
 
       lv5Item.appendChild(link);
       lv5List.appendChild(lv5Item);
@@ -504,7 +581,13 @@ function createSPLv4Item(item) {
     link.href = item.link || '#';
     link.className = 'sb-appshell-v1-menu_sitemap-lv4-title';
     link.textContent = item.label;
-    if (item.target) link.target = item.target;
+    
+    // 外部リンク判定（自動判定を優先、JSONのtargetは将来廃止予定）
+    if (isExternalLink(link.href)) {
+      link.target = '_blank';
+    } else if (item.target) {
+      link.target = item.target;
+    }
 
     li.appendChild(link);
   }
@@ -674,8 +757,12 @@ function createSPMenuFooter() {
 
   const concierLink = document.createElement('a');
   concierLink.href = 'https://portal.business.mb.softbank.jp/portal/BPS0001/';
-  concierLink.target = '_blank';
   concierLink.className = 'sb-appshell-v1-menu_support-bizconciersite';
+  
+  // 外部リンク判定
+  if (isExternalLink(concierLink.href)) {
+    concierLink.target = '_blank';
+  }
   concierLink.innerHTML = `<svg class="sb-appshell-v1-menu_support-bizconciersite-icon">
     <use xlink:href="#sunshine-icon-menu_utility-bizconciersite02">
       <svg viewBox="0 0 80 80" id="sunshine-icon-menu_utility-bizconciersite02">
@@ -693,8 +780,12 @@ function createSPMenuFooter() {
 
   const documentsLink = document.createElement('a');
   documentsLink.href = '/biz/resources/documents/';
-  documentsLink.target = '_blank';
   documentsLink.className = 'sb-appshell-v1-menu_support-documents';
+  
+  // 外部リンク判定
+  if (isExternalLink(documentsLink.href)) {
+    documentsLink.target = '_blank';
+  }
   documentsLink.innerHTML = `<svg class="sb-appshell-v1-menu_support-documents-icon">
     <use xlink:href="#sunshine-icon-menu_utility-documents"></use>
   </svg> 資料ダウンロード`;
@@ -712,6 +803,11 @@ function createSPMenuFooter() {
   const englishLink = document.createElement('a');
   englishLink.href = 'https://global.tm.softbank.jp/en/';
   englishLink.className = 'sb-appshell-v1-menu_english-button';
+  
+  // 外部リンク判定
+  if (isExternalLink(englishLink.href)) {
+    englishLink.target = '_blank';
+  }
 
   const englishSpan = document.createElement('span');
   englishSpan.className = 'sb-appshell-v1-menu_english-button-inner';
