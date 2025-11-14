@@ -12,7 +12,7 @@
 import { loadFragment } from '../blocks/fragment/fragment.js';
 
 // 定数定義
-const MEGAMENU_JSON_PATH = 'header-megamenu-sample.json';
+const MEGAMENU_FILENAME = 'header-megamenu.json';
 const AUTHORING_INFO_PATH = '/global-nav';
 
 /**
@@ -21,9 +21,9 @@ const AUTHORING_INFO_PATH = '/global-nav';
  * @returns {Promise<Array>} メガメニューデータ
  */
 async function fetchMegaMenuData(navPath) {
-  // const navDir = navPath.substring(0, navPath.lastIndexOf('/'));
-  // const megamenuPath = `${navDir}/${MEGAMENU_FILENAME}`;
-  const megamenuPath = `/business/scripts/header-megamenu-sample.json`;
+  const navDir = navPath.substring(0, navPath.lastIndexOf('/'));
+  const megamenuPath = `${navDir}/${MEGAMENU_FILENAME}`;
+  // const megamenuPath = `/business/scripts/header-megamenu-sample.json`;
   
   try {
     const response = await fetch(megamenuPath);
@@ -1178,7 +1178,7 @@ function initSPMenu(globalNav) {
  */
 export async function buildGlobalNav(isDesktop = true) {
   // ①メガメニューデータ取得（header-megamenu-sample.json）
-  const menuData = await fetchMegaMenuData();
+  const menuData = await fetchMegaMenuData(AUTHORING_INFO_PATH);
   const menuStructure = convertFlatToHierarchy(menuData);
 
   // ②オーサリング情報を /global-nav から取得
