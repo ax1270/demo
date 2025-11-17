@@ -10,6 +10,7 @@
  */
 
 import { loadFragment } from '../blocks/fragment/fragment.js';
+import { getMetadata } from './aem.js';
 import decorateSearchWidget from '../blocks/header/header-search-widget.js';
 
 // 定数定義
@@ -225,7 +226,7 @@ function createLv4Item(item) {
       topLink.className = 'sb-appshell-v1-header-nav_megadropdown-lv5-link';
       topLink.textContent = `${item.label} トップ`;
       
-      // 外部リンク判定（自動判定を優先、JSONのtargetは将来廃止予定）
+      // 外部リンク判定
       if (isExternalLink(topLink.href)) {
         topLink.target = '_blank';
       } else if (item.target) {
@@ -253,7 +254,7 @@ function createLv4Item(item) {
         lv5Link.className = 'sb-appshell-v1-header-nav_megadropdown-lv5-link';
         lv5Link.textContent = child.label;
         
-        // 外部リンク判定（自動判定を優先、JSONのtargetは将来廃止予定）
+        // 外部リンク判定
         if (isExternalLink(lv5Link.href)) {
           lv5Link.target = '_blank';
         } else if (child.target) {
@@ -313,7 +314,7 @@ function createMegadropdownCategoryItem(menuItem) {
     headerLink.className = 'sb-appshell-v1-header-nav_megadropdown-lv3-header-link-text';
     headerLink.textContent = `${menuItem.label} トップ`;
     
-    // 外部リンク判定（自動判定を優先、JSONのtargetは将来廃止予定）
+    // 外部リンク判定
     if (isExternalLink(headerLink.href)) {
       headerLink.target = '_blank';
     } else if (menuItem.target) {
@@ -360,7 +361,6 @@ function createMegadropdownCategoryItem(menuItem) {
 function createPCMegadropdown(menuStructure) {
   const megadropdown = document.createElement('div');
   megadropdown.className = 'sb-appshell-v1-header-nav_megadropdown _ga_area_category_nav';
-  megadropdown.style.cssText = 'display: none; opacity: 0; height: auto; top: 28px;';
 
   const view = document.createElement('div');
   view.className = 'sb-appshell-v1-header-nav_megadropdown-view';
@@ -1264,12 +1264,15 @@ function initSPMenu(globalNav) {
  * @returns {Promise<HTMLElement>} グローバルナビゲーション要素（ヘッダー全体）
  */
 export async function buildGlobalNav(isDesktop = true) {
-  // ①メガメニューデータ取得（header-megamenu-sample.json）
-  const menuData = await fetchMegaMenuData(AUTHORING_INFO_PATH);
-  const menuStructure = convertFlatToHierarchy(menuData);
 
-  // ②オーサリング情報を /global-nav から取得
-  const fragment = await loadFragment(AUTHORING_INFO_PATH);
+  // オーサリング情報の取得
+  const navMeta = getMetadata('global-nav');
+  const navPath = navMeta ? new URL(navMeta, window.location).pathname : AUTHORING_INFO_PATH;
+  const fragment = await loadFragment(navPath);
+
+  // メガメニューデータ取得（header-megamenu-sample.json）
+  const menuData = await fetchMegaMenuData(navPath);
+  const menuStructure = convertFlatToHierarchy(menuData);
 
   // 全体のコンテナ
   const container = document.createElement('div');
@@ -1350,14 +1353,9 @@ function createPCHeader(menuStructure, fragment) {
     }
   }
 
-  // 画像が取得できなかった場合のフォールバック
-  if (!logoImg) {
-    logoImg = document.createElement('img');
-    logoImg.src = '//cdn.softbank.jp/site/set/common/sunshine/shared/img/logo-sb.svg';
-    logoImg.alt = 'SoftBank';
+  if (logoImg) {
+    logoLink.appendChild(logoImg);
   }
-
-  logoLink.appendChild(logoImg);
   logoDiv.appendChild(logoLink);
   headerTtl.appendChild(logoDiv);
 
