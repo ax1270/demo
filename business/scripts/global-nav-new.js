@@ -12,14 +12,20 @@
 import { loadFragment } from '../blocks/fragment/fragment.js';
 import { getMetadata } from './aem.js';
 import decorateSearchWidget from '../blocks/header/header-search-widget.js';
+import { wrapImgsInLinks } from './utils/utils-sample.js';
 
 // 定数定義
 const MEGAMENU_FILENAME = 'header-megamenu.json';
 const AUTHORING_INFO_PATH = '/global-nav';
 
+// リンク設定
+const CONCIER_LINK = 'https://portal.business.mb.softbank.jp/portal/BPS0001/';
+const DOCUMENTS_LINK = '/biz/resources/documents/';
+
 /**
  * 外部リンクかどうかを判定する
  * lifecycle.jsの処理と同じロジックを使用
+ * loadEagerより後にHeaderの生成処理が走るため、ここで実装を持つ
  * @param {string} href リンクのhref属性
  * @returns {boolean} 外部リンクの場合true
  */
@@ -32,8 +38,7 @@ function isExternalLink(href) {
     'https://main--aem-eds--softbankbtob.aem.page/',
     'https://www.softbank.jp/biz/',
     'http://localhost:3000/',
-    'http://localhost:3000/',
-    'https://feature-header-test--demo--ax1270.aem.page/',
+    'https://feature-header-test--demo--ax1270.aem.page/', // TODO
   ];
   
   return !internalPatterns.some(pattern => href.includes(pattern));
@@ -170,7 +175,7 @@ function createGlobalNavItem(menuItem) {
     a.href = menuItem.link || '#';
     a.className = 'sb-appshell-v1-header-nav_globalnav-link';
     
-    // 外部リンク判定（自動判定を優先、JSONのtargetは将来廃止予定）
+    // 外部リンク判定
     if (isExternalLink(a.href)) {
       a.target = '_blank';
     } else if (menuItem.target) {
@@ -278,7 +283,7 @@ function createLv4Item(item) {
     link.className = 'sb-appshell-v1-header-nav_megadropdown-lv4-link';
     link.textContent = item.label;
     
-    // 外部リンク判定（自動判定を優先、JSONのtargetは将来廃止予定）
+    // 外部リンク判定
     if (isExternalLink(link.href)) {
       link.target = '_blank';
     } else if (item.target) {
@@ -412,7 +417,7 @@ function createPCMegadropdown(menuStructure) {
   footerSupportList.className = 'sb-appshell-v1-header-nav_megadropdown-footer-support-list';
 
   const documentsLink = document.createElement('a');
-  documentsLink.href = '/biz/resources/documents/';
+  documentsLink.href = DOCUMENTS_LINK;
   documentsLink.className = 'sb-appshell-v1-header-nav_megadropdown-footer-support-link sb-appshell-v1-header-nav_megadropdown-footer-support-link-documents';
   documentsLink.textContent = '資料ダウンロード';
   
@@ -504,7 +509,7 @@ function createSPLv3Item(menuItem) {
     link.className = 'sb-appshell-v1-menu_sitemap-lv3-title';
     link.textContent = menuItem.label;
     
-    // 外部リンク判定（自動判定を優先、JSONのtargetは将来廃止予定）
+    // 外部リンク判定
     if (isExternalLink(link.href)) {
       link.target = '_blank';
     } else if (menuItem.target) {
@@ -554,7 +559,7 @@ function createSPLv4Item(item) {
       topLink.className = 'sb-appshell-v1-menu_sitemap-lv5-title';
       topLink.textContent = `${item.label} トップ`;
       
-      // 外部リンク判定（自動判定を優先、JSONのtargetは将来廃止予定）
+      // 外部リンク判定
       if (isExternalLink(topLink.href)) {
         topLink.target = '_blank';
       } else if (item.target) {
@@ -575,7 +580,7 @@ function createSPLv4Item(item) {
       link.className = 'sb-appshell-v1-menu_sitemap-lv5-title';
       link.textContent = child.label;
       
-      // 外部リンク判定（自動判定を優先、JSONのtargetは将来廃止予定）
+      // 外部リンク判定
       if (isExternalLink(link.href)) {
         link.target = '_blank';
       } else if (child.target) {
@@ -594,7 +599,7 @@ function createSPLv4Item(item) {
     link.className = 'sb-appshell-v1-menu_sitemap-lv4-title';
     link.textContent = item.label;
     
-    // 外部リンク判定（自動判定を優先、JSONのtargetは将来廃止予定）
+    // 外部リンク判定
     if (isExternalLink(link.href)) {
       link.target = '_blank';
     } else if (item.target) {
@@ -617,29 +622,30 @@ function createSPMenuHeader(fragment) {
 
   // ホームリンク
   const homeLink = document.createElement('a');
-  homeLink.href = '/';
   homeLink.className = 'sb-appshell-v1-menu_link-home';
-  homeLink.innerHTML = `<svg class="sb-appshell-v1-menu_link-home-icon">
-    <use xlink:href="#sunshine-icon-menu_link-home">
-      <svg viewBox="0 0 32 32" id="sunshine-icon-menu_link-home">
-        <path d="M31.82 17L16.41 2.26a.59.59 0 0 0-.82 0L.18 17a.61.61 0 0 0 0 .84.61.61 0 0 0 .84 0l2.83-2.74v14.21a.56.56 0 0 0 .18.42.58.58 0 0 0 .41.17h7.68a.59.59 0 0 0 .59-.6v-9.53h6.58v9.53a.59.59 0 0 0 .59.6h7.68a.58.58 0 0 0 .41-.17.56.56 0 0 0 .18-.42V15.1L31 17.83a.57.57 0 0 0 .41.16.61.61 0 0 0 .43-.18.61.61 0 0 0-.02-.81zM27 28.72h-6.53v-9.54a.58.58 0 0 0-.59-.59h-7.76a.58.58 0 0 0-.59.59v9.53H5V14L16 3.51 27 14z" fill="#cbcccc"></path>
-      </svg>
-    </use>
-  </svg>ホーム`;
-
+  
+  // オーサリング情報: Section 1からリンク先を取得
+  if (fragment) {
+    const sections = fragment.querySelectorAll('.section');
+    if (sections.length > 0) {
+      const firstSection = sections[0];
+      
+      // aタグが存在する場合、そのhrefを使用
+      const link = firstSection.querySelector('a');
+      if (link && link.href) {
+        homeLink.href = link.href;
+      }
+    }
+  }
+  
+  homeLink.textContent = 'ホーム';
   header.appendChild(homeLink);
 
   // 閉じるボタン
   const closeButton = document.createElement('button');
   closeButton.type = 'button';
   closeButton.className = 'sb-appshell-v1-menu_button-close';
-  closeButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 35 36" width="17.5" height="18" class="sb-appshell-v1-menu_button-close-line">
-    <title>メニューを閉じる</title>
-    <g>
-      <path d="M0.211,33.167 L32.667,0.711 L34.789,2.834 L2.334,35.290 L0.211,33.167 Z"></path>
-      <path d="M34.789,33.167 L2.334,0.711 L0.211,2.834 L32.667,35.290 L34.789,33.167 Z"></path>
-    </g>
-  </svg>`;
+  closeButton.setAttribute('aria-label', 'メニューを閉じる');
 
   header.appendChild(closeButton);
 
@@ -729,8 +735,9 @@ function createSPMenuHeader(fragment) {
 
 /**
  * SPメニューフッターを生成
+ * @param {Element} fragment オーサリング情報（fragment）
  */
-function createSPMenuFooter() {
+function createSPMenuFooter(fragment) {
   const footer = document.createElement('div');
   footer.className = 'sb-appshell-v1-menu_footer';
 
@@ -741,47 +748,75 @@ function createSPMenuFooter() {
   const supportList = document.createElement('div');
   supportList.className = 'sb-appshell-v1-menu_support-list sb-appshell-v1-menu_support-list-w100p';
 
-  // お問い合わせ
-  const contactItem = document.createElement('div');
-  contactItem.className = 'sb-appshell-v1-menu_support-item';
+  // お問い合わせボタン（オーサリング情報のSection 3から取得）
+  let contactInfo = null;
+  if (fragment) {
+    const sections = fragment.querySelectorAll('.section');
+    if (sections.length > 2) {
+      const thirdSection = sections[2];
+      const ul = thirdSection.querySelector('ul');
 
-  const contactLink = document.createElement('a');
-  contactLink.href = '/biz/contact/';
-  contactLink.className = 'sb-appshell-v1-menu_support-contact';
-  contactLink.innerHTML = `<svg class="sb-appshell-v1-menu_support-contact-icon">
-    <use xlink:href="#sunshine-icon-menu_support-contact">
-      <svg viewBox="0 0 50 50" id="sunshine-icon-menu_support-contact">
-        <path d="M45.63 5.09H24.94a4.36 4.36 0 0 0-4.37 4.37v5.6H4.37A4.37 4.37 0 0 0 0 19.43v13.21A4.37 4.37 0 0 0 4.37 37h1.12l-1.76 6.85a.93.93 0 0 0 .39.87.9.9 0 0 0 1 0l10-7.78h9.92a4.37 4.37 0 0 0 4.37-4.37V27h5.43l10 7.78a.9.9 0 0 0 .95 0 .94.94 0 0 0 .39-.87L44.51 27h1.12A4.37 4.37 0 0 0 50 22.67V9.46a4.37 4.37 0 0 0-4.37-4.37zM27.94 32.3a3.13 3.13 0 0 1-3.13 3.13H14.33l-2 1.58-6.55 5.27L7.21 37l.43-1.58h-3a3.13 3.13 0 0 1-3.15-3.12V19.77a3.13 3.13 0 0 1 3.13-3.13h20.19a3.13 3.13 0 0 1 3.13 3.13V32.3zm20.57-10a3.13 3.13 0 0 1-3.13 3.13h-3l.41 1.57 1.43 5.27L37.64 27l-2-1.58h-6.21v-6a4.37 4.37 0 0 0-4.37-4.37h-3V9.8a3.13 3.13 0 0 1 3.13-3.13h20.19a3.13 3.13 0 0 1 3.13 3.13z" fill="#8a8c8e"></path>
-        <rect x="13.72" y="30.36" width="2.19" height="2.16" rx=".9" fill="#8a8c8e"></rect>
-        <path d="M15 20.45h-.42a.9.9 0 0 0-.9.92l.21 6.82a.9.9 0 0 0 1.79 0l.22-6.82a.9.9 0 0 0-.9-.92z" fill="#8a8c8e"></path>
-        <rect x="34.28" y="19.85" width="2.05" height="2.02" rx=".85" fill="#8a8c8e"></rect>
-        <path d="M35.28 10.35a4.84 4.84 0 0 0-2.91.91.83.83 0 0 0-.29 1 .86.86 0 0 0 1.28.42 3.2 3.2 0 0 1 1.84-.56c1.2 0 1.95.69 1.95 1.57 0 .7-.37 1-1.34 1.81a3.34 3.34 0 0 0-1.42 2.72.85.85 0 0 0 .84.9h.18a.85.85 0 0 0 .85-.79 2.39 2.39 0 0 1 1-1.8c1-.93 1.74-1.57 1.74-2.9 0-1.63-1.31-3.28-3.72-3.28z" fill="#8a8c8e"></path>
-      </svg>
-    </use>
-  </svg>お問い合わせ`;
+      if (ul) {
+        const listItems = ul.querySelectorAll('li');
+        // 「お問い合わせ」を探す（最初のリンクを使用）
+        listItems.forEach((li) => {
+          if (!contactInfo) {
+            const link = li.querySelector('a');
+            const iconSpan = li.querySelector('.icon');
+            if (link) {
+              const href = link.getAttribute('href') || '';
+              const text = link.textContent.trim();
+              if (text) {
+                contactInfo = { href, text, icon: iconSpan };
+              }
+            }
+          }
+        });
+      }
+    }
+  }
 
-  contactItem.appendChild(contactLink);
-  supportList.appendChild(contactItem);
+  // お問い合わせ（オーサリング情報から取得できた場合のみ表示）
+  if (contactInfo) {
+    const contactItem = document.createElement('div');
+    contactItem.className = 'sb-appshell-v1-menu_support-item';
+
+    const contactLink = document.createElement('a');
+    contactLink.href = contactInfo.href;
+    contactLink.className = 'sb-appshell-v1-menu_support-contact';
+    
+    // 外部リンク判定
+    if (isExternalLink(contactLink.href)) {
+      contactLink.target = '_blank';
+    }
+    
+    // アイコンがある場合はオーサリング情報から取得
+    if (contactInfo.icon) {
+      const clonedIcon = contactInfo.icon.cloneNode(true);
+      clonedIcon.className = 'sb-appshell-v1-menu_support-contact-icon';
+      contactLink.appendChild(clonedIcon);
+    }
+    
+    // テキストノードを直接追加
+    contactLink.appendChild(document.createTextNode(contactInfo.text));
+
+    contactItem.appendChild(contactLink);
+    supportList.appendChild(contactItem);
+  }
 
   // 法人コンシェルサイト
   const concierItem = document.createElement('div');
   concierItem.className = 'sb-appshell-v1-menu_support-item sb-appshell-v1-menu_support-item-ml0';
 
   const concierLink = document.createElement('a');
-  concierLink.href = 'https://portal.business.mb.softbank.jp/portal/BPS0001/';
+  concierLink.href = CONCIER_LINK;
   concierLink.className = 'sb-appshell-v1-menu_support-bizconciersite';
+  concierLink.textContent = '法人コンシェルサイト';
   
   // 外部リンク判定
   if (isExternalLink(concierLink.href)) {
     concierLink.target = '_blank';
   }
-  concierLink.innerHTML = `<svg class="sb-appshell-v1-menu_support-bizconciersite-icon">
-    <use xlink:href="#sunshine-icon-menu_utility-bizconciersite02">
-      <svg viewBox="0 0 80 80" id="sunshine-icon-menu_utility-bizconciersite02">
-        <path d="M65.8 60.59H14.2a1.14 1.14 0 1 0 0 2.28h51.6a1.14 1.14 0 1 0 0-2.28zM41.17 26.82v-7.36H48a1.17 1.17 0 1 0 0-2.33H32a1.17 1.17 0 1 0 0 2.33h6.8v7.36A27.14 27.14 0 0 0 13 53.89a2.29 2.29 0 0 0 2.28 2.29h49.57A2.12 2.12 0 0 0 67 54.06a27.14 27.14 0 0 0-25.83-27.24zM15.45 53.89a24.56 24.56 0 1 1 49.11 0z" fill="#8a8c8e"></path>
-      </svg>
-    </use>
-  </svg>法人コンシェルサイト`;
 
   concierItem.appendChild(concierLink);
   supportList.appendChild(concierItem);
@@ -791,47 +826,20 @@ function createSPMenuFooter() {
   documentsItem.className = 'sb-appshell-v1-menu_support-item sb-appshell-v1-menu_support-item-ml0';
 
   const documentsLink = document.createElement('a');
-  documentsLink.href = '/biz/resources/documents/';
+  documentsLink.href = DOCUMENTS_LINK;
   documentsLink.className = 'sb-appshell-v1-menu_support-documents';
+  documentsLink.textContent = '資料ダウンロード';
   
   // 外部リンク判定
   if (isExternalLink(documentsLink.href)) {
     documentsLink.target = '_blank';
   }
-  documentsLink.innerHTML = `<svg class="sb-appshell-v1-menu_support-documents-icon">
-    <use xlink:href="#sunshine-icon-menu_utility-documents"></use>
-  </svg> 資料ダウンロード`;
 
   documentsItem.appendChild(documentsLink);
   supportList.appendChild(documentsItem);
 
   support.appendChild(supportList);
   footer.appendChild(support);
-
-  // SVGシンボル定義
-  const svgContainer = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-  svgContainer.style.display = 'none';
-  svgContainer.innerHTML = `<symbol viewBox="0 0 185.272 191.737" id="sunshine-icon-menu_utility-documents">
-    <g>
-      <path fill="#8a8c8e" stroke="rgba(0,0,0,0)" stroke-miterlimit="10" d="M86.587 179.272h-74.75a11.352 11.352 0 0 1-11.338-11.34V11.838A11.351 11.351 0 0 1 11.838.5h125.675a11.351 11.351 0 0 1 11.338 11.338V77.3a60.746 60.746 0 0 0-7.408-2.133V11.838a3.935 3.935 0 0 0-3.93-3.931H11.838a3.936 3.936 0 0 0-3.932 3.931v156.094a3.937 3.937 0 0 0 3.932 3.933h68.031a61.492 61.492 0 0 0 6.716 7.405Z"></path>
-      <path fill="none" stroke="#8a8c8e" stroke-width="8" d="M34.772 50.025h79"></path>
-      <path fill="none" stroke="#8a8c8e" stroke-width="8" d="M34.772 88.025h66.5"></path>
-      <path fill="none" stroke="#8a8c8e" stroke-width="8" d="M34.772 126.025h39.9"></path>
-      <g fill="none" stroke="#8a8c8e">
-        <g stroke-width="8" transform="translate(71.035 77.501)">
-          <circle cx="57.118" cy="57.118" r="57.118" stroke="none"></circle>
-          <circle cx="57.118" cy="57.118" r="53.118"></circle>
-        </g>
-        <g stroke-width="9">
-          <path d="m102.251 118.022 25.9 25.9 25.9-25.9"></path>
-          <path d="M128.154 100.709v39.375"></path>
-        </g>
-        <path stroke-width="8" d="M100.809 161.705h55.295"></path>
-      </g>
-    </g>
-  </symbol>`;
-
-  footer.appendChild(svgContainer);
 
   return footer;
 }
@@ -892,7 +900,7 @@ function createSPMenu(menuStructure, fragment) {
   menuView.appendChild(tabDiv);
 
   // フッター
-  const menuFooter = createSPMenuFooter();
+  const menuFooter = createSPMenuFooter(fragment);
   menuView.appendChild(menuFooter);
 
   menu.appendChild(menuView);
@@ -1320,43 +1328,23 @@ function createPCHeader(menuStructure, fragment) {
   // ロゴ部分
   const logoDiv = document.createElement('div');
   logoDiv.className = 'header__ttl__logo';
-  const logoLink = document.createElement('a');
-  logoLink.href = '/';
 
   // オーサリング情報: Section 1からロゴ画像を取得
-  let logoImg = null;
   if (fragment) {
     const sections = fragment.querySelectorAll('.section');
     if (sections.length > 0) {
       const firstSection = sections[0];
-      let img = firstSection.querySelector('img');
-
-      if (!img) {
-        const p = firstSection.querySelector('p');
-        if (p) {
-          const link = p.querySelector('a');
-          if (link) {
-            const imgUrl = link.textContent.trim();
-            if (imgUrl && (imgUrl.match(/\.(jpg|jpeg|png|gif|svg|webp)$/i) || imgUrl.includes('placehold'))) {
-              img = document.createElement('img');
-              img.src = imgUrl;
-              img.alt = 'SoftBank';
-            }
-          }
-        }
-      }
-
-      if (img) {
-        logoImg = img.cloneNode ? img.cloneNode(true) : img;
-        logoImg.alt = logoImg.alt || 'SoftBank';
+      
+      // pictureの後にaタグがある場合、pictureをaタグで囲む
+      wrapImgsInLinks(firstSection);
+      
+      // aタグまたはpictureを取得してそのまま使用
+      const content = firstSection.querySelector('a, picture');
+      if (content) {
+        logoDiv.appendChild(content);
       }
     }
   }
-
-  if (logoImg) {
-    logoLink.appendChild(logoImg);
-  }
-  logoDiv.appendChild(logoLink);
   headerTtl.appendChild(logoDiv);
 
   // オーサリング情報: Section 2からタイトル（法人のお客さま）を取得
