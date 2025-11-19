@@ -11,7 +11,7 @@
 
 import { loadFragment } from '../blocks/fragment/fragment.js';
 import { getMetadata } from './aem.js';
-import decorateSearchWidget from '../blocks/header/header-search-widget.js';
+import decorateSearchWidget from '../blocks/index-search-widget/index-search-widget.js';
 import { wrapImgsInLinks, isExternalLink, extractParagraphInfo } from './utils/utils-sample.js';
 
 // 定数定義
@@ -1069,6 +1069,11 @@ function createUtilityMenu(fragment) {
   // 検索ウィジェット用のコンテナ
   const searchWidgetContainer = document.createElement('div');
   searchWidgetContainer.className = 'header-search-widget-container';
+  
+  // カスタムプレースホルダーテキストを設定
+  const placeholderText = document.createElement('p');
+  placeholderText.textContent = '検索';
+  searchWidgetContainer.appendChild(placeholderText);
   
   searchUtilityItem.appendChild(searchWidgetContainer);
   utilityList.appendChild(searchUtilityItem);
