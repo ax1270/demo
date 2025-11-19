@@ -1,7 +1,7 @@
 // import { getMetadata } from '../../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 import { buildBreadcrumbs } from '../../scripts/scripts.js';
-import { buildGlobalNav } from '../../scripts/global-nav-new.js';
+import { buildGlobalNav } from '../../scripts/global-nav.js';
 
 
 // media query match that indicates mobile/tablet width
@@ -50,7 +50,8 @@ export default async function decorate(block) {
     block.append(breadcrumbs);
 
     // load nav as fragment
-    const fragment = await loadFragment('/business/content/common/navi');
+    // const fragment = await loadFragment('/business/content/common/navi');
+    const fragment = await loadFragment('/nav'); // TODO ローカル用のため、後で戻す
 
     // decorate nav DOM
     const nav = document.createElement('nav');
