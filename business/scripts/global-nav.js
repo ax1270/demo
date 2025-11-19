@@ -826,9 +826,19 @@ function createSPMenu(menuStructure, fragment) {
 
   const dl = document.createElement('dl');
 
-  const dt = document.createElement('dt');
-  dt.className = 'sb-appshell-v1-menu_sitemap-category-title';
-  dt.textContent = '法人のお客さま';
+  // section2からテキストを取得
+  if (fragment) {
+    const sections = fragment.querySelectorAll('.section');
+    if (sections.length > 1) {
+      const info = extractParagraphInfo(sections[1]);
+      if (info && info.text) {
+        const dt = document.createElement('dt');
+        dt.className = 'sb-appshell-v1-menu_sitemap-category-title';
+        dt.textContent = info.text;
+        dl.appendChild(dt);
+      }
+    }
+  }
 
   const dd = document.createElement('dd');
   dd.className = 'sb-appshell-v1-menu_sitemap-lv3';
@@ -842,7 +852,6 @@ function createSPMenu(menuStructure, fragment) {
   });
 
   dd.appendChild(lv3List);
-  dl.appendChild(dt);
   dl.appendChild(dd);
   tabPanel.appendChild(dl);
   tabPanels.appendChild(tabPanel);
