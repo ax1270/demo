@@ -5,8 +5,10 @@
  * ①メガメニューデータ: header-megamenu-sample.json からメニュー構造を取得
  * ②オーサリング情報: /global-nav (EDSのdoc) から以下を取得
  *   - Section 1: ロゴ画像
- *   - Section 2: タイトル（法人のお客さま）とリンク
- *   - Section 3: ユーティリティメニュー（お問い合わせ、ビジネスブログ）
+ *   - Section 2: タイトル（法人のお客さま）とリンク（PC／SP共通）
+ *   - Section 3: ユーティリティメニュー（PC専用）
+ *   - Section 4: ユーティリティメニュー（SP専用）
+ *   - Section 5: 資料ダウンロード（PC／SP共通）
  */
 
 import { loadFragment } from '../blocks/fragment/fragment.js';
@@ -17,10 +19,10 @@ import { wrapImgsInLinks, isExternalLink, extractParagraphInfo } from './utils/u
 // 定数定義
 const MEGAMENU_FILENAME = 'header-megamenu.json';
 const AUTHORING_INFO_PATH = '/global-nav';
+const LANGUAGE_BUTTON_NAME = 'ENGLISH';
 
 // リンク設定
-const CONCIER_LINK = 'https://portal.business.mb.softbank.jp/portal/BPS0001/';
-const DOCUMENTS_LINK = '/biz/resources/documents/';
+const ENGLISH_LINK = '/sb/en/demo';
 
 /**
  * メガメニューデータを取得する関数
@@ -94,6 +96,138 @@ function convertFlatToHierarchy(data) {
   });
 
   return rootItems;
+}
+
+/**
+ * ユーティリティエリアから[VertexAI]で始まるテキストを検索し、後続の文字列を取得
+ * @param {Element} fragment オーサリング情報（fragment）
+ * @param {number} sectionIndex セクションのインデックス（PC用は2、SP用は3）
+ * @returns {string|null} プレースホルダーテキスト（見つからない場合はnull）
+ */
+function getSearchPlaceholderText(fragment, sectionIndex) {
+  if (!fragment) return null;
+
+  const sections = fragment.querySelectorAll('.section');
+  if (sections.length <= sectionIndex) return null;
+
+  const section = sections[sectionIndex];
+  const ul = section.querySelector('ul');
+  if (!ul) return null;
+
+  const listItems = ul.querySelectorAll('li');
+  
+  // 全てのli要素をチェック
+  for (const li of listItems) {
+    let itemText = '';
+    const link = li.querySelector('a');
+    
+    if (link) {
+      itemText = link.textContent.trim();
+    } else {
+      const clonedLi = li.cloneNode(true);
+      const iconSpan = clonedLi.querySelector('.icon');
+      if (iconSpan) {
+        iconSpan.remove();
+      }
+      itemText = clonedLi.textContent.trim();
+    }
+
+    // [VertexAI]で始まるかチェック
+    if (itemText.startsWith('[VertexAI]')) {
+      // [VertexAI]より後続の文字列を返す
+      return itemText.substring('[VertexAI]'.length).trim();
+    }
+  }
+
+  return null;
+}
+
+/**
+ * 検索ウィジェットを生成する共通関数
+ * @param {string} containerClassName 検索ウィジェットコンテナのクラス名
+ * @param {string|null} placeholderTextContent プレースホルダーテキスト（nullの場合は設定しない）
+ * @returns {HTMLElement} 検索ウィジェットコンテナ
+ */
+function createSearchWidget(containerClassName, placeholderTextContent = null) {
+  const searchWidgetContainer = document.createElement('div');
+  searchWidgetContainer.className = containerClassName;
+  
+  // プレースホルダーテキストがある場合のみp要素を追加
+  if (placeholderTextContent) {
+    const placeholderText = document.createElement('p');
+    placeholderText.textContent = placeholderTextContent;
+    searchWidgetContainer.appendChild(placeholderText);
+  }
+  
+  // 検索ウィジェットを初期化（DOMに追加された後に実行）
+  setTimeout(() => {
+    decorateSearchWidget(searchWidgetContainer);
+  }, 0);
+
+  return searchWidgetContainer;
+}
+
+/**
+ * 資料ダウンロードリンクを生成する共通関数
+ * @param {Element} fragment オーサリング情報（fragment）
+ * @param {boolean} isSP SP用かどうか
+ * @returns {HTMLElement|null} 資料ダウンロード要素（存在しない場合はnull）
+ */
+function createDocumentsLink(fragment, isSP = false) {
+  if (!fragment) return null;
+
+  const sections = fragment.querySelectorAll('.section');
+  if (sections.length <= 4) return null;
+
+  const fifthSection = sections[4];
+  const info = extractParagraphInfo(fifthSection);
+
+  if (!info || !info.text) return null;
+
+  if (isSP) {
+    // SP用: supportItemでラップ
+    const supportItem = document.createElement('div');
+    supportItem.className = 'sb-appshell-v1-menu_support-item sb-appshell-v1-menu_support-item-ml0';
+
+    const element = info.hasLink ? document.createElement('a') : document.createElement('span');
+    element.className = 'sb-appshell-v1-menu_support-documents';
+    
+    if (info.hasLink) {
+      element.href = info.href;
+      if (isExternalLink(element.href)) {
+        element.target = '_blank';
+      }
+    } else {
+      element.style.cursor = 'default';
+    }
+
+    // アイコンを追加
+    const iconSpan = fifthSection.querySelector('.icon');
+    if (iconSpan) {
+      const clonedIcon = iconSpan.cloneNode(true);
+      if (!clonedIcon.classList.contains('icon')) {
+        clonedIcon.classList.add('icon');
+      }
+      clonedIcon.classList.add('sb-appshell-v1-menu_support-documents-icon');
+      element.appendChild(clonedIcon);
+    }
+
+    element.appendChild(document.createTextNode(info.text));
+    supportItem.appendChild(element);
+    return supportItem;
+  } else {
+    // PC用: シンプルなaタグ
+    const documentsLink = document.createElement('a');
+    documentsLink.href = info.href;
+    documentsLink.className = 'sb-appshell-v1-header-nav_megadropdown-footer-support-link sb-appshell-v1-header-nav_megadropdown-footer-support-link-documents';
+    documentsLink.textContent = info.text;
+    
+    if (isExternalLink(documentsLink.href)) {
+      documentsLink.target = '_blank';
+    }
+
+    return documentsLink;
+  }
 }
 
 /**
@@ -312,8 +446,10 @@ function createMegadropdownCategoryItem(menuItem) {
 
 /**
  * PCメガドロップダウン全体を生成
+ * @param {Array} menuStructure メニュー構造
+ * @param {Element} fragment オーサリング情報（fragment）
  */
-function createPCMegadropdown(menuStructure) {
+function createPCMegadropdown(menuStructure, fragment) {
   const megadropdown = document.createElement('div');
   megadropdown.className = 'sb-appshell-v1-header-nav_megadropdown _ga_area_category_nav';
 
@@ -366,17 +502,12 @@ function createPCMegadropdown(menuStructure) {
   const footerSupportList = document.createElement('div');
   footerSupportList.className = 'sb-appshell-v1-header-nav_megadropdown-footer-support-list';
 
-  const documentsLink = document.createElement('a');
-  documentsLink.href = DOCUMENTS_LINK;
-  documentsLink.className = 'sb-appshell-v1-header-nav_megadropdown-footer-support-link sb-appshell-v1-header-nav_megadropdown-footer-support-link-documents';
-  documentsLink.textContent = '資料ダウンロード';
-  
-  // 外部リンク判定
-  if (isExternalLink(documentsLink.href)) {
-    documentsLink.target = '_blank';
+  // オーサリング情報: Section 5から資料ダウンロードを取得（PC専用）
+  const documentsLink = createDocumentsLink(fragment, false);
+  if (documentsLink) {
+    footerSupportList.appendChild(documentsLink);
   }
-
-  footerSupportList.appendChild(documentsLink);
+  
   footerSupport.appendChild(footerSupportList);
   footer.appendChild(footerSupport);
 
@@ -389,8 +520,10 @@ function createPCMegadropdown(menuStructure) {
 
 /**
  * PCナビゲーション生成
+ * @param {Array} menuStructure メニュー構造
+ * @param {Element} fragment オーサリング情報（fragment）
  */
-function createPCNavigation(menuStructure) {
+function createPCNavigation(menuStructure, fragment) {
   const nav = document.createElement('nav');
   nav.id = 'sb-appshell-v1-header-nav';
   nav.className = 'sb-appshell-v1-header-nav';
@@ -412,7 +545,7 @@ function createPCNavigation(menuStructure) {
   nav.appendChild(globalNav);
 
   // メガドロップダウン
-  const megadropdown = createPCMegadropdown(menuStructure);
+  const megadropdown = createPCMegadropdown(menuStructure, fragment);
   nav.appendChild(megadropdown);
 
   return nav;
@@ -570,6 +703,10 @@ function createSPMenuHeader(fragment) {
   const header = document.createElement('div');
   header.className = 'sb-appshell-v1-menu_header';
 
+  // ヘッダーナビゲーション（ホーム、ENGLISH）
+  const headerNav = document.createElement('div');
+  headerNav.className = 'sb-appshell-v1-menu_header-nav';
+
   // ホームリンク
   const homeLink = document.createElement('a');
   homeLink.className = 'sb-appshell-v1-menu_link-home';
@@ -589,7 +726,26 @@ function createSPMenuHeader(fragment) {
   }
   
   homeLink.textContent = 'ホーム';
-  header.appendChild(homeLink);
+  headerNav.appendChild(homeLink);
+
+  // ENGLISHボタン
+  const englishLink = document.createElement('a');
+  englishLink.href = ENGLISH_LINK;
+  englishLink.className = 'sb-appshell-v1-menu_link-english';
+  englishLink.textContent = LANGUAGE_BUTTON_NAME;
+  headerNav.appendChild(englishLink);
+
+  header.appendChild(headerNav);
+
+  // 検索ウィジェット
+  const searchContainer = document.createElement('div');
+  searchContainer.className = 'sb-appshell-v1-menu_header-search';
+  
+  // Section 4（SP用ユーティリティメニュー）からプレースホルダーテキストを取得
+  const searchPlaceholder = getSearchPlaceholderText(fragment, 3);
+  const searchWidgetContainer = createSearchWidget('sp-header-search-widget-container', searchPlaceholder);
+  searchContainer.appendChild(searchWidgetContainer);
+  header.appendChild(searchContainer);
 
   // 閉じるボタン
   const closeButton = document.createElement('button');
@@ -599,22 +755,34 @@ function createSPMenuHeader(fragment) {
 
   header.appendChild(closeButton);
 
-  // ユーティリティメニュー（オーサリング情報から生成）
-  const utility = document.createElement('div');
-  utility.className = 'sb-appshell-v1-menu_utility';
+  return header;
+}
 
-  const utilityList = document.createElement('div');
-  utilityList.className = 'sb-appshell-v1-menu_utility-list';
+/**
+ * SPメニューフッターを生成
+ * @param {Element} fragment オーサリング情報（fragment）
+ */
+function createSPMenuFooter(fragment) {
+  const footer = document.createElement('div');
+  footer.className = 'sb-appshell-v1-menu_footer';
 
-  // オーサリング情報: Section 3からユーティリティメニューを取得
+  // サポートセクション
+  const support = document.createElement('div');
+  support.className = 'sb-appshell-v1-menu_support';
+
+  const supportList = document.createElement('div');
+  supportList.className = 'sb-appshell-v1-menu_support-list sb-appshell-v1-menu_support-list-w100p';
+
+  // オーサリング情報: Section 4からすべてのユーティリティメニュー項目を取得（SP専用）
   if (fragment) {
     const sections = fragment.querySelectorAll('.section');
-    if (sections.length > 2) {
-      const thirdSection = sections[2];
-      const ul = thirdSection.querySelector('ul');
+    if (sections.length > 3) {
+      const fourthSection = sections[3];
+      const ul = fourthSection.querySelector('ul');
 
       if (ul) {
         const listItems = ul.querySelectorAll('li');
+        let addedItemCount = 0; // 実際に追加されたアイテムの数
 
         listItems.forEach((li) => {
           const link = li.querySelector('a');
@@ -636,157 +804,79 @@ function createSPMenuHeader(fragment) {
             itemText = clonedLi.textContent.trim();
           }
 
-          if (itemText) {
-            const utilityItem = document.createElement('div');
-            utilityItem.className = 'sb-appshell-v1-menu_utility-item';
+          // [VertexAI]で始まる項目はスキップ（検索ウィジェット用のみ）
+          if (itemText && !itemText.startsWith('[VertexAI]')) {
+            const supportItem = document.createElement('div');
+            // 最初のアイテムはml0なし、2つ目以降はml0を追加
+            supportItem.className = addedItemCount === 0 
+              ? 'sb-appshell-v1-menu_support-item' 
+              : 'sb-appshell-v1-menu_support-item sb-appshell-v1-menu_support-item-ml0';
 
             if (hasLink) {
-              const utilityLink = document.createElement('a');
-              utilityLink.href = itemHref;
-              utilityLink.className = 'sb-appshell-v1-menu_utility-search';
+              const supportLink = document.createElement('a');
+              supportLink.href = itemHref;
+              // 最初のアイテムはcontactクラス、2つ目以降は汎用クラス
+              supportLink.className = addedItemCount === 0 
+                ? 'sb-appshell-v1-menu_support-contact' 
+                : 'sb-appshell-v1-menu_support-link';
 
-              // アイコンがある場合はそのまま追加（クラス名をSP用に変更）
+              // 外部リンク判定
+              if (isExternalLink(supportLink.href)) {
+                supportLink.target = '_blank';
+              }
+
+              // アイコンがある場合
               if (iconSpan) {
                 const clonedIcon = iconSpan.cloneNode(true);
-                clonedIcon.className = 'sb-appshell-v1-menu_utility-search-icon';
-                utilityLink.appendChild(clonedIcon);
+                // iconクラスを確実に追加
+                if (!clonedIcon.classList.contains('icon')) {
+                  clonedIcon.classList.add('icon');
+                }
+                // 追加のクラスを付与
+                if (addedItemCount === 0) {
+                  clonedIcon.classList.add('sb-appshell-v1-menu_support-contact-icon');
+                } else {
+                  clonedIcon.classList.add('sb-appshell-v1-menu_support-link-icon');
+                }
+                supportLink.appendChild(clonedIcon);
               }
 
               // テキストノードを直接追加
-              utilityLink.appendChild(document.createTextNode(itemText));
-              utilityItem.appendChild(utilityLink);
+              supportLink.appendChild(document.createTextNode(itemText));
+              supportItem.appendChild(supportLink);
             } else {
-              const utilitySpan = document.createElement('span');
-              utilitySpan.className = 'sb-appshell-v1-menu_utility-search';
-              utilitySpan.style.cursor = 'default';
+              const supportSpan = document.createElement('span');
+              supportSpan.className = 'sb-appshell-v1-menu_support-link';
+              supportSpan.style.cursor = 'default';
 
               if (iconSpan) {
                 const clonedIcon = iconSpan.cloneNode(true);
-                clonedIcon.className = 'sb-appshell-v1-menu_utility-search-icon';
-                utilitySpan.appendChild(clonedIcon);
+                // iconクラスを確実に追加
+                if (!clonedIcon.classList.contains('icon')) {
+                  clonedIcon.classList.add('icon');
+                }
+                // 追加のクラスを付与
+                clonedIcon.classList.add('sb-appshell-v1-menu_support-link-icon');
+                supportSpan.appendChild(clonedIcon);
               }
 
-              utilitySpan.appendChild(document.createTextNode(itemText));
-              utilityItem.appendChild(utilitySpan);
+              supportSpan.appendChild(document.createTextNode(itemText));
+              supportItem.appendChild(supportSpan);
             }
 
-            utilityList.appendChild(utilityItem);
+            supportList.appendChild(supportItem);
+            addedItemCount++; // 追加されたアイテムをカウント
           }
         });
       }
     }
-  }
 
-  utility.appendChild(utilityList);
-  header.appendChild(utility);
-
-  return header;
-}
-
-/**
- * SPメニューフッターを生成
- * @param {Element} fragment オーサリング情報（fragment）
- */
-function createSPMenuFooter(fragment) {
-  const footer = document.createElement('div');
-  footer.className = 'sb-appshell-v1-menu_footer';
-
-  // サポートセクション
-  const support = document.createElement('div');
-  support.className = 'sb-appshell-v1-menu_support';
-
-  const supportList = document.createElement('div');
-  supportList.className = 'sb-appshell-v1-menu_support-list sb-appshell-v1-menu_support-list-w100p';
-
-  // お問い合わせボタン（オーサリング情報のSection 3から取得）
-  let contactInfo = null;
-  if (fragment) {
-    const sections = fragment.querySelectorAll('.section');
-    if (sections.length > 2) {
-      const thirdSection = sections[2];
-      const ul = thirdSection.querySelector('ul');
-
-      if (ul) {
-        const listItems = ul.querySelectorAll('li');
-        // 「お問い合わせ」を探す（最初のリンクを使用）
-        listItems.forEach((li) => {
-          if (!contactInfo) {
-            const link = li.querySelector('a');
-            const iconSpan = li.querySelector('.icon');
-            if (link) {
-              const href = link.getAttribute('href') || '';
-              const text = link.textContent.trim();
-              if (text) {
-                contactInfo = { href, text, icon: iconSpan };
-              }
-            }
-          }
-        });
-      }
+    // オーサリング情報: Section 5から資料ダウンロードを取得（SP専用）
+    const documentsItem = createDocumentsLink(fragment, true);
+    if (documentsItem) {
+      supportList.appendChild(documentsItem);
     }
   }
-
-  // お問い合わせ（オーサリング情報から取得できた場合のみ表示）
-  if (contactInfo) {
-    const contactItem = document.createElement('div');
-    contactItem.className = 'sb-appshell-v1-menu_support-item';
-
-    const contactLink = document.createElement('a');
-    contactLink.href = contactInfo.href;
-    contactLink.className = 'sb-appshell-v1-menu_support-contact';
-    
-    // 外部リンク判定
-    if (isExternalLink(contactLink.href)) {
-      contactLink.target = '_blank';
-    }
-    
-    // アイコンがある場合はオーサリング情報から取得
-    if (contactInfo.icon) {
-      const clonedIcon = contactInfo.icon.cloneNode(true);
-      clonedIcon.className = 'sb-appshell-v1-menu_support-contact-icon';
-      contactLink.appendChild(clonedIcon);
-    }
-    
-    // テキストノードを直接追加
-    contactLink.appendChild(document.createTextNode(contactInfo.text));
-
-    contactItem.appendChild(contactLink);
-    supportList.appendChild(contactItem);
-  }
-
-  // 法人コンシェルサイト
-  const concierItem = document.createElement('div');
-  concierItem.className = 'sb-appshell-v1-menu_support-item sb-appshell-v1-menu_support-item-ml0';
-
-  const concierLink = document.createElement('a');
-  concierLink.href = CONCIER_LINK;
-  concierLink.className = 'sb-appshell-v1-menu_support-bizconciersite';
-  concierLink.textContent = '法人コンシェルサイト';
-  
-  // 外部リンク判定
-  if (isExternalLink(concierLink.href)) {
-    concierLink.target = '_blank';
-  }
-
-  concierItem.appendChild(concierLink);
-  supportList.appendChild(concierItem);
-
-  // 資料ダウンロード
-  const documentsItem = document.createElement('div');
-  documentsItem.className = 'sb-appshell-v1-menu_support-item sb-appshell-v1-menu_support-item-ml0';
-
-  const documentsLink = document.createElement('a');
-  documentsLink.href = DOCUMENTS_LINK;
-  documentsLink.className = 'sb-appshell-v1-menu_support-documents';
-  documentsLink.textContent = '資料ダウンロード';
-  
-  // 外部リンク判定
-  if (isExternalLink(documentsLink.href)) {
-    documentsLink.target = '_blank';
-  }
-
-  documentsItem.appendChild(documentsLink);
-  supportList.appendChild(documentsItem);
 
   support.appendChild(supportList);
   footer.appendChild(support);
@@ -834,7 +924,16 @@ function createSPMenu(menuStructure, fragment) {
       if (info && info.text) {
         const dt = document.createElement('dt');
         dt.className = 'sb-appshell-v1-menu_sitemap-category-title';
-        dt.textContent = info.text;
+        
+        if (info.hasLink) {
+          const dtLink = document.createElement('a');
+          dtLink.href = info.href;
+          dtLink.textContent = info.text;
+          dt.appendChild(dtLink);
+        } else {
+          dt.textContent = info.text;
+        }
+        
         dl.appendChild(dt);
       }
     }
@@ -978,7 +1077,7 @@ function createPCHeader(menuStructure, fragment) {
   pcHeader.appendChild(headerInner);
 
   // PCナビゲーション追加
-  const pcNav = createPCNavigation(menuStructure);
+  const pcNav = createPCNavigation(menuStructure, fragment);
   pcHeader.appendChild(pcNav);
 
   // ユーティリティメニュー（section3から取得）
@@ -989,7 +1088,7 @@ function createPCHeader(menuStructure, fragment) {
 }
 
 /**
- * ユーティリティメニュー生成
+ * ユーティリティメニュー生成（PC専用）
  */
 function createUtilityMenu(fragment) {
   const utility = document.createElement('div');
@@ -998,7 +1097,7 @@ function createUtilityMenu(fragment) {
   const utilityList = document.createElement('div');
   utilityList.className = 'sb-appshell-v1-header_utility-list';
 
-  // オーサリング情報: Section 3からユーティリティメニュー（お問い合わせ、ビジネスブログ）を取得
+  // オーサリング情報: Section 3からユーティリティメニューを取得（PC専用）
   if (fragment) {
     const sections = fragment.querySelectorAll('.section');
     if (sections.length > 2) {
@@ -1028,7 +1127,8 @@ function createUtilityMenu(fragment) {
             itemText = clonedLi.textContent.trim();
           }
 
-          if (itemText) {
+          // [VertexAI]で始まる項目はスキップ（検索ウィジェット用のみ）
+          if (itemText && !itemText.startsWith('[VertexAI]')) {
             const utilityItem = document.createElement('div');
             utilityItem.className = 'sb-appshell-v1-header_utility-item';
 
@@ -1075,61 +1175,27 @@ function createUtilityMenu(fragment) {
   const searchUtilityItem = document.createElement('div');
   searchUtilityItem.className = 'sb-appshell-v1-header_utility-item sb-appshell-v1-header_utility-item--search';
   
-  // 検索ウィジェット用のコンテナ
-  const searchWidgetContainer = document.createElement('div');
-  searchWidgetContainer.className = 'header-search-widget-container';
-  
-  // カスタムプレースホルダーテキストを設定
-  const placeholderText = document.createElement('p');
-  placeholderText.textContent = '検索';
-  searchWidgetContainer.appendChild(placeholderText);
-  
+  // Section 3（PC用ユーティリティメニュー）からプレースホルダーテキストを取得
+  const searchPlaceholder = getSearchPlaceholderText(fragment, 2);
+  const searchWidgetContainer = createSearchWidget('header-search-widget-container', searchPlaceholder);
   searchUtilityItem.appendChild(searchWidgetContainer);
   utilityList.appendChild(searchUtilityItem);
 
-  // 検索ウィジェットを初期化（DOMに追加された後に実行）
-  setTimeout(() => {
-    decorateSearchWidget(searchWidgetContainer);
-  }, 0);
+  // ENGLISHボタンを固定で追加（PC専用）
+  const englishUtilityItem = document.createElement('div');
+  englishUtilityItem.className = 'sb-appshell-v1-header_utility-item sb-appshell-v1-header_utility-item--bordered';
 
-  // オーサリング情報: Section 4からボタンを取得
-  if (fragment) {
-    const sections = fragment.querySelectorAll('.section');
-    if (sections.length > 3) {
-      const info = extractParagraphInfo(sections[3]);
+  const englishLink = document.createElement('a');
+  englishLink.href = ENGLISH_LINK;
+  englishLink.className = 'sb-appshell-v1-header_utility-link';
 
-      if (info) {
-        const utilityItem = document.createElement('div');
-        utilityItem.className = 'sb-appshell-v1-header_utility-item sb-appshell-v1-header_utility-item--bordered';
+  const englishSpan = document.createElement('span');
+  englishSpan.className = 'sb-appshell-v1-header_utility-link-inner';
+  englishSpan.textContent = 'ENGLISH';
 
-        if (info.hasLink) {
-          const utilityLink = document.createElement('a');
-          utilityLink.href = info.href;
-          utilityLink.className = 'sb-appshell-v1-header_utility-link';
-
-          const utilitySpan = document.createElement('span');
-          utilitySpan.className = 'sb-appshell-v1-header_utility-link-inner';
-          utilitySpan.textContent = info.text;
-
-          utilityLink.appendChild(utilitySpan);
-          utilityItem.appendChild(utilityLink);
-        } else {
-          const utilitySpan = document.createElement('span');
-          utilitySpan.className = 'sb-appshell-v1-header_utility-link';
-          utilitySpan.style.cursor = 'default';
-
-          const textSpan = document.createElement('span');
-          textSpan.className = 'sb-appshell-v1-header_utility-link-inner';
-          textSpan.textContent = info.text;
-
-          utilitySpan.appendChild(textSpan);
-          utilityItem.appendChild(utilitySpan);
-        }
-
-        utilityList.appendChild(utilityItem);
-      }
-    }
-  }
+  englishLink.appendChild(englishSpan);
+  englishUtilityItem.appendChild(englishLink);
+  utilityList.appendChild(englishUtilityItem);
 
   utility.appendChild(utilityList);
   return utility;

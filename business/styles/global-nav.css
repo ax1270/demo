@@ -2138,6 +2138,20 @@
   
     .sb-appshell-v1-menu_header {
       padding: 18px 14px 20px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .sb-appshell-v1-menu_header-nav {
+      display: flex;
+      align-items: center;
+    }
+
+    .sb-appshell-v1-menu_header-search {
+      display: flex;
+      justify-content: center;
+      width: 100%;
     }
   
     .sb-appshell-v1-menu_footer {
@@ -2158,6 +2172,19 @@
       width: 18px;
       height: 18px;
       margin: -1px 4.5px -2px 0;
+    }
+
+    .sb-appshell-v1-menu_link-english {
+      font-size: 15px;
+      color: #fff;
+      text-decoration: none;
+      padding-left: 16px;
+      margin-left: 16px;
+      border-left: 1px solid #bfbfc0;
+  
+      &:focus, &:hover, &:active, &:visited {
+        color: #fff;
+      }
     }
   
     .sb-appshell-v1-menu_button-close {
@@ -2487,9 +2514,17 @@
       margin-left: 0;
     }
   
-    .sb-appshell-v1-menu_support-contact-icon, .sb-appshell-v1-menu_support-faq-icon, .sb-appshell-v1-menu_support-bizconciersite-icon {
+    .sb-appshell-v1-menu_support-contact-icon, .sb-appshell-v1-menu_support-faq-icon, .sb-appshell-v1-menu_support-bizconciersite-icon, .sb-appshell-v1-menu_support-link-icon {
       width: 25px;
       height: 25px;
+    }
+
+    /* Section 4から取得したアイコンのimg要素にもサイズを適用 */
+    .sb-appshell-v1-menu_support-contact-icon img, 
+    .sb-appshell-v1-menu_support-link-icon img {
+      width: 25px;
+      height: 25px;
+      display: block;
     }
   
     .sb-appshell-v1-menu_support-documents-icon {
@@ -2499,6 +2534,21 @@
   
     .sb-appshell-v1-menu_support .sb-appshell-v1-menu_support-bizconciersite-icon, .sb-appshell-v1-menu_support-documents-icon {
       margin-right: 4px;
+    }
+
+    /* Section 4から取得した.iconクラスのスタイル */
+    .sb-appshell-v1-menu_support .icon {
+      width: 25px;
+      height: 25px;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+
+    .sb-appshell-v1-menu_support .icon img {
+      width: 100%;
+      height: 100%;
+      display: block;
     }
   
     .sb-appshell-v1-menu_english {
@@ -3034,5 +3084,66 @@
   @media (max-width: 768px) {
     .sb-appshell-v1-header_utility-item--search {
       display: none;
+    }
+
+    /* SP用検索ウィジェット */
+    .sp-header-search-widget-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      max-width: 280px;
+    }
+
+    .sp-header-search-widget-container .search-trigger-wrapper {
+      position: relative;
+      width: 100%;
+      height: 35px;
+      box-sizing: border-box;
+      background-color: #fff;
+      border-radius: 17px;
+    }
+
+    .sp-header-search-widget-container .search-trigger-wrapper:hover {
+      opacity: 0.8;
+    }
+
+    .sp-header-search-widget-container .search-content-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0 15px;
+      gap: 8px;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .sp-header-search-widget-container .search-icon {
+      width: 16px;
+      height: 16px;
+      background-image: url('/business/icons/search-blue.svg');
+      background-size: contain;
+      flex-shrink: 0;
+    }
+
+    .sp-header-search-widget-container .search-text {
+      color: #333;
+      font-size: 14px;
+      font-weight: normal;
+      line-height: 1;
+    }
+
+    .sp-header-search-widget-container .search-input {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      background: transparent;
+      outline: none;
+      opacity: 0;
+      cursor: pointer;
+      border-radius: 17px;
     }
   }
