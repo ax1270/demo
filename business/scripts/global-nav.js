@@ -143,12 +143,61 @@ function getSearchPlaceholderText(fragment, sectionIndex) {
 }
 
 /**
+ * 検索ウィジェット用アイコンをオーサリング情報から取得
+ * @param {Element} fragment オーサリング情報（fragment）
+ * @param {number} sectionIndex セクションのインデックス（PC用は2、SP用は3）
+ * @returns {Element|null} アイコン要素（見つからない場合はnull）
+ */
+function getSearchIconElement(fragment, sectionIndex) {
+  if (!fragment) return null;
+
+  const sections = fragment.querySelectorAll('.section');
+  if (sections.length <= sectionIndex) return null;
+
+  const section = sections[sectionIndex];
+  const ul = section.querySelector('ul');
+  if (!ul) return null;
+
+  const listItems = ul.querySelectorAll('li');
+  
+  // 全てのli要素をチェック
+  for (const li of listItems) {
+    let itemText = '';
+    const link = li.querySelector('a');
+    
+    if (link) {
+      itemText = link.textContent.trim();
+    } else {
+      const clonedLi = li.cloneNode(true);
+      const iconSpan = clonedLi.querySelector('.icon');
+      if (iconSpan) {
+        iconSpan.remove();
+      }
+      itemText = clonedLi.textContent.trim();
+    }
+
+    // [VertexAI]で始まるかチェック
+    if (itemText.startsWith('[VertexAI]')) {
+      // アイコンを取得
+      const iconSpan = li.querySelector('.icon');
+      if (iconSpan) {
+        return iconSpan.cloneNode(true);
+      }
+      return null;
+    }
+  }
+
+  return null;
+}
+
+/**
  * 検索ウィジェットを生成する共通関数
  * @param {string} containerClassName 検索ウィジェットコンテナのクラス名
  * @param {string|null} placeholderTextContent プレースホルダーテキスト（nullの場合は設定しない）
+ * @param {Element|null} iconElement アイコン要素（nullの場合は設定しない）
  * @returns {HTMLElement} 検索ウィジェットコンテナ
  */
-function createSearchWidget(containerClassName, placeholderTextContent = null) {
+function createSearchWidget(containerClassName, placeholderTextContent = null, iconElement = null) {
   const searchWidgetContainer = document.createElement('div');
   searchWidgetContainer.className = containerClassName;
   
@@ -162,6 +211,41 @@ function createSearchWidget(containerClassName, placeholderTextContent = null) {
   // 検索ウィジェットを初期化（DOMに追加された後に実行）
   setTimeout(() => {
     decorateSearchWidget(searchWidgetContainer);
+    
+    // .search-iconが作成されるのを待つ
+    const applyIconStyling = () => {
+      const searchIcon = searchWidgetContainer.querySelector('.search-icon');
+      if (searchIcon) {
+        // アイコン要素が提供された場合、検索アイコンを置き換える
+        if (iconElement) {
+          // 既存のスタイルをクリア（背景画像を削除）
+          searchIcon.style.backgroundImage = 'none';
+          // オーサリングのアイコンを挿入
+          searchIcon.innerHTML = '';
+          searchIcon.appendChild(iconElement);
+        } else {
+          // アイコン要素がない場合は非表示にする
+          searchIcon.style.display = 'none';
+        }
+        return true;
+      }
+      return false;
+    };
+    
+    // 即座に試す
+    if (!applyIconStyling()) {
+      // 見つからない場合はMutationObserverで監視
+      const observer = new MutationObserver(() => {
+        if (applyIconStyling()) {
+          observer.disconnect();
+        }
+      });
+      
+      observer.observe(searchWidgetContainer, {
+        childList: true,
+        subtree: true
+      });
+    }
   }, 0);
 
   return searchWidgetContainer;
@@ -725,7 +809,18 @@ function createSPMenuHeader(fragment) {
     }
   }
   
-  homeLink.textContent = 'ホーム';
+  // ホームアイコンを生成
+  const homeIconSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  homeIconSvg.setAttribute('class', 'sb-appshell-v1-menu_link-home-icon');
+  homeIconSvg.innerHTML = `
+    <use xlink:href="#sunshine-icon-menu_link-home">
+      <svg viewBox="0 0 32 32" id="sunshine-icon-menu_link-home">
+        <path d="M31.82 17L16.41 2.26a.59.59 0 0 0-.82 0L.18 17a.61.61 0 0 0 0 .84.61.61 0 0 0 .84 0l2.83-2.74v14.21a.56.56 0 0 0 .18.42.58.58 0 0 0 .41.17h7.68a.59.59 0 0 0 .59-.6v-9.53h6.58v9.53a.59.59 0 0 0 .59.6h7.68a.58.58 0 0 0 .41-.17.56.56 0 0 0 .18-.42V15.1L31 17.83a.57.57 0 0 0 .41.16.61.61 0 0 0 .43-.18.61.61 0 0 0-.02-.81zM27 28.72h-6.53v-9.54a.58.58 0 0 0-.59-.59h-7.76a.58.58 0 0 0-.59.59v9.53H5V14L16 3.51 27 14z" fill="#cbcccc"></path>
+      </svg>
+    </use>
+  `;
+  homeLink.appendChild(homeIconSvg);
+  homeLink.appendChild(document.createTextNode('ホーム'));
   headerNav.appendChild(homeLink);
 
   // ENGLISHボタン
@@ -741,9 +836,10 @@ function createSPMenuHeader(fragment) {
   const searchContainer = document.createElement('div');
   searchContainer.className = 'sb-appshell-v1-menu_header-search';
   
-  // Section 4（SP用ユーティリティメニュー）からプレースホルダーテキストを取得
+  // Section 4（SP用ユーティリティメニュー）からプレースホルダーテキストとアイコンを取得
   const searchPlaceholder = getSearchPlaceholderText(fragment, 3);
-  const searchWidgetContainer = createSearchWidget('sp-header-search-widget-container', searchPlaceholder);
+  const searchIcon = getSearchIconElement(fragment, 3);
+  const searchWidgetContainer = createSearchWidget('sp-header-search-widget-container', searchPlaceholder, searchIcon);
   searchContainer.appendChild(searchWidgetContainer);
   header.appendChild(searchContainer);
 
@@ -1175,9 +1271,10 @@ function createUtilityMenu(fragment) {
   const searchUtilityItem = document.createElement('div');
   searchUtilityItem.className = 'sb-appshell-v1-header_utility-item sb-appshell-v1-header_utility-item--search';
   
-  // Section 3（PC用ユーティリティメニュー）からプレースホルダーテキストを取得
+  // Section 3（PC用ユーティリティメニュー）からプレースホルダーテキストとアイコンを取得
   const searchPlaceholder = getSearchPlaceholderText(fragment, 2);
-  const searchWidgetContainer = createSearchWidget('header-search-widget-container', searchPlaceholder);
+  const searchIcon = getSearchIconElement(fragment, 2);
+  const searchWidgetContainer = createSearchWidget('header-search-widget-container', searchPlaceholder, searchIcon);
   searchUtilityItem.appendChild(searchWidgetContainer);
   utilityList.appendChild(searchUtilityItem);
 
