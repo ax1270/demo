@@ -99,20 +99,25 @@ function convertFlatToHierarchy(data) {
 }
 
 /**
- * ユーティリティエリアから[VertexAI]で始まるテキストを検索し、後続の文字列を取得
+ * ユーティリティエリアから[VertexAI]で始まるテキストを検索し、プレースホルダーとアイコンを取得
  * @param {Element} fragment オーサリング情報（fragment）
  * @param {number} sectionIndex セクションのインデックス（PC用は2、SP用は3）
- * @returns {string|null} プレースホルダーテキスト（見つからない場合はnull）
+ * @returns {{placeholderText: string|null, iconElement: Element|null}} プレースホルダーテキストとアイコン要素
  */
-function getSearchPlaceholderText(fragment, sectionIndex) {
-  if (!fragment) return null;
+function getSearchWidgetInfo(fragment, sectionIndex) {
+  const result = {
+    placeholderText: null,
+    iconElement: null
+  };
+
+  if (!fragment) return result;
 
   const sections = fragment.querySelectorAll('.section');
-  if (sections.length <= sectionIndex) return null;
+  if (sections.length <= sectionIndex) return result;
 
   const section = sections[sectionIndex];
   const ul = section.querySelector('ul');
-  if (!ul) return null;
+  if (!ul) return result;
 
   const listItems = ul.querySelectorAll('li');
   
@@ -134,60 +139,20 @@ function getSearchPlaceholderText(fragment, sectionIndex) {
 
     // [VertexAI]で始まるかチェック
     if (itemText.startsWith('[VertexAI]')) {
-      // [VertexAI]より後続の文字列を返す
-      return itemText.substring('[VertexAI]'.length).trim();
-    }
-  }
-
-  return null;
-}
-
-/**
- * 検索ウィジェット用アイコンをオーサリング情報から取得
- * @param {Element} fragment オーサリング情報（fragment）
- * @param {number} sectionIndex セクションのインデックス（PC用は2、SP用は3）
- * @returns {Element|null} アイコン要素（見つからない場合はnull）
- */
-function getSearchIconElement(fragment, sectionIndex) {
-  if (!fragment) return null;
-
-  const sections = fragment.querySelectorAll('.section');
-  if (sections.length <= sectionIndex) return null;
-
-  const section = sections[sectionIndex];
-  const ul = section.querySelector('ul');
-  if (!ul) return null;
-
-  const listItems = ul.querySelectorAll('li');
-  
-  // 全てのli要素をチェック
-  for (const li of listItems) {
-    let itemText = '';
-    const link = li.querySelector('a');
-    
-    if (link) {
-      itemText = link.textContent.trim();
-    } else {
-      const clonedLi = li.cloneNode(true);
-      const iconSpan = clonedLi.querySelector('.icon');
-      if (iconSpan) {
-        iconSpan.remove();
-      }
-      itemText = clonedLi.textContent.trim();
-    }
-
-    // [VertexAI]で始まるかチェック
-    if (itemText.startsWith('[VertexAI]')) {
+      // [VertexAI]より後続の文字列をプレースホルダーとして取得
+      result.placeholderText = itemText.substring('[VertexAI]'.length).trim();
+      
       // アイコンを取得
       const iconSpan = li.querySelector('.icon');
       if (iconSpan) {
-        return iconSpan.cloneNode(true);
+        result.iconElement = iconSpan.cloneNode(true);
       }
-      return null;
+      
+      return result;
     }
   }
 
-  return null;
+  return result;
 }
 
 /**
@@ -837,9 +802,8 @@ function createSPMenuHeader(fragment) {
   searchContainer.className = 'sb-appshell-v1-menu_header-search';
   
   // Section 4（SP用ユーティリティメニュー）からプレースホルダーテキストとアイコンを取得
-  const searchPlaceholder = getSearchPlaceholderText(fragment, 3);
-  const searchIcon = getSearchIconElement(fragment, 3);
-  const searchWidgetContainer = createSearchWidget('sp-header-search-widget-container', searchPlaceholder, searchIcon);
+  const searchWidgetInfo = getSearchWidgetInfo(fragment, 3);
+  const searchWidgetContainer = createSearchWidget('sp-header-search-widget-container', searchWidgetInfo.placeholderText, searchWidgetInfo.iconElement);
   searchContainer.appendChild(searchWidgetContainer);
   header.appendChild(searchContainer);
 
@@ -1064,10 +1028,9 @@ function createSPMenu(menuStructure, fragment) {
 
 /**
  * メインの公開関数：グローバルナビゲーション（ヘッダー全体）を構築する
- * @param {boolean} isDesktop デスクトップ表示かどうか（true: PC, false: SP）
  * @returns {Promise<HTMLElement>} グローバルナビゲーション要素（ヘッダー全体）
  */
-export async function buildGlobalNav(isDesktop = true) {
+export async function buildGlobalNav() {
 
   // オーサリング情報の取得
   const navMeta = getMetadata('global-nav');
@@ -1082,26 +1045,14 @@ export async function buildGlobalNav(isDesktop = true) {
   const container = document.createElement('div');
   container.className = 'smb solutions globalnavi';
 
-  if (isDesktop) {
-    // PC用: PCヘッダーのみ生成
-    const pcHeader = createPCHeader(menuStructure, fragment);
-    container.appendChild(pcHeader);
+  // PCヘッダーを追加
+  const pcHeader = createPCHeader(menuStructure, fragment);
+  container.appendChild(pcHeader);
 
-    // PCイベント初期化（DOM追加後に実行）
-    setTimeout(() => {
-      jsHeader(container);
-    }, 0);
-  } else {
-    // SP用: SPヘッダーとメニューのみ生成
-    const { spFixedArea, spMenu } = createSPHeader(menuStructure, fragment);
-    container.appendChild(spFixedArea);
-    container.appendChild(spMenu);
-
-    // SPイベント初期化（DOM追加後に実行）
-    setTimeout(() => {
-      jsHeaderSp(container);
-    }, 0);
-  }
+  // SPヘッダーを追加
+  const { spFixedArea, spMenu } = createSPHeader(menuStructure, fragment);
+  container.appendChild(spFixedArea);
+  container.appendChild(spMenu);
 
   return container;
 }
@@ -1134,10 +1085,10 @@ function createPCHeader(menuStructure, fragment) {
       // pictureの後にaタグがある場合、pictureをaタグで囲む
       wrapImgsInLinks(firstSection);
       
-      // aタグまたはpictureを取得してそのまま使用
+      // aタグまたはpictureを取得してクローン（両方のヘッダーで使用するため）
       const content = firstSection.querySelector('a, picture');
       if (content) {
-        logoDiv.appendChild(content);
+        logoDiv.appendChild(content.cloneNode(true));
       }
     }
   }
@@ -1272,9 +1223,8 @@ function createUtilityMenu(fragment) {
   searchUtilityItem.className = 'sb-appshell-v1-header_utility-item sb-appshell-v1-header_utility-item--search';
   
   // Section 3（PC用ユーティリティメニュー）からプレースホルダーテキストとアイコンを取得
-  const searchPlaceholder = getSearchPlaceholderText(fragment, 2);
-  const searchIcon = getSearchIconElement(fragment, 2);
-  const searchWidgetContainer = createSearchWidget('header-search-widget-container', searchPlaceholder, searchIcon);
+  const searchWidgetInfo = getSearchWidgetInfo(fragment, 2);
+  const searchWidgetContainer = createSearchWidget('header-search-widget-container', searchWidgetInfo.placeholderText, searchWidgetInfo.iconElement);
   searchUtilityItem.appendChild(searchWidgetContainer);
   utilityList.appendChild(searchUtilityItem);
 
@@ -1321,14 +1271,22 @@ function createSPHeader(menuStructure, fragment) {
   const spLogo = document.createElement('div');
   spLogo.className = 'sb-appshell-v1-header_inner__logo';
   const spLogoLink = document.createElement('a');
-  spLogoLink.href = '/';
+  spLogoLink.href = '/'; // デフォルト値
   spLogoLink.className = 'sb-appshell-v1-header_inner__logo__image';
 
-  // fragmentから画像を取得
+  // fragmentから画像とリンク先を取得
   if (fragment) {
     const sections = fragment.querySelectorAll('.section');
     if (sections.length > 0) {
       const firstSection = sections[0];
+      
+      // aタグを取得（PC用でwrapImgsInLinksが実行されている）
+      const logoAnchor = firstSection.querySelector('a');
+      if (logoAnchor && logoAnchor.href) {
+        spLogoLink.href = logoAnchor.href;
+      }
+      
+      // 画像を取得
       let img = firstSection.querySelector('img');
 
       if (!img) {

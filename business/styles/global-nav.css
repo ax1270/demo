@@ -239,9 +239,27 @@
       width: auto;
     }
   }
+  /* レスポンシブ対応: PC/SP表示切り替え */
+  .visible-sp {
+    display: none;
+  }
+  .visible-pc {
+    display: block;
+  }
+
   @media (max-width: 768px) {
     /* SP用 */
     .smb .header.header02{
+      display: none;
+    }
+    .solutions.globalnavi > .header.header02 {
+      display: none;
+    }
+    /* レスポンシブ対応: PC/SP表示切り替え */
+    .visible-sp {
+      display: block;
+    }
+    .visible-pc {
       display: none;
     }
   }
@@ -1710,10 +1728,12 @@
     visibility: hidden;
   }
   
-  .solutions.globalnavi > .header.header02 {
-    display: block;
-    position: relative;
-    height: 80px;
+  @media (min-width: 769px) {
+    .solutions.globalnavi > .header.header02 {
+      display: block;
+      position: relative;
+      height: 80px;
+    }
   }
   
   .smb {

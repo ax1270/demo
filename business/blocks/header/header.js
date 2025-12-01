@@ -1,7 +1,7 @@
 // import { getMetadata } from '../../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 import { buildBreadcrumbs } from '../../scripts/scripts.js';
-import { buildGlobalNav } from '../../scripts/global-nav.js';
+import { jsHeader, jsHeaderSp, buildGlobalNav } from '../../scripts/global-nav.js';
 
 
 // media query match that indicates mobile/tablet width
@@ -42,7 +42,12 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
  */
 export default async function decorate(block) {
     // グローバルナビゲーションをDOM構築で生成
-    const globalNav = await buildGlobalNav(isDesktop.matches);
+    const globalNav = await buildGlobalNav();
+
+    // グローバルナビゲーション設定（レスポンシブ対応：PC/SP両方を初期化）
+    jsHeader(globalNav);
+    jsHeaderSp(globalNav);
+
     block.append(globalNav);
 
     // パンくずリストを追加
