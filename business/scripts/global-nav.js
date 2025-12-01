@@ -14,7 +14,7 @@
 import { loadFragment } from '../blocks/fragment/fragment.js';
 import { getMetadata } from './aem.js';
 import decorateSearchWidget from '../blocks/index-search-widget/index-search-widget.js';
-import { wrapImgsInLinks, isExternalLink, extractParagraphInfo } from './utils/utils-sample.js';
+import { wrapImgsInLinks, isExternalLink, extractParagraphInfo } from './utils/common.js';
 
 // 定数定義
 const MEGAMENU_FILENAME = 'header-megamenu.json';
